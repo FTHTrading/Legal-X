@@ -4,6 +4,29 @@ export default {
     const host = url.hostname.toLowerCase();
     const path = url.pathname.toLowerCase();
 
+    // 0. Diagnostic Release Verification Endpoint
+    if (path === "/__release" || path === "/api/release") {
+      return Response.json(
+        {
+          status: "healthy",
+          hostname: url.hostname,
+          pathname: url.pathname,
+          workerRelease: "77f4a83",
+          contentRelease: "77f4a83",
+          deployedAt: "2026-08-29T05:16:00-04:00",
+          routeMode: "worker-first",
+          targetAssets: ["/index.html", "/legal-x.html", "/app_portal.html", "/cinema.html"]
+        },
+        {
+          headers: {
+            "Cache-Control": "no-store, no-cache, max-age=0, must-revalidate",
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*"
+          }
+        }
+      );
+    }
+
     // Cache control to prevent stale HTML caching across production releases
     const noCacheHeaders = {
       "Cache-Control": "no-cache, no-store, must-revalidate",
