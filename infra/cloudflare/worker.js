@@ -2,40 +2,63 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const host = url.hostname.toLowerCase();
-    const pathname = url.pathname.toLowerCase();
+    const path = url.pathname.toLowerCase();
 
-    // 1. Operational Workspace Subdomain: app.legacychain.app
+    // Cache control to prevent stale HTML caching across production releases
+    const noCacheHeaders = {
+      "Cache-Control": "no-cache, no-store, must-revalidate",
+      "Pragma": "no-cache",
+      "Expires": "0"
+    };
+
+    // 1. App Subdomain (app.legacychain.app / vault.legacychain.app)
     if (host === "app.legacychain.app" || host === "vault.legacychain.app") {
-      if (pathname === "/" || pathname === "/index.html" || pathname === "/workspace") {
-        return env.ASSETS.fetch(new Request(new URL("/app_portal.html", request.url).toString(), request));
+      if (path === "/" || path === "/index.html" || path === "/workspace" || path === "/app" || path === "/app/") {
+        const res = await env.ASSETS.fetch(new Request(new URL("/app_portal.html", request.url).toString(), request));
+        const newHeaders = new Headers(res.headers);
+        Object.entries(noCacheHeaders).forEach(([k, v]) => newHeaders.set(k, v));
+        return new Response(res.body, { status: res.status, headers: newHeaders });
       }
     }
 
-    // 2. Apex Brand Portal & Direct Routes: legacychain.app / www.legacychain.app
-    if (pathname === "/legal-x" || pathname === "/legal-x/") {
-      return env.ASSETS.fetch(new Request(new URL("/legal-x.html", request.url).toString(), request));
+    // 2. Apex Brand & Specific Public Routes (legacychain.app / www.legacychain.app)
+    if (path === "/legal-x" || path === "/legal-x/" || path === "/legal-x.html") {
+      const res = await env.ASSETS.fetch(new Request(new URL("/legal-x.html", request.url).toString(), request));
+      const newHeaders = new Headers(res.headers);
+      Object.entries(noCacheHeaders).forEach(([k, v]) => newHeaders.set(k, v));
+      return new Response(res.body, { status: res.status, headers: newHeaders });
     }
 
-    if (pathname === "/cinema" || pathname === "/cinema/") {
-      return env.ASSETS.fetch(new Request(new URL("/cinema.html", request.url).toString(), request));
+    if (path === "/cinema" || path === "/cinema/" || path === "/cinema.html") {
+      const res = await env.ASSETS.fetch(new Request(new URL("/cinema.html", request.url).toString(), request));
+      const newHeaders = new Headers(res.headers);
+      Object.entries(noCacheHeaders).forEach(([k, v]) => newHeaders.set(k, v));
+      return new Response(res.body, { status: res.status, headers: newHeaders });
     }
 
-    // 3. Default asset resolution
+    if (path === "/" || path === "/index.html") {
+      const res = await env.ASSETS.fetch(new Request(new URL("/index.html", request.url).toString(), request));
+      const newHeaders = new Headers(res.headers);
+      Object.entries(noCacheHeaders).forEach(([k, v]) => newHeaders.set(k, v));
+      return new Response(res.body, { status: res.status, headers: newHeaders });
+    }
+
+    // 3. Fallback to standard asset resolution (CSS, JS, Media)
     let response = await env.ASSETS.fetch(request);
     
-    // 4. Clean 404 Fallback routing
     if (response.status === 404) {
       if (host === "app.legacychain.app" || host === "vault.legacychain.app") {
-        return env.ASSETS.fetch(new Request(new URL("/app_portal.html", request.url).toString(), request));
+        const res = await env.ASSETS.fetch(new Request(new URL("/app_portal.html", request.url).toString(), request));
+        const newHeaders = new Headers(res.headers);
+        Object.entries(noCacheHeaders).forEach(([k, v]) => newHeaders.set(k, v));
+        return new Response(res.body, { status: res.status, headers: newHeaders });
       }
-      const cleanPath = url.pathname.endsWith('/') ? url.pathname + 'index.html' : url.pathname + '/index.html';
-      const tryIndex = await env.ASSETS.fetch(new Request(new URL(cleanPath, request.url).toString(), request));
-      if (tryIndex.status !== 404) {
-        return tryIndex;
-      }
-      return env.ASSETS.fetch(new Request(new URL("/index.html", request.url).toString(), request));
+      const res = await env.ASSETS.fetch(new Request(new URL("/index.html", request.url).toString(), request));
+      const newHeaders = new Headers(res.headers);
+      Object.entries(noCacheHeaders).forEach(([k, v]) => newHeaders.set(k, v));
+      return new Response(res.body, { status: res.status, headers: newHeaders });
     }
-    
+
     return response;
   }
 };
