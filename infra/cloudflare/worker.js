@@ -4,6 +4,8 @@ export default {
     const host = url.hostname.toLowerCase();
     const path = url.pathname.toLowerCase();
 
+    const currentReleaseId = "b900512";
+
     // 0. Diagnostic Release Verification Endpoint
     if (path === "/__release" || path === "/api/release") {
       return Response.json(
@@ -11,28 +13,23 @@ export default {
           status: "healthy",
           hostname: url.hostname,
           pathname: url.pathname,
-          workerRelease: "77f4a83",
-          contentRelease: "77f4a83",
-          deployedAt: "2026-08-29T05:16:00-04:00",
+          workerRelease: currentReleaseId,
+          contentRelease: currentReleaseId,
+          deployedAt: "2026-08-29T05:25:00-04:00",
           routeMode: "worker-first",
           targetAssets: ["/index.html", "/legal-x.html", "/app_portal.html", "/cinema.html"]
         },
         {
           headers: {
             "Cache-Control": "no-store, no-cache, max-age=0, must-revalidate",
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*"
+            "Content-Type": "application/json; charset=utf-8",
+            "Access-Control-Allow-Origin": "*",
+            "X-LegalX-Worker-Release": currentReleaseId,
+            "X-LegalX-Content-Release": currentReleaseId
           }
         }
       );
     }
-
-    // Cache control to prevent stale HTML caching across production releases
-    const noCacheHeaders = {
-      "Cache-Control": "no-cache, no-store, must-revalidate",
-      "Pragma": "no-cache",
-      "Expires": "0"
-    };
 
     // Helper to fetch asset and transparently resolve any Cloudflare redirect without returning 307 to client
     async function serveAsset(assetPath) {
@@ -52,7 +49,15 @@ export default {
       }
 
       const newHeaders = new Headers(res.headers);
-      Object.entries(noCacheHeaders).forEach(([k, v]) => newHeaders.set(k, v));
+      newHeaders.set("Cache-Control", "no-store, no-cache, max-age=0, must-revalidate");
+      newHeaders.set("Pragma", "no-cache");
+      newHeaders.set("Expires", "0");
+      newHeaders.set("Vary", "Host");
+      newHeaders.set("Access-Control-Allow-Origin", "*");
+      newHeaders.set("X-LegalX-Worker-Release", currentReleaseId);
+      newHeaders.set("X-LegalX-Content-Release", currentReleaseId);
+      newHeaders.set("X-LegalX-Selected-Asset", assetPath);
+
       return new Response(res.body, { status: res.status, headers: newHeaders });
     }
 
