@@ -148,6 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initCitationMatcher();
   initX402Simulator();
   initAccordions();
+  initCinemaStudio();
 });
 
 // TAB SWITCHER
@@ -423,3 +424,690 @@ function initAccordions() {
     });
   });
 }
+
+// ==========================================================================
+// LEGAL CINEMA & MEDIA STUDIO ENGINE
+// ==========================================================================
+
+const LEGAL_MEDIA_CATALOG = [
+  {
+    "id": "courtroom_mastery_01",
+    "filename": "courtroom_mastery_01.mp4",
+    "relPath": "media/videos/courtroom_mastery_01.mp4",
+    "title": "Futuristic Courtroom Mastery (Vol. 1)",
+    "description": "High-tech courtroom podium with holographic displays and holographic judicial gavel.",
+    "category": "Mastery",
+    "sizeMb": 5.1,
+    "duration": 10.0,
+    "resolution": "854x480",
+    "thumbnail": "media/thumbnails/courtroom_mastery_01.jpg",
+    "type": "video",
+    "originalPath": "C:\\Users\\Kevan\\Videos\\Unykorn_Miami_Vice_Media_Gallery\\04_Master_Consolidated_Archive\\20250127_0042_Futuristic Courtroom Mastery_storyboard_01jjk4g9w7ecqbd411hepkqbaz.mp4"
+  },
+  {
+    "id": "digital_justice_helix",
+    "filename": "digital_justice_helix.mp4",
+    "relPath": "media/videos/digital_justice_helix.mp4",
+    "title": "Digital Justice Helix Strand",
+    "description": "Cryptographic legal double-helix visualizing FRE 902 digital evidence provenance.",
+    "category": "Helix & DNA",
+    "sizeMb": 13.27,
+    "duration": 10.0,
+    "resolution": "480x854",
+    "thumbnail": "media/thumbnails/digital_justice_helix.jpg",
+    "type": "video",
+    "originalPath": "C:\\Users\\Kevan\\Videos\\Unykorn_Miami_Vice_Media_Gallery\\04_Master_Consolidated_Archive\\20250126_2243_Digital Justice Helix_storyboard_01jjjxq7azeqssz6mxjazet37d.mp4"
+  },
+  {
+    "id": "courtroom_drama_01",
+    "filename": "courtroom_drama_01.mp4",
+    "relPath": "media/videos/courtroom_drama_01.mp4",
+    "title": "Futuristic Courtroom Drama: The Bench",
+    "description": "Litigation chamber with ambient cyber-blue lighting and floating legal displays.",
+    "category": "Drama",
+    "sizeMb": 8.12,
+    "duration": 10.0,
+    "resolution": "854x480",
+    "thumbnail": "media/thumbnails/courtroom_drama_01.jpg",
+    "type": "video",
+    "originalPath": "C:\\Users\\Kevan\\Videos\\Unykorn_Miami_Vice_Media_Gallery\\04_Master_Consolidated_Archive\\20250126_2259_Futuristic Courtroom Drama_simple_compose_01jjjym1j6faqv58j2m3esxawk.mp4"
+  },
+  {
+    "id": "justice_unveiled_01",
+    "filename": "justice_unveiled_01.mp4",
+    "relPath": "media/videos/justice_unveiled_01.mp4",
+    "title": "Futuristic Justice Unveiled (Vol. 1)",
+    "description": "Cinematic unveiling of autonomous on-chain judicial protocol and sovereign ledger.",
+    "category": "Justice",
+    "sizeMb": 10.4,
+    "duration": 10.0,
+    "resolution": "854x480",
+    "thumbnail": "media/thumbnails/justice_unveiled_01.jpg",
+    "type": "video",
+    "originalPath": "C:\\Users\\Kevan\\Videos\\Unykorn_Miami_Vice_Media_Gallery\\04_Master_Consolidated_Archive\\20250126_2303_Futuristic Justice Unveiled_simple_compose_01jjjyvfa4fn9bmvxeevwnb39x.mp4"
+  },
+  {
+    "id": "courtroom_resolution_01",
+    "filename": "courtroom_resolution_01.mp4",
+    "relPath": "media/videos/courtroom_resolution_01.mp4",
+    "title": "Courtroom Resolution: Chamber Alpha",
+    "description": "Judicial bench resolution sequence with luminous cyan and gold verdict arrays.",
+    "category": "Resolution",
+    "sizeMb": 8.89,
+    "duration": 10.0,
+    "resolution": "854x480",
+    "thumbnail": "media/thumbnails/courtroom_resolution_01.jpg",
+    "type": "video",
+    "originalPath": "C:\\Users\\Kevan\\Videos\\Unykorn_Miami_Vice_Media_Gallery\\04_Master_Consolidated_Archive\\20250126_2304_Futuristic Courtroom Resolution_storyboard_01jjjywj0ge658rz9c0ber8c9a.mp4"
+  },
+  {
+    "id": "courtroom_resolution_02",
+    "filename": "courtroom_resolution_02.mp4",
+    "relPath": "media/videos/courtroom_resolution_02.mp4",
+    "title": "Courtroom Resolution: Chamber Beta",
+    "description": "High-speed evidentiary reconciliation with multi-tiered jury holographic rings.",
+    "category": "Resolution",
+    "sizeMb": 9.1,
+    "duration": 10.0,
+    "resolution": "854x480",
+    "thumbnail": "media/thumbnails/courtroom_resolution_02.jpg",
+    "type": "video",
+    "originalPath": "C:\\Users\\Kevan\\Videos\\Unykorn_Miami_Vice_Media_Gallery\\04_Master_Consolidated_Archive\\20250126_2304_Futuristic Courtroom Resolution_storyboard_01jjjywj0rfskan9tn3yvjg8n8.mp4"
+  },
+  {
+    "id": "justice_resolved_01",
+    "filename": "justice_resolved_01.mp4",
+    "relPath": "media/videos/justice_resolved_01.mp4",
+    "title": "Justice Resolved: Evidentiary Proof",
+    "description": "Deterministic case verification sequence with gold-accented legal chamber.",
+    "category": "Resolution",
+    "sizeMb": 10.43,
+    "duration": 10.0,
+    "resolution": "854x480",
+    "thumbnail": "media/thumbnails/justice_resolved_01.jpg",
+    "type": "video",
+    "originalPath": "C:\\Users\\Kevan\\Videos\\Unykorn_Miami_Vice_Media_Gallery\\04_Master_Consolidated_Archive\\20250126_2310_Futuristic Courtroom Justice Resolved_storyboard_01jjjz7rcce0q8rfcbz087w4s7.mp4"
+  },
+  {
+    "id": "justice_resolved_02",
+    "filename": "justice_resolved_02.mp4",
+    "relPath": "media/videos/justice_resolved_02.mp4",
+    "title": "Justice Resolved: Smart Settlement",
+    "description": "Autonomous dispute resolution closing loop with immutable transaction receipt.",
+    "category": "Resolution",
+    "sizeMb": 9.76,
+    "duration": 10.0,
+    "resolution": "854x480",
+    "thumbnail": "media/thumbnails/justice_resolved_02.jpg",
+    "type": "video",
+    "originalPath": "C:\\Users\\Kevan\\Videos\\Unykorn_Miami_Vice_Media_Gallery\\04_Master_Consolidated_Archive\\20250126_2310_Futuristic Courtroom Justice Resolved_storyboard_01jjjz7rcjfe999psx5tmb0hp6.mp4"
+  },
+  {
+    "id": "justice_unveiled_02",
+    "filename": "justice_unveiled_02.mp4",
+    "relPath": "media/videos/justice_unveiled_02.mp4",
+    "title": "Futuristic Justice Unveiled (Vol. 2)",
+    "description": "Wide-angle panoramic chamber showing attorney consoles and automated docket.",
+    "category": "Justice",
+    "sizeMb": 9.65,
+    "duration": 10.0,
+    "resolution": "854x480",
+    "thumbnail": "media/thumbnails/justice_unveiled_02.jpg",
+    "type": "video",
+    "originalPath": "C:\\Users\\Kevan\\Videos\\Unykorn_Miami_Vice_Media_Gallery\\04_Master_Consolidated_Archive\\20250126_2313_Futuristic Justice Unveiled_storyboard_01jjjzd84vf2abam51pvr4dkyn.mp4"
+  },
+  {
+    "id": "office_mastery",
+    "filename": "office_mastery.mp4",
+    "relPath": "media/videos/office_mastery.mp4",
+    "title": "Futuristic Legal Office Mastery",
+    "description": "Senior partner executive suite with floating legal graphs and real-time filings.",
+    "category": "Office & Strategy",
+    "sizeMb": 6.82,
+    "duration": 10.0,
+    "resolution": "854x480",
+    "thumbnail": "media/thumbnails/office_mastery.jpg",
+    "type": "video",
+    "originalPath": "C:\\Users\\Kevan\\Videos\\Unykorn_Miami_Vice_Media_Gallery\\04_Master_Consolidated_Archive\\20250127_0033_Futuristic Office Mastery_storyboard_01jjk3zd80fn9rprvsmh2ym8kw.mp4"
+  },
+  {
+    "id": "drama_unfolds",
+    "filename": "drama_unfolds.mp4",
+    "relPath": "media/videos/drama_unfolds.mp4",
+    "title": "Courtroom Drama Unfolds: Counsel Pod",
+    "description": "Litigation team terminal with real-time objection analysis and case law matching.",
+    "category": "Drama",
+    "sizeMb": 6.47,
+    "duration": 10.0,
+    "resolution": "480x854",
+    "thumbnail": "media/thumbnails/drama_unfolds.jpg",
+    "type": "video",
+    "originalPath": "C:\\Users\\Kevan\\Videos\\Unykorn_Miami_Vice_Media_Gallery\\04_Master_Consolidated_Archive\\20250127_0119_Courtroom Drama Unfolds_storyboard_01jjk6khjtfpcazy9zvrtk2x4w.mp4"
+  },
+  {
+    "id": "courtroom_mastery_02",
+    "filename": "courtroom_mastery_02.mp4",
+    "relPath": "media/videos/courtroom_mastery_02.mp4",
+    "title": "Futuristic Courtroom Mastery (Vol. 2)",
+    "description": "Grand hall of sovereign justice with biometric evidentiary verification beams.",
+    "category": "Mastery",
+    "sizeMb": 6.62,
+    "duration": 10.0,
+    "resolution": "854x480",
+    "thumbnail": "media/thumbnails/courtroom_mastery_02.jpg",
+    "type": "video",
+    "originalPath": "C:\\Users\\Kevan\\Videos\\Unykorn_Miami_Vice_Media_Gallery\\04_Master_Consolidated_Archive\\20250127_0105_Futuristic Courtroom Mastery_storyboard_01jjk5t8t8f7xrengkv5pdvzfs.mp4"
+  },
+  {
+    "id": "courtroom_elegance",
+    "filename": "courtroom_elegance.mp4",
+    "relPath": "media/videos/courtroom_elegance.mp4",
+    "title": "Futuristic Courtroom Elegance",
+    "description": "Polished marble and obsidian cyber-bench with ambient gold volumetric lighting.",
+    "category": "Elegance",
+    "sizeMb": 5.0,
+    "duration": 10.0,
+    "resolution": "480x854",
+    "thumbnail": "media/thumbnails/courtroom_elegance.jpg",
+    "type": "video",
+    "originalPath": "C:\\Users\\Kevan\\Videos\\Unykorn_Miami_Vice_Media_Gallery\\04_Master_Consolidated_Archive\\20250127_0106_Futuristic Courtroom Elegance_storyboard_01jjk5w01qfgpt239tqzr0xztq.mp4"
+  },
+  {
+    "id": "courtroom_drama_02",
+    "filename": "courtroom_drama_02.mp4",
+    "relPath": "media/videos/courtroom_drama_02.mp4",
+    "title": "Courtroom Drama: Defense Podium",
+    "description": "Defense advocate console showing citation offset tracking and live court feed.",
+    "category": "Drama",
+    "sizeMb": 8.47,
+    "duration": 10.0,
+    "resolution": "854x480",
+    "thumbnail": "media/thumbnails/courtroom_drama_02.jpg",
+    "type": "video",
+    "originalPath": "C:\\Users\\Kevan\\Videos\\Unykorn_Miami_Vice_Media_Gallery\\04_Master_Consolidated_Archive\\20250127_0112_Futuristic Courtroom Drama_storyboard_01jjk671d6feetqp7rxh7tsm7x.mp4"
+  },
+  {
+    "id": "courtroom_drama_03",
+    "filename": "courtroom_drama_03.mp4",
+    "relPath": "media/videos/courtroom_drama_03.mp4",
+    "title": "Courtroom Drama: Judicial Bench",
+    "description": "Presiding magistrate dais with integrated AI verification and FRE seals.",
+    "category": "Drama",
+    "sizeMb": 7.84,
+    "duration": 10.0,
+    "resolution": "854x480",
+    "thumbnail": "media/thumbnails/courtroom_drama_03.jpg",
+    "type": "video",
+    "originalPath": "C:\\Users\\Kevan\\Videos\\Unykorn_Miami_Vice_Media_Gallery\\04_Master_Consolidated_Archive\\20250127_0112_Futuristic Courtroom Drama_storyboard_01jjk671dge39tbgk4sv9hbfmk.mp4"
+  },
+  {
+    "id": "courtroom_drama_04",
+    "filename": "courtroom_drama_04.mp4",
+    "relPath": "media/videos/courtroom_drama_04.mp4",
+    "title": "Courtroom Drama: Evidentiary Climax",
+    "description": "Dramatic reveal of character-accurate slip opinion citations and witness proofs.",
+    "category": "Drama",
+    "sizeMb": 6.68,
+    "duration": 10.0,
+    "resolution": "480x854",
+    "thumbnail": "media/thumbnails/courtroom_drama_04.jpg",
+    "type": "video",
+    "originalPath": "C:\\Users\\Kevan\\Videos\\Unykorn_Miami_Vice_Media_Gallery\\04_Master_Consolidated_Archive\\20250127_0115_Futuristic Courtroom Drama_storyboard_01jjk6cgj9e8xv4zh0ez8nr8qj.mp4"
+  },
+  {
+    "id": "courtroom_confrontation_01",
+    "filename": "courtroom_confrontation_01.mp4",
+    "relPath": "media/videos/courtroom_confrontation_01.mp4",
+    "title": "Courtroom Confrontation: Cross-Exam",
+    "description": "Cross-examination standoff with real-time contradictory statement detection.",
+    "category": "Confrontation",
+    "sizeMb": 5.37,
+    "duration": 10.0,
+    "resolution": "480x854",
+    "thumbnail": "media/thumbnails/courtroom_confrontation_01.jpg",
+    "type": "video",
+    "originalPath": "C:\\Users\\Kevan\\Videos\\Unykorn_Miami_Vice_Media_Gallery\\04_Master_Consolidated_Archive\\20250127_0118_Futuristic Courtroom Confrontation_storyboard_01jjk6jf39e0v9mrg6cb1xg6av.mp4"
+  },
+  {
+    "id": "courtroom_confrontation_02",
+    "filename": "courtroom_confrontation_02.mp4",
+    "relPath": "media/videos/courtroom_confrontation_02.mp4",
+    "title": "Courtroom Confrontation: Oral Argument",
+    "description": "High-stakes oral argument before the tribunal with real-time precedent matrix.",
+    "category": "Confrontation",
+    "sizeMb": 5.17,
+    "duration": 10.0,
+    "resolution": "480x854",
+    "thumbnail": "media/thumbnails/courtroom_confrontation_02.jpg",
+    "type": "video",
+    "originalPath": "C:\\Users\\Kevan\\Videos\\Unykorn_Miami_Vice_Media_Gallery\\04_Master_Consolidated_Archive\\20250127_0118_Futuristic Courtroom Confrontation_storyboard_01jjk6jf40f8qbds1r5wn1cget.mp4"
+  },
+  {
+    "id": "legal_scales_hologram",
+    "filename": "legal_scales_hologram.jpg",
+    "relPath": "media/images/legal_scales_hologram.jpg",
+    "title": "Holographic Scales of Justice",
+    "description": "3D cybernetic scales of justice suspended with real-time cryptographic ledger hashes and laser balance lines.",
+    "category": "Visual Badges & Seals",
+    "sizeMb": 0.35,
+    "duration": 0,
+    "resolution": "1920x1080",
+    "thumbnail": "media/images/legal_scales_hologram.jpg",
+    "type": "image",
+    "originalPath": "Generated Photorealistic 8K Asset"
+  },
+  {
+    "id": "courtroom_cyber_bench",
+    "filename": "courtroom_cyber_bench.jpg",
+    "relPath": "media/images/courtroom_cyber_bench.jpg",
+    "title": "Grand Federal Cyber Bench & Codex",
+    "description": "Massive panoramic constitutional codex display and obsidian judicial bench with neon accents.",
+    "category": "Mastery",
+    "sizeMb": 0.45,
+    "duration": 0,
+    "resolution": "1920x1080",
+    "thumbnail": "media/images/courtroom_cyber_bench.jpg",
+    "type": "image",
+    "originalPath": "Generated Photorealistic 8K Asset"
+  },
+  {
+    "id": "fre_902_seal",
+    "filename": "fre_902_seal.jpg",
+    "relPath": "media/images/fre_902_seal.jpg",
+    "title": "FRE 902(13)/(14) Authenticity Medallion",
+    "description": "High-relief gold, silver, and sapphire digital evidence provenance authenticity seal.",
+    "category": "Visual Badges & Seals",
+    "sizeMb": 0.32,
+    "duration": 0,
+    "resolution": "1024x1024",
+    "thumbnail": "media/images/fre_902_seal.jpg",
+    "type": "image",
+    "originalPath": "Generated Photorealistic 8K Asset"
+  }
+];
+
+let currentSelectedMedia = LEGAL_MEDIA_CATALOG[0];
+let isLiveBgEnabled = true;
+
+function initCinemaStudio() {
+  const grid = document.getElementById("legalMediaGrid");
+  const searchInput = document.getElementById("mediaSearchInput");
+  const filterPills = document.querySelectorAll(".filter-pill");
+  const toggleLiveBgBtn = document.getElementById("toggleLiveBgBtn");
+  const bgToggleText = document.getElementById("bgToggleText");
+  const liveAmbientVideo = document.getElementById("liveAmbientVideo");
+  const liveBgOverlay = document.getElementById("liveBgOverlay");
+  
+  const mainVideo = document.getElementById("mainTheaterVideo");
+  const mainImage = document.getElementById("mainTheaterImage");
+  const playPauseBtn = document.getElementById("theaterPlayPauseBtn");
+  const playIcon = document.getElementById("playIcon");
+  const muteBtn = document.getElementById("theaterMuteBtn");
+  const timelineScrubber = document.getElementById("timelineScrubber");
+  const timelineProgress = document.getElementById("timelineProgress");
+  const fullscreenBtn = document.getElementById("theaterFullscreenBtn");
+  const speedBtns = document.querySelectorAll(".speed-btn");
+
+  const setHeroBgBtn = document.getElementById("setHeroBgBtn");
+  const copyHtmlTagBtn = document.getElementById("copyHtmlTagBtn");
+  const copyReactJsxBtn = document.getElementById("copyReactJsxBtn");
+  const copyCssBgBtn = document.getElementById("copyCssBgBtn");
+  const copyPathBtn = document.getElementById("copyPathBtn");
+
+  // Initial ambient background setup
+  if (liveAmbientVideo && liveBgOverlay) {
+    liveAmbientVideo.src = currentSelectedMedia.relPath;
+    liveAmbientVideo.style.display = "block";
+    liveBgOverlay.style.display = "block";
+    liveAmbientVideo.play().catch(() => {});
+  }
+
+  // Render Grid
+  renderMediaGrid(LEGAL_MEDIA_CATALOG);
+
+  // Search filter
+  if (searchInput) {
+    searchInput.addEventListener("input", (e) => {
+      const q = e.target.value.toLowerCase().trim();
+      const filtered = LEGAL_MEDIA_CATALOG.filter(item => {
+        return item.title.toLowerCase().includes(q) ||
+               item.description.toLowerCase().includes(q) ||
+               item.category.toLowerCase().includes(q) ||
+               item.resolution.toLowerCase().includes(q);
+      });
+      renderMediaGrid(filtered);
+    });
+  }
+
+  // Category filter
+  filterPills.forEach(pill => {
+    pill.addEventListener("click", () => {
+      filterPills.forEach(p => p.classList.remove("active"));
+      pill.classList.add("active");
+      const cat = pill.getAttribute("data-cat");
+      if (cat === "all") {
+        renderMediaGrid(LEGAL_MEDIA_CATALOG);
+      } else {
+        const filtered = LEGAL_MEDIA_CATALOG.filter(item => item.category === cat);
+        renderMediaGrid(filtered);
+      }
+    });
+  });
+
+  // Toggle Live Background
+  if (toggleLiveBgBtn) {
+    toggleLiveBgBtn.addEventListener("click", () => {
+      isLiveBgEnabled = !isLiveBgEnabled;
+      if (isLiveBgEnabled) {
+        liveAmbientVideo.style.display = "block";
+        liveBgOverlay.style.display = "block";
+        liveAmbientVideo.play().catch(() => {});
+        toggleLiveBgBtn.classList.remove("off");
+        toggleLiveBgBtn.classList.add("active");
+        bgToggleText.textContent = "Site Video Background: ON";
+      } else {
+        liveAmbientVideo.style.display = "none";
+        liveBgOverlay.style.display = "none";
+        liveAmbientVideo.pause();
+        toggleLiveBgBtn.classList.remove("active");
+        toggleLiveBgBtn.classList.add("off");
+        bgToggleText.textContent = "Site Video Background: OFF";
+      }
+    });
+  }
+
+  // Play / Pause Theater
+  if (playPauseBtn && mainVideo) {
+    playPauseBtn.addEventListener("click", () => {
+      if (mainVideo.paused) {
+        mainVideo.play();
+        playIcon.innerHTML = '<path d="M6 4h4v16H6zm8 0h4v16h-4z"/>';
+      } else {
+        mainVideo.pause();
+        playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+      }
+    });
+
+    mainVideo.addEventListener("timeupdate", () => {
+      if (mainVideo.duration) {
+        const pct = (mainVideo.currentTime / mainVideo.duration) * 100;
+        if (timelineProgress) timelineProgress.style.width = pct + "%";
+      }
+    });
+
+    if (timelineScrubber) {
+      timelineScrubber.addEventListener("click", (e) => {
+        const rect = timelineScrubber.getBoundingClientRect();
+        const pos = (e.clientX - rect.left) / rect.width;
+        if (mainVideo.duration) {
+          mainVideo.currentTime = pos * mainVideo.duration;
+        }
+      });
+    }
+  }
+
+  // Mute / Unmute
+  if (muteBtn && mainVideo) {
+    muteBtn.addEventListener("click", () => {
+      mainVideo.muted = !mainVideo.muted;
+      const muteIcon = document.getElementById("muteIcon");
+      if (mainVideo.muted) {
+        muteIcon.innerHTML = '<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>';
+      } else {
+        muteIcon.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>';
+      }
+    });
+  }
+
+  // Playback speeds
+  speedBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      speedBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const speed = parseFloat(btn.getAttribute("data-speed"));
+      if (mainVideo) mainVideo.playbackRate = speed;
+    });
+  });
+
+  // Fullscreen
+  if (fullscreenBtn && mainVideo) {
+    fullscreenBtn.addEventListener("click", () => {
+      const wrapper = document.getElementById("theaterPlayerWrapper");
+      if (wrapper.requestFullscreen) {
+        wrapper.requestFullscreen();
+      } else if (wrapper.webkitRequestFullscreen) {
+        wrapper.webkitRequestFullscreen();
+      }
+    });
+  }
+
+  // Set as Live Hero Background
+  if (setHeroBgBtn) {
+    setHeroBgBtn.addEventListener("click", () => {
+      if (currentSelectedMedia.type === "video") {
+        liveAmbientVideo.src = currentSelectedMedia.relPath;
+        liveAmbientVideo.style.display = "block";
+        liveBgOverlay.style.display = "block";
+        liveAmbientVideo.play().catch(() => {});
+        isLiveBgEnabled = true;
+        toggleLiveBgBtn.classList.remove("off");
+        toggleLiveBgBtn.classList.add("active");
+        bgToggleText.textContent = "Site Video Background: ON";
+        showToast(`Applied "${currentSelectedMedia.title}" as site background!`);
+      } else {
+        showToast("Seals and badges are high-res images. Choose a video for animated background.");
+      }
+    });
+  }
+
+  // Code Snippet Buttons
+  if (copyHtmlTagBtn) {
+    copyHtmlTagBtn.addEventListener("click", () => {
+      const isVid = currentSelectedMedia.type === "video";
+      const snippet = isVid 
+        ? `<video autoplay loop muted playsinline poster="${currentSelectedMedia.thumbnail}" class="legal-courtroom-video">\n  <source src="${currentSelectedMedia.relPath}" type="video/mp4">\n</video>`
+        : `<img src="${currentSelectedMedia.relPath}" alt="${currentSelectedMedia.title}" class="legal-evidentiary-image" />`;
+      copyToClipboard(snippet, "HTML5 embed tag copied to clipboard!");
+    });
+  }
+
+  if (copyReactJsxBtn) {
+    copyReactJsxBtn.addEventListener("click", () => {
+      const isVid = currentSelectedMedia.type === "video";
+      const snippet = isVid
+        ? `<div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-2xl">\n  <video\n    autoPlay\n    loop\n    muted\n    playsInline\n    poster="${currentSelectedMedia.thumbnail}"\n    className="w-full h-full object-cover"\n  >\n    <source src="${currentSelectedMedia.relPath}" type="video/mp4" />\n  </video>\n</div>`
+        : `<img\n  src="${currentSelectedMedia.relPath}"\n  alt="${currentSelectedMedia.title}"\n  className="rounded-xl shadow-2xl object-cover"\n/>`;
+      copyToClipboard(snippet, "React / Next.js component copied!");
+    });
+  }
+
+  if (copyCssBgBtn) {
+    copyCssBgBtn.addEventListener("click", () => {
+      const isVid = currentSelectedMedia.type === "video";
+      const snippet = isVid
+        ? `/* CSS Background Loop */\n.courtroom-hero-backdrop {\n  position: absolute;\n  inset: 0;\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n  z-index: 0;\n  opacity: 0.35;\n  filter: brightness(0.7) contrast(1.15);\n}`
+        : `/* CSS Image Background */\n.evidentiary-seal-bg {\n  background-image: url('${currentSelectedMedia.relPath}');\n  background-size: cover;\n  background-position: center;\n  background-repeat: no-repeat;\n}`;
+      copyToClipboard(snippet, "CSS background styling copied!");
+    });
+  }
+
+  if (copyPathBtn) {
+    copyPathBtn.addEventListener("click", () => {
+      copyToClipboard(currentSelectedMedia.originalPath, "Local archive path copied!");
+    });
+  }
+}
+
+function selectMediaItem(item) {
+  currentSelectedMedia = item;
+  
+  const mainVideo = document.getElementById("mainTheaterVideo");
+  const mainImage = document.getElementById("mainTheaterImage");
+  const hudCategory = document.getElementById("hudCategory");
+  const hudResolution = document.getElementById("hudResolution");
+  const hudDuration = document.getElementById("hudDuration");
+  const hudTitle = document.getElementById("hudTitle");
+  const hudDescription = document.getElementById("hudDescription");
+  const directorTitle = document.getElementById("directorTitle");
+  const directorDesc = document.getElementById("directorDesc");
+  const specCat = document.getElementById("specCat");
+  const specRes = document.getElementById("specRes");
+  const specDur = document.getElementById("specDur");
+  const specSize = document.getElementById("specSize");
+  const specFormat = document.getElementById("specFormat");
+  const specId = document.getElementById("specId");
+
+  if (item.type === "video") {
+    if (mainImage) mainImage.style.display = "none";
+    if (mainVideo) {
+      mainVideo.style.display = "block";
+      mainVideo.poster = item.thumbnail;
+      mainVideo.src = item.relPath;
+      mainVideo.play().catch(() => {});
+    }
+  } else {
+    if (mainVideo) {
+      mainVideo.style.display = "none";
+      mainVideo.pause();
+    }
+    if (mainImage) {
+      mainImage.style.display = "block";
+      mainImage.src = item.relPath;
+    }
+  }
+
+  // Update HUD
+  if (hudCategory) hudCategory.textContent = item.category;
+  if (hudResolution) hudResolution.textContent = item.resolution;
+  if (hudDuration) hudDuration.textContent = item.duration ? item.duration + "s" : "HI-RES";
+  if (hudTitle) hudTitle.textContent = item.title;
+  if (hudDescription) hudDescription.textContent = item.description;
+
+  // Update Director Pod
+  if (directorTitle) directorTitle.textContent = item.title;
+  if (directorDesc) directorDesc.textContent = item.description;
+  if (specCat) specCat.textContent = item.category;
+  if (specRes) specRes.textContent = item.resolution;
+  if (specDur) specDur.textContent = item.duration ? item.duration + " Seconds" : "Static High-Res";
+  if (specSize) specSize.textContent = item.sizeMb + " MB";
+  if (specFormat) specFormat.textContent = item.type === "video" ? "MP4 (H.264 / AAC)" : "JPEG (8K High-Res)";
+  if (specId) specId.textContent = item.id;
+
+  // Highlight card
+  document.querySelectorAll(".media-card").forEach(card => {
+    if (card.getAttribute("data-id") === item.id) {
+      card.classList.add("active-card");
+    } else {
+      card.classList.remove("active-card");
+    }
+  });
+}
+
+function renderMediaGrid(items) {
+  const grid = document.getElementById("legalMediaGrid");
+  if (!grid) return;
+
+  grid.innerHTML = "";
+  if (items.length === 0) {
+    grid.innerHTML = `<div style="grid-column: 1/-1; padding: 2rem; text-align:center; color:var(--text-dim);">No media matches your search query.</div>`;
+    return;
+  }
+
+  items.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "media-card";
+    card.setAttribute("data-id", item.id);
+    if (currentSelectedMedia && currentSelectedMedia.id === item.id) {
+      card.classList.add("active-card");
+    }
+
+    const isVid = item.type === "video";
+
+    card.innerHTML = `
+      <div class="media-card-preview">
+        <img src="${item.thumbnail}" alt="${item.title}" class="card-thumb-img" loading="lazy">
+        ${isVid ? `<video class="card-hover-video" loop muted playsinline src="${item.relPath}"></video>` : ''}
+        <div class="card-badges-overlay">
+          <span class="card-type-tag ${item.category.includes('Seals') ? 'gold' : ''}">${item.category}</span>
+          <span class="card-dur-tag">${isVid ? item.duration + 's' : item.resolution}</span>
+        </div>
+      </div>
+      <div class="media-card-body">
+        <div>
+          <h4 class="card-title">${item.title}</h4>
+          <p class="card-desc">${item.description}</p>
+        </div>
+        <div class="card-meta-row">
+          <span>${item.resolution}</span>
+          <span>${item.sizeMb} MB</span>
+        </div>
+        <div class="card-actions-row">
+          <button class="card-play-btn" data-action="theater">▶ Play in Theater</button>
+          <button class="card-icon-btn" data-action="setbg" title="Set as Site Background">🌌</button>
+        </div>
+      </div>
+    `;
+
+    // Hover video preview
+    if (isVid) {
+      const hoverVideo = card.querySelector(".card-hover-video");
+      card.addEventListener("mouseenter", () => {
+        if (hoverVideo) hoverVideo.play().catch(() => {});
+      });
+      card.addEventListener("mouseleave", () => {
+        if (hoverVideo) {
+          hoverVideo.pause();
+          hoverVideo.currentTime = 0;
+        }
+      });
+    }
+
+    // Card Clicks
+    card.querySelector("[data-action='theater']").addEventListener("click", (e) => {
+      e.stopPropagation();
+      selectMediaItem(item);
+      document.querySelector(".cinema-featured-pod").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    card.querySelector("[data-action='setbg']").addEventListener("click", (e) => {
+      e.stopPropagation();
+      selectMediaItem(item);
+      const setHeroBgBtn = document.getElementById("setHeroBgBtn");
+      if (setHeroBgBtn) setHeroBgBtn.click();
+    });
+
+    card.addEventListener("click", () => {
+      selectMediaItem(item);
+    });
+
+    grid.appendChild(card);
+  });
+}
+
+function copyToClipboard(text, msg) {
+  navigator.clipboard.writeText(text).then(() => {
+    showToast(msg);
+  }).catch(() => {
+    // Fallback
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    document.body.removeChild(ta);
+    showToast(msg);
+  });
+}
+
+function showToast(msg) {
+  const toast = document.getElementById("copyToast");
+  const toastMsg = document.getElementById("toastMsg");
+  if (toast && toastMsg) {
+    toastMsg.textContent = msg;
+    toast.style.display = "flex";
+    setTimeout(() => {
+      toast.style.display = "none";
+    }, 3200);
+  }
+}
+
