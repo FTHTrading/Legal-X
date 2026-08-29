@@ -4,23 +4,29 @@ export default {
     const host = url.hostname.toLowerCase();
     const pathname = url.pathname.toLowerCase();
 
-    // Sensitive internal API endpoints redirection if unauthenticated (future-proof)
-    const sensitivePrefixes = [
-      "/evidence/internal",
-      "/vault/secret"
-    ];
-
-    if (sensitivePrefixes.some(p => pathname.startsWith(p))) {
-      return Response.redirect(`https://legacychain.app/?auth=required`, 302);
+    // 1. Operational Workspace Subdomain: app.legacychain.app
+    if (host === "app.legacychain.app" || host === "vault.legacychain.app") {
+      if (pathname === "/" || pathname === "/index.html" || pathname === "/workspace") {
+        return env.ASSETS.fetch(new Request(new URL("/app_portal.html", request.url).toString(), request));
+      }
     }
 
-    // Default asset resolution from static site directory
+    // 2. Apex Brand Portal & Direct Routes: legacychain.app / www.legacychain.app
+    if (pathname === "/legal-x" || pathname === "/legal-x/") {
+      return env.ASSETS.fetch(new Request(new URL("/legal-x.html", request.url).toString(), request));
+    }
+
+    if (pathname === "/cinema" || pathname === "/cinema/") {
+      return env.ASSETS.fetch(new Request(new URL("/cinema.html", request.url).toString(), request));
+    }
+
+    // 3. Default asset resolution
     let response = await env.ASSETS.fetch(request);
     
-    // Fallback to index.html for root / routing
+    // 4. Clean 404 Fallback routing
     if (response.status === 404) {
-      if (pathname === "/cinema" || pathname === "/cinema/") {
-        return env.ASSETS.fetch(new Request(new URL("/cinema.html", request.url).toString(), request));
+      if (host === "app.legacychain.app" || host === "vault.legacychain.app") {
+        return env.ASSETS.fetch(new Request(new URL("/app_portal.html", request.url).toString(), request));
       }
       const cleanPath = url.pathname.endsWith('/') ? url.pathname + 'index.html' : url.pathname + '/index.html';
       const tryIndex = await env.ASSETS.fetch(new Request(new URL(cleanPath, request.url).toString(), request));

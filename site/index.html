@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Legal-X — Case DNA & Matter Digital Twins</title>
-  <meta name="description" content="Next-Generation Sovereign Legal-Record Chain and Matter Digital Twin Architecture. Liquid Glass Interface with Deterministic Verification.">
+  <title>Legacy Vault Protocol — Your Family's Legacy, Protected by Legal-X</title>
+  <meta name="description" content="Encrypt vital records, organize digital assets, designate trusted guardians, and establish verifiable release instructions—powered by Legal-X.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -24,1049 +24,264 @@
   <!-- Main App Shell -->
   <div class="app-container">
     
-    <!-- Liquid Glass Navigation Bar -->
+    <!-- Top Glass Navigation Bar -->
     <header class="glass-nav">
       <div class="nav-left">
-        <div class="brand-badge">
+        <a href="index.html" class="brand-badge" style="text-decoration:none;">
           <div class="brand-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
           <div class="brand-title">
-            LEGAL<span class="gold-gradient">X</span>
-            <span class="version-tag">DNA·FRAME</span>
+            LEGACY<span class="gold-gradient">VAULT</span>
+            <span class="version-tag">POWERED BY LEGAL-X</span>
           </div>
-        </div>
+        </a>
       </div>
 
       <nav class="nav-center">
-        <button class="nav-link active" data-tab="twin-explorer">Matter Digital Twin</button>
-        <button class="nav-link" data-tab="dna-visualizer">Case DNA Strand</button>
-        <button class="nav-link" data-tab="citation-engine">Eyecite Matcher</button>
-        <button class="nav-link" data-tab="law-library">📚 Law Library & Precedents</button>
-        <button class="nav-link" data-tab="genius-global-rwa">🌐 GENIUS Act & Disciplines</button>
-        <button class="nav-link" data-tab="x402-rail">x402 Settlement</button>
-        <button class="nav-link" data-tab="contracts-view">Smart Contracts (17)</button>
-        <button class="nav-link" data-tab="cinema-studio">🎬 Legal Media & Cinema</button>
-        <button class="nav-link" data-tab="about-section">About & Governance</button>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#estate-vault" class="nav-link">Estate Vault</a>
+        <a href="#digital-assets" class="nav-link">Digital Assets</a>
+        <a href="#for-families" class="nav-link">For Families</a>
+        <a href="#for-professionals" class="nav-link">For Professionals</a>
+        <a href="legal-x.html" class="nav-link" style="color:var(--cyan); font-weight:700;">Legal-X Platform</a>
+        <a href="cinema.html" class="nav-link">🎬 Cinema Vault</a>
       </nav>
 
       <div class="nav-right">
-        <div class="status-pill">
-          <span class="pulse-dot"></span>
-          <span class="status-text">RUST CORE LIVE</span>
-        </div>
-        <a href="https://github.com/FTHTrading/Legal-X" target="_blank" class="github-btn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-          <span>FTHTrading/Legal-X</span>
+        <a href="https://app.legacychain.app" class="action-btn" style="padding: 0.55rem 1.25rem; font-size: 0.85rem;">
+          <span>Enter Vault →</span>
         </a>
       </div>
     </header>
 
-    <!-- Main Content Grid -->
-    <main class="main-content">
+    <!-- Main Content Area -->
+    <main class="main-content" style="display:flex; flex-direction:column; gap:3rem; padding-bottom:4rem;">
       
-      <!-- HERO HEADER -->
-      <section class="hero-section">
-        <div class="hero-badge">
-          <span class="sparkle">✨</span>
-          <span>ATTORNEY-SUPERVISED CASE TWINS & EVIDENTIARY PROVENANCE</span>
-        </div>
-        <h1 class="hero-title">
-          The <span class="neon-cyan">Digital Twin</span> of Every Legal Matter,<br>
-          Anchored by <span class="neon-gold">Deterministic Rust Proofs</span>.
-        </h1>
-        <p class="hero-subtitle">
-          Legal-X gives authorized teams a living operational model of facts, parties, and procedural rules, paired with an immutable chain of custody, exact character-offset quote verification, and FRE 902 self-authenticating manifests.
-        </p>
+      <!-- HERO SECTION -->
+      <section class="glass-card-full" style="padding: 4rem 2.5rem; text-align: center; position: relative; overflow: hidden;">
+        <div style="max-width: 920px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 1.5rem;">
+          
+          <div class="cinema-header-tag">
+            <span class="live-pulse-dot"></span>
+            <span>POWERED BY LEGAL-X · SOVEREIGN CLIENT-SIDE ENCRYPTION</span>
+          </div>
 
-        <!-- Metrics Ticker -->
-        <div class="liquid-ticker">
-          <div class="ticker-item">
-            <span class="ticker-val">100%</span>
-            <span class="ticker-lbl">Deterministic Citation Match</span>
+          <h1 style="font-size: 3.4rem; font-weight: 900; line-height: 1.1; color: var(--text-main); letter-spacing: -0.02em;">
+            Legacy Vault Protocol
+          </h1>
+
+          <p style="font-size: 1.45rem; font-weight: 700; color: var(--gold-bright); line-height: 1.35;">
+            Your family’s legacy, protected by Legal‑X.
+          </p>
+
+          <p style="font-size: 1.1rem; color: #cbd5e1; line-height: 1.65; max-width: 800px;">
+            Encrypt vital records, organize digital assets, designate trusted guardians, and establish verifiable release instructions—without surrendering control of your private information.
+          </p>
+
+          <div style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; justify-content: center;">
+            <a href="https://app.legacychain.app" class="action-btn" style="padding: 0.95rem 2rem; font-size: 1rem; box-shadow: 0 8px 24px rgba(0, 210, 255, 0.35);">
+              Enter Your Secure Vault →
+            </a>
+            <a href="legal-x.html" class="secondary-btn" style="padding: 0.95rem 1.75rem; font-size: 1rem;">
+              Explore Legal‑X for Professionals
+            </a>
           </div>
-          <div class="ticker-sep"></div>
-          <div class="ticker-item">
-            <span class="ticker-val">0ms</span>
-            <span class="ticker-lbl">Unpaid Edge Origin Load</span>
+
+        </div>
+      </section>
+
+      <!-- SHORT INSTITUTIONAL PROOF STRIP -->
+      <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem;">
+        <div class="step-card" style="padding: 1.25rem;">
+          <div style="display:flex; align-items:center; gap:0.5rem; font-weight:800; color:var(--cyan); font-size:0.95rem;">
+            <span>🛡️</span> Private by Design
           </div>
-          <div class="ticker-sep"></div>
-          <div class="ticker-item">
-            <span class="ticker-val">FRE 902(13)/(14)</span>
-            <span class="ticker-lbl">Self-Authenticating Record</span>
+          <p style="font-size:0.82rem; color:#94a3b8; line-height:1.5; margin:0;">
+            Encrypted client-side zero-knowledge data architecture. Only you and your designated guardians hold the keys.
+          </p>
+        </div>
+
+        <div class="step-card" style="padding: 1.25rem;">
+          <div style="display:flex; align-items:center; gap:0.5rem; font-weight:800; color:var(--gold-bright); font-size:0.95rem;">
+            <span>👥</span> Trusted Release
           </div>
-          <div class="ticker-sep"></div>
-          <div class="ticker-item">
-            <span class="ticker-val">Base (8453)</span>
-            <span class="ticker-lbl">Atomic USDC Settlement</span>
+          <p style="font-size:0.82rem; color:#94a3b8; line-height:1.5; margin:0;">
+            Multi-signature guardian quorums, executor workflows, legal attestations, and cryptographic timelock triggers.
+          </p>
+        </div>
+
+        <div class="step-card" style="padding: 1.25rem;">
+          <div style="display:flex; align-items:center; gap:0.5rem; font-weight:800; color:var(--emerald); font-size:0.95rem;">
+            <span>⚖️</span> Verifiable Records
+          </div>
+          <p style="font-size:0.82rem; color:#94a3b8; line-height:1.5; margin:0;">
+            Dual SHA-256/BLAKE2b hash audit anchors and FRE 902(13)/(14) self-authenticating evidentiary lineage.
+          </p>
+        </div>
+
+        <div class="step-card" style="padding: 1.25rem;">
+          <div style="display:flex; align-items:center; gap:0.5rem; font-weight:800; color:#c084fc; font-size:0.95rem;">
+            <span>🌐</span> Built for What's Next
+          </div>
+          <p style="font-size:0.82rem; color:#94a3b8; line-height:1.5; margin:0;">
+            Estate documents, digital assets, tokenized property, and institutional professional workflows.
+          </p>
+        </div>
+      </section>
+
+      <!-- SECTION: HOW IT WORKS -->
+      <section id="how-it-works" class="glass-card-full">
+        <div class="panel-header">
+          <div>
+            <span class="pill-blue">The Protocol Process</span>
+            <h2 class="panel-title" style="margin-top:0.4rem;">More than storage. A Legal‑X legacy system.</h2>
+            <p class="panel-desc">Legacy Vault helps families and trusted professionals organize sensitive records, preserve digital-asset instructions, define trusted release rules, and create verifiable proof of important documents and events.</p>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+          <div class="step-card">
+            <div class="step-num">01</div>
+            <h4>Ingest & Client-Side Encrypt</h4>
+            <p>Upload estate documents, deeds, digital keys, passwords, and instructions. Encrypted locally with AES-256-GCM before touching the network.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">02</div>
+            <h4>Designate Fiduciary Guardians</h4>
+            <p>Select family members, trusted attorneys, or corporate fiduciaries. Set quorum thresholds (e.g. 3-of-5 required for key reconstruction).</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">03</div>
+            <h4>Anchor Verifiable Evidence</h4>
+            <p>Legal-X generates deterministic proof digests anchored on-chain for self-authenticating validity under Federal Rule of Evidence 902.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">04</div>
+            <h4>Continuous Family Continuity</h4>
+            <p>When release triggers occur, guardians verify identity, reach threshold quorum, and securely receive instructions without probate delays.</p>
           </div>
         </div>
       </section>
 
-      <!-- TAB 1: MATTER DIGITAL TWIN EXPLORER -->
-      <section id="twin-explorer" class="tab-pane active">
-        <div class="glass-card-full">
-          <div class="panel-header">
-            <div>
-              <h2 class="panel-title">Matter Digital Twin Live Sandbox</h2>
-              <p class="panel-desc">Select an active case archetype to inspect its live relational graph, timeline, and cryptographic evidence tree.</p>
-            </div>
-            <div class="matter-switcher">
-              <button class="matter-btn active" data-matter="mat_2026_corp">Corp. Motion to Dismiss</button>
-              <button class="matter-btn" data-matter="mat_2026_estate">5-Proof Estate Safe</button>
-              <button class="matter-btn" data-matter="mat_2026_investigation">Forensic Defense</button>
-              <button class="matter-btn" data-matter="mat_2026_securities_rwa">RWA & Token Twin</button>
-              <button class="matter-btn" data-matter="mat_2026_patent">Patent & Algorithm Twin</button>
-              <button class="matter-btn" data-matter="mat_2026_commercial">Cross-Border Contract</button>
-              <button class="matter-btn" data-matter="mat_2026_whistleblower">SOX Whistleblower</button>
-              <button class="matter-btn" data-matter="mat_2026_arbitration_x402">x402 Base Dispute</button>
-            </div>
+      <!-- SECTION: ESTATE VAULT & DIGITAL ASSETS -->
+      <section id="estate-vault" class="glass-card-full">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; align-items: center;">
+          <div>
+            <span class="pill-gold">Comprehensive Preservation</span>
+            <h2 style="font-size: 2rem; font-weight: 800; color: var(--text-main); margin-top: 0.5rem;">
+              Estate Documents & Vital Records
+            </h2>
+            <p style="font-size: 0.95rem; color: #94a3b8; line-height: 1.6; margin-top: 0.75rem;">
+              Preserve wills, revocable living trusts, advance healthcare directives, powers of attorney, real estate title deeds, and corporate ownership certificates. 
+            </p>
+            <ul style="list-style: none; padding: 0; margin-top: 1rem; display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.9rem; color: #e2e8f0;">
+              <li style="display:flex; align-items:center; gap:0.5rem;">✅ Client-side zero-knowledge document vaulting</li>
+              <li style="display:flex; align-items:center; gap:0.5rem;">✅ Dynasty Trust & asset protection rule alignment</li>
+              <li style="display:flex; align-items:center; gap:0.5rem;">✅ Immutable timestamping & unbroken chain of custody</li>
+            </ul>
+            <a href="https://app.legacychain.app" class="action-btn" style="margin-top: 1.5rem; display: inline-flex;">
+              Open Family Estate Vault →
+            </a>
           </div>
 
-          <div class="twin-workspace-grid">
-            <!-- Left: Node Hierarchy Graph -->
-            <div class="twin-left-panel">
-              <h3 class="subpanel-title">Case Node Graph</h3>
-              <div class="node-tree" id="nodeTree">
-                <!-- Dynamically populated via app.js -->
+          <div id="digital-assets" style="background: rgba(0,0,0,0.4); border: 1px solid var(--border-glass); border-radius: 16px; padding: 1.75rem;">
+            <span class="pill-purple">Digital Era Inheritance</span>
+            <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--text-main); margin-top: 0.5rem;">
+              Digital Assets & Sovereign Keys
+            </h3>
+            <p style="font-size: 0.88rem; color: #94a3b8; line-height: 1.5; margin-top: 0.5rem;">
+              Billions in digital wealth are lost annually due to inaccessible seed phrases, exchange 2FA credentials, and unrecorded digital assets.
+            </p>
+            <div style="display:flex; flex-direction:column; gap:0.75rem; margin-top:1rem;">
+              <div style="background:rgba(0,210,255,0.06); border:1px solid rgba(0,210,255,0.2); padding:0.75rem; border-radius:8px; font-size:0.82rem;">
+                <strong>Crypto & Hardware Keys:</strong> Shamir secret sharing splits across trusted guardians.
               </div>
-            </div>
-
-            <!-- Right: Interactive Node Inspector -->
-            <div class="twin-right-panel">
-              <h3 class="subpanel-title">Cryptographic Node Telemetry</h3>
-              <div class="inspector-card" id="nodeInspector">
-                <div class="empty-inspector">
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-                  <p>Click any case element on the left to inspect its raw SHA-256 hash, primary source links, and attorney review log.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- TAB 2: CASE DNA STRAND VISUALIZER -->
-      <section id="dna-visualizer" class="tab-pane">
-        <div class="glass-card-full">
-          <div class="panel-header">
-            <div>
-              <h2 class="panel-title">Structured Case DNA Strand</h2>
-              <p class="panel-desc">Interactive sequence visualization of the immutable matter identity.</p>
-            </div>
-            <button class="action-btn" id="rehashDnaBtn">Regenerate Genesis Hash</button>
-          </div>
-
-          <div class="canvas-wrapper">
-            <canvas id="dnaCanvas" width="1100" height="260"></canvas>
-          </div>
-
-          <div class="dna-blocks-row" id="dnaBlocksRow">
-            <!-- Dynamically populated -->
-          </div>
-        </div>
-      </section>
-
-      <!-- TAB 3: DETERMINISTIC EYECITE MATCHER -->
-      <section id="citation-engine" class="tab-pane">
-        <div class="glass-card-full">
-          <div class="panel-header">
-            <div>
-              <h2 class="panel-title">Fail-Closed Citation & Exact-Quote Engine</h2>
-              <p class="panel-desc">Test legal drafting against the official slip opinion corpus. If a quote or citation is unverified, export is blocked immediately.</p>
-            </div>
-            <div class="engine-pills">
-              <span class="pill-blue">Eyecite v0.4.2</span>
-              <span class="pill-gold">GovInfo / CourtListener Synced</span>
-            </div>
-          </div>
-
-          <div class="citation-demo-grid">
-            <div class="citation-input-col">
-              <label class="input-lbl">Legal Argument Draft Input</label>
-              <textarea id="draftTextInput" class="glass-textarea" rows="6">Under Ashcroft v. Iqbal, 556 U.S. 662, 678 (2009), to survive a motion to dismiss, a complaint must contain sufficient factual matter, accepted as true, to state a claim to relief that is plausible on its face.</textarea>
-
-              <div class="button-row">
-                <button class="action-btn" id="runCitationAuditBtn">Run Deterministic Audit</button>
-                <button class="secondary-btn" id="insertFakeCitationBtn">Insert Fabricated Citation (Mata v. Avianca Test)</button>
-              </div>
-            </div>
-
-            <div class="citation-output-col">
-              <label class="input-lbl">Verification Result & Offset Inspector</label>
-              <div id="citationAuditResult" class="audit-result-box">
-                <!-- Dynamically populated -->
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      <!-- TAB 4: LAW LIBRARY & LANDMARK PRECEDENTS -->
-      <section id="law-library" class="tab-pane">
-        <div class="glass-card-full">
-          <div class="panel-header">
-            <div>
-              <div class="cinema-header-tag">
-                <span class="live-pulse-dot"></span>
-                <span>FAIL-CLOSED PRIMARY OPINION CORPUS · GOVINFO / COURTLISTENER SYNCED</span>
-              </div>
-              <h2 class="panel-title">Legal-X Sovereign Law Library & Precedents</h2>
-              <p class="panel-desc">Search, filter, and inspect verified landmark Supreme Court, Delaware Chancery, FRE, and Securities precedents with exact slip opinion character-offset hashes and pin-cites.</p>
-            </div>
-            <div class="engine-pills">
-              <span class="pill-blue">24 Indexed Precedents</span>
-              <span class="pill-gold">Exact Substring Offset Grounding</span>
-            </div>
-          </div>
-
-          <!-- Law Library Search & Filter Toolbar -->
-          <div class="media-toolbar">
-            <div class="search-box-wrapper">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-              <input type="text" id="lawSearchInput" class="glass-search-input" placeholder="Search official law library by case name, citation, topic (e.g. Iqbal, Howey, Caremark, Rule 902)...">
-            </div>
-
-            <div class="category-pills-row" id="lawCategoryPillsRow">
-              <button class="filter-pill active" data-law-cat="all">All Precedents (24)</button>
-              <button class="filter-pill" data-law-cat="Civil Procedure & Pleading Standards">Civil Procedure (5)</button>
-              <button class="filter-pill" data-law-cat="Evidence & FRE 902 Authentication">Evidence & FRE (6)</button>
-              <button class="filter-pill" data-law-cat="Securities, Digital Assets & RWA">Securities & RWA (5)</button>
-              <button class="filter-pill" data-law-cat="Corporate Governance & Delaware Chancery">Chancery & Governance (4)</button>
-              <button class="filter-pill" data-law-cat="AI Ethics, Candor & Sanctions Precedents">AI Ethics & Sanctions (3)</button>
-              <button class="filter-pill" data-law-cat="Intellectual Property & Algorithm Patentability">IP & Patents (1)</button>
-            </div>
-          </div>
-
-          <!-- Precedents Grid -->
-          <div class="law-precedents-grid" id="lawPrecedentsGrid">
-            <!-- Dynamically populated from legal_corpus.json / law_library.js -->
-          </div>
-        </div>
-      </section>
-
-      <!-- TAB 5: GENIUS ACT & GLOBAL LEGAL DISCIPLINES -->
-      <section id="genius-global-rwa" class="tab-pane">
-        <div class="glass-card-full">
-          <div class="panel-header">
-            <div>
-              <div class="cinema-header-tag">
-                <span class="live-pulse-dot"></span>
-                <span>GENIUS ACT STATUTORY STANDARD · GLOBAL RWA PERFECTION · UCC ART. 12 CERs</span>
-              </div>
-              <h2 class="panel-title">GENIUS Act & Global Legal Disciplines Architecture</h2>
-              <p class="panel-desc">Statutory compliance, smart contracts, and evidentiary protocols across all major legal disciplines and international financial jurisdictions.</p>
-            </div>
-            <div class="engine-pills">
-              <span class="pill-gold">17 Production Smart Contracts</span>
-              <span class="pill-blue">11 Global Jurisdictions</span>
-              <span class="pill-purple">UCC Article 12 CER Enforceable</span>
-            </div>
-          </div>
-
-          <!-- Global Jurisdiction Intelligence Deck -->
-          <div class="jurisdiction-deck-container">
-            <h3 class="subpanel-title">Select Global Jurisdiction / Regulatory Regime</h3>
-            <div class="jurisdiction-pills-row" id="jurisdictionPillsRow">
-              <button class="jur-btn active" data-jur="us_delaware">🇺🇸 US (Delaware & Federal)</button>
-              <button class="jur-btn" data-jur="us_wyoming">🇺🇸 US (Wyoming DAO & Trust)</button>
-              <button class="jur-btn" data-jur="us_newyork">🇺🇸 US (New York UCC Art. 12)</button>
-              <button class="jur-btn" data-jur="eu_mica">🇪🇺 EU (MiCA & Luxembourg)</button>
-              <button class="jur-btn" data-jur="uk_law">🇬🇧 United Kingdom (Common Law)</button>
-              <button class="jur-btn" data-jur="uae_difc">🇦🇪 UAE (Dubai DIFC / ADGM)</button>
-              <button class="jur-btn" data-jur="ch_dlt">🇨🇭 Switzerland (Swiss DLT Act)</button>
-              <button class="jur-btn" data-jur="sg_mas">🇸🇬 Singapore (MAS Guardian)</button>
-              <button class="jur-btn" data-jur="hk_sfc">🇭🇰 Hong Kong (SFC Tokenized)</button>
-              <button class="jur-btn" data-jur="ky_spv">🇰🇾 Cayman Islands & BVI</button>
-            </div>
-
-            <!-- Active Jurisdiction Statutory Telemetry Card -->
-            <div class="jur-telemetry-box" id="jurTelemetryBox">
-              <!-- Dynamically populated via app.js -->
-            </div>
-          </div>
-
-          <!-- Legal Disciplines Smart Contracts Explorer -->
-          <div class="disciplines-explorer-wrapper">
-            <div class="panel-header" style="margin-top:1.5rem;">
-              <div>
-                <h3 class="panel-title" style="font-size:1.25rem;">Legal Discipline Smart Contract Matrix</h3>
-                <p class="panel-desc">On-chain smart contracts custom-tailored for each legal practice discipline.</p>
-              </div>
-              <div class="category-pills-row" id="disciplineFilterRow">
-                <button class="filter-pill active" data-disc-cat="all">All Disciplines (10)</button>
-                <button class="filter-pill" data-disc-cat="Corporate & M&A">Corporate & M&A</button>
-                <button class="filter-pill" data-disc-cat="Real Estate & Title">Real Estate & Title</button>
-                <button class="filter-pill" data-disc-cat="RWA & Securities">RWA & Securities</button>
-                <button class="filter-pill" data-disc-cat="Intellectual Property">IP & Patents</button>
-                <button class="filter-pill" data-disc-cat="Trade Finance">Trade Finance</button>
-                <button class="filter-pill" data-disc-cat="Trust & Estates">Trust & Estates</button>
-                <button class="filter-pill" data-disc-cat="Arbitration">Arbitration</button>
-                <button class="filter-pill" data-disc-cat="Insolvency">Insolvency</button>
-                <button class="filter-pill" data-disc-cat="Privacy & Data">Privacy & GDPR</button>
-              </div>
-            </div>
-
-            <div class="disciplines-cards-grid" id="disciplinesCardsGrid">
-              <!-- Dynamically populated from disciplines database -->
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- TAB 5: x402 MACHINE SETTLEMENT SIMULATOR -->
-      <section id="x402-rail" class="tab-pane">
-        <div class="glass-card-full">
-          <div class="panel-header">
-            <div>
-              <h2 class="panel-title">x402 CloudFront Edge & Base USDC Settlement Rail</h2>
-              <p class="panel-desc">Experience the zero-origin-load HTTP 402 challenge gate, wallet signing, and atomic DynamoDB conditional settlement.</p>
-            </div>
-            <span class="pill-purple">Base Chain ID: 8453</span>
-          </div>
-
-          <div class="x402-grid">
-            <div class="step-card" id="step1Card">
-              <div class="step-num">01</div>
-              <h4>Bare Inbound Call</h4>
-              <p>Autonomous AI agent calls <code>/v1/proof/evidence/...</code> without payment headers.</p>
-              <button class="mini-btn" id="sendUnpaidBtn">Send Unpaid GET</button>
-            </div>
-
-            <div class="step-card" id="step2Card">
-              <div class="step-num">02</div>
-              <h4>CloudFront 402 Challenge</h4>
-              <p>Edge Lambda interceptor returns <code>HTTP 402</code> with Base64 USDC challenge and 300s TTL.</p>
-              <div class="code-preview" id="challengePreview">Awaiting Request...</div>
-            </div>
-
-            <div class="step-card" id="step3Card">
-              <div class="step-num">03</div>
-              <h4>Agent Wallet Sign & Resubmit</h4>
-              <p>Sign the challenge with private key and attach to <code>PAYMENT-SIGNATURE</code> header.</p>
-              <button class="mini-btn disabled" id="signChallengeBtn" disabled>Sign & Settle on Base</button>
-            </div>
-
-            <div class="step-card" id="step4Card">
-              <div class="step-num">04</div>
-              <h4>Origin Execution & 200 OK</h4>
-              <p>Origin executes atomic DynamoDB conditional write and returns the verified ProofBundle.</p>
-              <div class="code-preview" id="originPreview">Awaiting Settlement...</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- TAB 6: SMART CONTRACTS & REPOSITORY SCHEMAS -->
-      <section id="contracts-view" class="tab-pane">
-        <div class="glass-card-full">
-          <div class="panel-header">
-            <div>
-              <h2 class="panel-title">Verified Smart Contracts & JSON Schemas (8 On-Chain Modules)</h2>
-              <p class="panel-desc">Production Solidity contracts for FRE 902 provenance, case DNA strands, x402 escrow, attorney quorum, and litigation finance.</p>
-            </div>
-            <a href="https://github.com/FTHTrading/Legal-X" target="_blank" class="action-btn">View on GitHub</a>
-          </div>
-
-          <div class="contracts-accordion">
-            <!-- 1. LegalProofRegistry -->
-            <div class="accordion-item">
-              <div class="accordion-header">
-                <span class="file-tag">SOL</span>
-                <span class="file-name">contracts/LegalProofRegistry.sol</span>
-                <span class="chevron">▼</span>
-              </div>
-              <div class="accordion-body">
-                <pre><code>// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
-
-contract LegalProofRegistry {
-    struct ProofRecord {
-        bytes32 sha256Digest;
-        bytes32 blake2Digest;
-        string matterId;
-        string documentUuid;
-        address signer;
-        uint256 timestamp;
-        bool isRevoked;
-    }
-    mapping(bytes32 => ProofRecord) public proofs;
-    event ProofAnchored(bytes32 indexed documentHash, string indexed matterId, address indexed signer);
-
-    function anchorProof(bytes32 _sha256Digest, bytes32 _blake2Digest, string calldata _matterId, string calldata _documentUuid) external {
-        require(proofs[_sha256Digest].timestamp == 0, "Proof already anchored");
-        proofs[_sha256Digest] = ProofRecord({
-            sha256Digest: _sha256Digest,
-            blake2Digest: _blake2Digest,
-            matterId: _matterId,
-            documentUuid: _documentUuid,
-            signer: msg.sender,
-            timestamp: block.timestamp,
-            isRevoked: false
-        });
-        emit ProofAnchored(_sha256Digest, _matterId, msg.sender);
-    }
-}</code></pre>
-              </div>
-            </div>
-
-            <!-- 2. CaseDNARegistry -->
-            <div class="accordion-item">
-              <div class="accordion-header">
-                <span class="file-tag">SOL</span>
-                <span class="file-name">contracts/CaseDNARegistry.sol</span>
-                <span class="chevron">▼</span>
-              </div>
-              <div class="accordion-body">
-                <pre><code>// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
-
-contract CaseDNARegistry {
-    enum MatterStatus { Inception, Discovery, PleadingActive, InTrial, InSettlement, Adjudicated, Sealed }
-    struct MatterStrand {
-        string matterId;
-        bytes32 genesisStateDigest;
-        bytes32 latestStateDigest;
-        uint256 blockTimestamp;
-        uint256 amendmentCount;
-        MatterStatus status;
-        address leadCounsel;
-    }
-    mapping(string => MatterStrand) public matters;
-    event MatterIncepted(string indexed matterId, bytes32 indexed genesisHash, address leadCounsel);
-    event DNAElementAppended(string indexed matterId, bytes32 indexed elementType, bytes32 elementHash);
-}</code></pre>
-              </div>
-            </div>
-
-            <!-- 3. FRE902EvidenceVault -->
-            <div class="accordion-item">
-              <div class="accordion-header">
-                <span class="file-tag">SOL</span>
-                <span class="file-name">contracts/FRE902EvidenceVault.sol</span>
-                <span class="chevron">▼</span>
-              </div>
-              <div class="accordion-body">
-                <pre><code>// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
-
-contract FRE902EvidenceVault {
-    struct EvidencePackage {
-        bytes32 sha256Checksum;
-        bytes32 blake2bChecksum;
-        string matterId;
-        string exhibitLabel;
-        uint256 blockchainAnchorTimestamp;
-        address custodianAddress;
-        bool isCertifiedFRE902_13;
-        bool isCertifiedFRE902_14;
-    }
-    mapping(bytes32 => EvidencePackage) public evidenceRegistry;
-    event EvidenceIngestedAndCertified(bytes32 indexed sha256Checksum, string indexed matterId, address indexed custodian);
-}</code></pre>
-              </div>
-            </div>
-
-            <!-- 4. EyeciteVerificationEscrow -->
-            <div class="accordion-item">
-              <div class="accordion-header">
-                <span class="file-tag">SOL</span>
-                <span class="file-name">contracts/EyeciteVerificationEscrow.sol</span>
-                <span class="chevron">▼</span>
-              </div>
-              <div class="accordion-body">
-                <pre><code>// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
-
-contract EyeciteVerificationEscrow {
-    struct BriefEscrow {
-        bytes32 briefDraftHash;
-        string matterId;
-        address clientOrFunder;
-        address drafterOrVendor;
-        uint256 amountUSDC;
-        uint256 requiredVerifiedCitations;
-        uint256 verifiedCitationCount;
-    }
-    mapping(bytes32 => BriefEscrow) public escrows;
-    event EscrowSettledAndReleased(bytes32 indexed escrowId, address indexed recipient, uint256 amount);
-}</code></pre>
-              </div>
-            </div>
-
-            <!-- 5. AttorneySignOffQuorum -->
-            <div class="accordion-item">
-              <div class="accordion-header">
-                <span class="file-tag">SOL</span>
-                <span class="file-name">contracts/AttorneySignOffQuorum.sol</span>
-                <span class="chevron">▼</span>
-              </div>
-              <div class="accordion-body">
-                <pre><code>// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
-
-contract AttorneySignOffQuorum {
-    struct FilingPleadingApproval {
-        string matterId;
-        string documentUuid;
-        bytes32 finalBriefHash;
-        uint256 requiredQuorum;
-        uint256 currentApprovalCount;
-        bool isFilingApproved;
-    }
-    mapping(string => FilingPleadingApproval) public filingApprovals;
-    event PleadingFullyApproved(string indexed matterId, string indexed documentUuid, bytes32 indexed briefHash);
-}</code></pre>
-              </div>
-            </div>
-
-            <!-- 6. LitigationFinanceToken -->
-            <div class="accordion-item">
-              <div class="accordion-header">
-                <span class="file-tag">SOL</span>
-                <span class="file-name">contracts/LitigationFinanceToken.sol</span>
-                <span class="chevron">▼</span>
-              </div>
-              <div class="accordion-body">
-                <pre><code>// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
-
-contract LitigationFinanceToken {
-    string public name;
-    string public symbol;
-    string public matterId;
-    uint256 public totalRecoveryReceivedUSDC;
-    mapping(address => bool) public isKYCWhitelisted;
-    event RecoveryDeposited(uint256 amountUSDC, uint256 cumulativeTotal);
-    event PayoutClaimed(address indexed investor, uint256 amountUSDC);
-}</code></pre>
-              </div>
-            </div>
-
-            <!-- 7. ZkEvidenceProofRegistry -->
-            <div class="accordion-item">
-              <div class="accordion-header">
-                <span class="file-tag">SOL</span>
-                <span class="file-name">contracts/ZkEvidenceProofRegistry.sol</span>
-                <span class="chevron">▼</span>
-              </div>
-              <div class="accordion-body">
-                <pre><code>// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
-
-contract ZkEvidenceProofRegistry {
-    struct ZkProofRecord {
-        bytes32 commitmentRoot;
-        bytes32 nullifierHash;
-        bytes32 publicInputsHash;
-        string matterId;
-        bool isVerified;
-    }
-    mapping(bytes32 => ZkProofRecord) public zkProofs;
-    event ZkProofAnchored(bytes32 indexed commitmentRoot, bytes32 indexed nullifierHash, string indexed matterId);
-}</code></pre>
-              </div>
-            </div>
-
-            <!-- 8. RWAGeniusActAssetVault -->
-            <div class="accordion-item">
-              <div class="accordion-header">
-                <span class="file-tag">SOL</span>
-                <span class="file-name">contracts/RWAGeniusActAssetVault.sol</span>
-                <span class="chevron">▼</span>
-              </div>
-              <div class="accordion-body">
-                <pre><code>// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
-
-contract RWAGeniusActAssetVault {
-    enum Jurisdiction { US_Delaware, US_Wyoming, US_NewYork, EU_Luxembourg, UK_CommonLaw, UAE_DIFC, UAE_ADGM, CH_Switzerland, SG_Singapore, HK_SFC, KY_Cayman }
-    struct RWAAssetStrand {
-        string assetId;
-        string cusipOrIsin;
-        Jurisdiction primaryJurisdiction;
-        uint256 appraisalValuationUSD;
-        bytes32 uccArticle12ControlHash;
-        bool isPerfectionAnchored;
-    }
-    mapping(string => RWAAssetStrand) public rwaAssets;
-    event RWAAssetRegistered(string indexed assetId, string cusipOrIsin, Jurisdiction indexed jurisdiction, uint256 valuation);
-}</code></pre>
-              </div>
-            </div>
-
-            <!-- 9. SovereignTitleDeedRegistry -->
-            <div class="accordion-item">
-              <div class="accordion-header">
-                <span class="file-tag">SOL</span>
-                <span class="file-name">contracts/SovereignTitleDeedRegistry.sol</span>
-                <span class="chevron">▼</span>
-              </div>
-              <div class="accordion-body">
-                <pre><code>// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
-
-contract SovereignTitleDeedRegistry {
-    struct PropertyDeed {
-        string parcelIdentificationNumber;
-        int256 latitudeMicroDeg;
-        int256 longitudeMicroDeg;
-        bytes32 recorderBookPageHash;
-        bytes32 titleInsurancePolicyHash;
-        address currentFeeSimpleOwner;
-        bool hasActiveLienOrEncumbrance;
-    }
-    mapping(string => PropertyDeed) public propertyDeeds;
-    event TitleTransferred(string indexed pin, address indexed previousOwner, address indexed newOwner, uint256 considerationUSD);
-}</code></pre>
-              </div>
-            </div>
-
-            <!-- 10. CorporateMergersEscrow -->
-            <div class="accordion-item">
-              <div class="accordion-header">
-                <span class="file-tag">SOL</span>
-                <span class="file-name">contracts/CorporateMergersEscrow.sol</span>
-                <span class="chevron">▼</span>
-              </div>
-              <div class="accordion-body">
-                <pre><code>// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
-
-contract CorporateMergersEscrow {
-    struct MergerTransaction {
-        string dealId;
-        string targetEntity;
-        string acquirerEntity;
-        uint256 totalPurchasePriceUSDC;
-        uint256 indemnificationEscrowAmountUSDC;
-        uint256 closingTimestamp;
-    }
-    mapping(string => MergerTransaction) public deals;
-    event DealSettledAndReleased(string indexed dealId, address indexed recipient, uint256 amount);
-}</code></pre>
-              </div>
-            </div>
-
-            <!-- 11. IntellectualPropertyRoyaltySplitter -->
-            <div class="accordion-item">
-              <div class="accordion-header">
-                <span class="file-tag">SOL</span>
-                <span class="file-name">contracts/IntellectualPropertyRoyaltySplitter.sol</span>
-                <span class="chevron">▼</span>
-              </div>
-              <div class="accordion-body">
-                <pre><code>// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
-
-contract IntellectualPropertyRoyaltySplitter {
-    struct IPRoyaltyContract {
-        string ipAssetId;
-        string registrationNumber;
-        bytes32 patentClaimDigest;
-        address primaryLicensor;
-        uint256 totalCumulativeRoyaltiesUSDC;
-    }
-    mapping(string => IPRoyaltyContract) public ipAssets;
-    event SplitDistributed(string indexed ipAssetId, address indexed recipient, uint256 payoutAmount);
-}</code></pre>
-              </div>
-            </div>
-
-            <!-- 12. LetterOfCreditSBLCRouter -->
-            <div class="accordion-item">
-              <div class="accordion-header">
-                <span class="file-tag">SOL</span>
-                <span class="file-name">contracts/LetterOfCreditSBLCRouter.sol</span>
-                <span class="chevron">▼</span>
-              </div>
-              <div class="accordion-body">
-                <pre><code>// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
-
-contract LetterOfCreditSBLCRouter {
-    struct StandbyLetterOfCredit {
-        string lcReferenceNumber;
-        string issuingBankSwiftBic;
-        uint256 creditAmountUSDC;
-        bytes32 billOfLadingRequiredHash;
-        bytes32 inspectionCertRequiredHash;
-    }
-    mapping(string => StandbyLetterOfCredit) public lettersOfCredit;
-    event LCHonoredAndSettled(string indexed lcRef, address indexed beneficiary, uint256 amountSettled);
-}</code></pre>
-              </div>
-            </div>
-
-            <!-- 13. DynastyTrustEstateVault -->
-            <div class="accordion-item">
-              <div class="accordion-header">
-                <span class="file-tag">SOL</span>
-                <span class="file-name">contracts/DynastyTrustEstateVault.sol</span>
-                <span class="chevron">▼</span>
-              </div>
-              <div class="accordion-body">
-                <pre><code>// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
-
-contract DynastyTrustEstateVault {
-    struct TrustFiduciary { address wallet; string name; string role; bool isActive; }
-    string public trustName;
-    bytes32 public trustIndentureHash;
-    uint256 public totalVaultCollateralUSDC;
-    event DiscretionaryDistributionExecuted(address indexed beneficiary, uint256 amount);
-}</code></pre>
-              </div>
-            </div>
-
-            <!-- 14. ArbitrationAwardSettlement -->
-            <div class="accordion-item">
-              <div class="accordion-header">
-                <span class="file-tag">SOL</span>
-                <span class="file-name">contracts/ArbitrationAwardSettlement.sol</span>
-                <span class="chevron">▼</span>
-              </div>
-              <div class="accordion-body">
-                <pre><code>// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
-
-contract ArbitrationAwardSettlement {
-    struct ArbitralProceeding {
-        string tribunalMatterId;
-        string arbitrationSeat;
-        bytes32 finalAwardDigest;
-        address prevailingParty;
-        uint256 awardAmountUSDC;
-    }
-    mapping(string => ArbitralProceeding) public proceedings;
-    event AwardExecutedAndReleased(string indexed matterId, address indexed recipient, uint256 amount);
-}</code></pre>
-              </div>
-            </div>
-
-            <!-- 15. BankruptcyCreditorWaterfall -->
-            <div class="accordion-item">
-              <div class="accordion-header">
-                <span class="file-tag">SOL</span>
-                <span class="file-name">contracts/BankruptcyCreditorWaterfall.sol</span>
-                <span class="chevron">▼</span>
-              </div>
-              <div class="accordion-body">
-                <pre><code>// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
-
-contract BankruptcyCreditorWaterfall {
-    enum PriorityTier { SeniorSecured, AdministrativeExpense, GeneralUnsecured, SubordinatedDebt, EquityHolder }
-    struct CreditorClaim { address creditorWallet; string creditorName; PriorityTier tier; uint256 allowedClaimAmountUSDC; }
-    CreditorClaim[] public claims;
-    event WaterfallDistributed(uint256 totalDistributed);
-}</code></pre>
-              </div>
-            </div>
-
-            <!-- 16. GDPRZeroKnowledgeDataRoom -->
-            <div class="accordion-item">
-              <div class="accordion-header">
-                <span class="file-tag">SOL</span>
-                <span class="file-name">contracts/GDPRZeroKnowledgeDataRoom.sol</span>
-                <span class="chevron">▼</span>
-              </div>
-              <div class="accordion-body">
-                <pre><code>// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
-
-contract GDPRZeroKnowledgeDataRoom {
-    struct DataRoomAccessGrant { bytes32 dataRoomId; address granteeCounselOrAuditor; uint256 accessExpiresTimestamp; bool isRevoked; }
-    mapping(bytes32 => mapping(address => DataRoomAccessGrant)) public accessGrants;
-    event ConsentRevokedRightToBeForgotten(bytes32 indexed dataRoomId, address indexed grantee, uint256 timestamp);
-}</code></pre>
-              </div>
-            </div>
-
-            <!-- 17. X402EscrowSettlement -->
-            <div class="accordion-item">
-              <div class="accordion-header">
-                <span class="file-tag">SOL</span>
-                <span class="file-name">contracts/X402EscrowSettlement.sol</span>
-                <span class="chevron">▼</span>
-              </div>
-              <div class="accordion-body">
-                <pre><code>// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
-
-contract X402EscrowSettlement {
-    struct SettlementReceipt { bytes32 challengeDigest; address payer; uint256 amountUSDC; uint256 timestamp; }
-    mapping(bytes32 => SettlementReceipt) public receipts;
-    event ChallengeSettled(bytes32 indexed challengeDigest, address indexed payer, uint256 amountUSDC);
-}</code></pre>
-              </div>
-            </div>
-
-            <!-- 8. JSON Schema -->
-            <div class="accordion-item">
-              <div class="accordion-header">
-                <span class="file-tag">JSON</span>
-                <span class="file-name">schemas/case-dna.schema.json</span>
-                <span class="chevron">▼</span>
-              </div>
-              <div class="accordion-body">
-                <pre><code>{
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "CaseDigitalDNA",
-  "required": [
-    "matterId",
-    "organizationId",
-    "jurisdictionProfile",
-    "caseCaption",
-    "factualTimeline",
-    "evidenceDigestTree",
-    "sourceAuthoritySnapshots",
-    "attorneyReviewLog"
-  ]
-}</code></pre>
+              <div style="background:rgba(212,175,55,0.06); border:1px solid rgba(212,175,55,0.2); padding:0.75rem; border-radius:8px; font-size:0.82rem;">
+                <strong>Tokenized RWAs & Deeds:</strong> UCC Article 12 CER control records and county parcel deeds.
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- TAB 7: LEGAL CINEMA & MEDIA STUDIO -->
-      <section id="cinema-studio" class="tab-pane">
-        <div class="glass-card-full">
-          <div class="panel-header">
+      <!-- SECTION: FOR FAMILIES & PROFESSIONALS -->
+      <section id="for-professionals" class="glass-card-full">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+          
+          <!-- For Families -->
+          <div id="for-families" style="background: rgba(10,16,32,0.7); border: 1px solid var(--border-glass); border-radius: 16px; padding: 2rem; display: flex; flex-direction: column; justify-content: space-between;">
             <div>
-              <div class="cinema-header-tag">
-                <span class="live-pulse-dot"></span>
-                <span>SOVEREIGN MEDIA SUITE · 21 ASSETS (18 4K VIDEOS + 3 HI-RES SEALS)</span>
-              </div>
-              <h2 class="panel-title">Legal-X Cinematic Visual & Video Studio</h2>
-              <p class="panel-desc">Choose from 18 futuristic courtroom, digital justice, and litigation sequence videos plus high-resolution evidentiary seals. Preview in the 4K interactive theater, apply as the live animated site background, or copy instant embed codes.</p>
+              <span class="pill-blue">For Families & Individuals</span>
+              <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--text-main); margin-top: 0.75rem;">
+                Peace of Mind Across Generations
+              </h3>
+              <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.6; margin-top: 0.75rem;">
+                Ensure your loved ones are never locked out. Organize sensitive records, preserve your personal memoirs, and establish automated release instructions with absolute privacy.
+              </p>
             </div>
-            <div class="cinema-top-actions">
-              <button class="bg-toggle-btn active" id="toggleLiveBgBtn">
-                <span class="btn-icon">🌌</span>
-                <span id="bgToggleText">Site Video Background: ON</span>
-              </button>
-            </div>
+            <a href="https://app.legacychain.app" class="action-btn" style="margin-top: 1.5rem; text-align: center; justify-content: center;">
+              Start Family Vault Plan →
+            </a>
           </div>
 
-          <!-- Featured Cinema Screen & Director Pod -->
-          <div class="cinema-featured-pod">
-            <!-- Left: High-Def Player / Canvas -->
-            <div class="theater-screen-box">
-              <div class="theater-glow-rim"></div>
-              
-              <!-- Video View -->
-              <div class="player-wrapper" id="theaterPlayerWrapper">
-                <video id="mainTheaterVideo" class="main-screen-video" autoplay loop muted playsinline poster="media/thumbnails/courtroom_mastery_01.jpg" src="media/videos/courtroom_mastery_01.mp4"></video>
-                <img id="mainTheaterImage" class="main-screen-image" style="display:none;" alt="Legal Asset">
-                
-                <!-- HUD Telemetry Overlay -->
-                <div class="theater-hud">
-                  <div class="hud-top">
-                    <span class="hud-pill" id="hudCategory">Mastery</span>
-                    <span class="hud-pill mono" id="hudResolution">854x480</span>
-                    <span class="hud-pill mono" id="hudDuration">10.0s</span>
-                  </div>
-                  <div class="hud-bottom">
-                    <h3 class="hud-title" id="hudTitle">Futuristic Courtroom Mastery (Vol. 1)</h3>
-                    <p class="hud-sub" id="hudDescription">High-tech courtroom podium with holographic displays and judicial gavel.</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Custom Video Control Deck -->
-              <div class="theater-controls-deck">
-                <div class="control-left">
-                  <button class="ctrl-btn" id="theaterPlayPauseBtn" title="Play/Pause">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" id="playIcon"><path d="M6 4h4v16H6zm8 0h4v16h-4z"/></svg>
-                  </button>
-                  <button class="ctrl-btn" id="theaterMuteBtn" title="Mute/Unmute">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" id="muteIcon"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                  </button>
-                  <div class="timeline-bar-wrapper" id="timelineScrubber">
-                    <div class="timeline-progress" id="timelineProgress"></div>
-                  </div>
-                </div>
-                <div class="control-right">
-                  <div class="speed-selector">
-                    <button class="speed-btn active" data-speed="1">1.0x</button>
-                    <button class="speed-btn" data-speed="1.5">1.5x</button>
-                    <button class="speed-btn" data-speed="2">2.0x</button>
-                  </div>
-                  <button class="ctrl-btn" id="theaterFullscreenBtn" title="Fullscreen">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-                  </button>
-                </div>
-              </div>
+          <!-- For Professionals -->
+          <div style="background: rgba(10,16,32,0.7); border: 1px solid var(--border-glass); border-radius: 16px; padding: 2rem; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span class="pill-gold">For Attorneys & Wealth Advisors</span>
+              <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--text-main); margin-top: 0.75rem;">
+                A Modern Operating Layer for Client Continuity
+              </h3>
+              <p style="font-size: 0.9rem; color: #94a3b8; line-height: 1.6; margin-top: 0.75rem;">
+                Legal‑X gives professionals a structured workspace for sensitive records, authority workflows, evidence integrity, digital-asset documentation, and institutional-grade audit trails—while clients retain ownership and privacy over their data.
+              </p>
             </div>
-
-            <!-- Right: Studio Director Actions & Metadata -->
-            <div class="director-pod">
-              <div class="director-header">
-                <span class="director-badge">STUDIO DIRECTOR</span>
-                <h4 class="director-title" id="directorTitle">Futuristic Courtroom Mastery (Vol. 1)</h4>
-                <p class="director-desc" id="directorDesc">High-tech courtroom podium with holographic displays and holographic judicial gavel.</p>
-              </div>
-
-              <!-- Technical Dossier -->
-              <div class="specs-table">
-                <div class="spec-row">
-                  <span class="spec-lbl">Category</span>
-                  <span class="spec-val highlight" id="specCat">Mastery</span>
-                </div>
-                <div class="spec-row">
-                  <span class="spec-lbl">Resolution</span>
-                  <span class="spec-val mono" id="specRes">854x480</span>
-                </div>
-                <div class="spec-row">
-                  <span class="spec-lbl">Duration</span>
-                  <span class="spec-val mono" id="specDur">10.0 Seconds</span>
-                </div>
-                <div class="spec-row">
-                  <span class="spec-lbl">File Size</span>
-                  <span class="spec-val mono" id="specSize">5.10 MB</span>
-                </div>
-                <div class="spec-row">
-                  <span class="spec-lbl">Format</span>
-                  <span class="spec-val mono" id="specFormat">MP4 (H.264 / AAC)</span>
-                </div>
-                <div class="spec-row">
-                  <span class="spec-lbl">Asset ID</span>
-                  <span class="spec-val mono text-truncate" id="specId">courtroom_mastery_01</span>
-                </div>
-              </div>
-
-              <!-- Action Controls -->
-              <div class="director-actions">
-                <button class="primary-gold-btn" id="setHeroBgBtn">
-                  <span class="btn-icon">⚡</span>
-                  <span>Set as Live Background</span>
-                </button>
-
-                <div class="code-action-grid">
-                  <button class="glass-action-btn" id="copyHtmlTagBtn" title="Copy HTML5 Video Tag">
-                    <span>&lt;/&gt; HTML5 Tag</span>
-                  </button>
-                  <button class="glass-action-btn" id="copyReactJsxBtn" title="Copy React / Next.js Component">
-                    <span>⚛️ React JSX</span>
-                  </button>
-                  <button class="glass-action-btn" id="copyCssBgBtn" title="Copy CSS Background Snippet">
-                    <span>🎨 CSS Background</span>
-                  </button>
-                  <button class="glass-action-btn" id="copyPathBtn" title="Copy Local Master Path">
-                    <span>📁 Copy Path</span>
-                  </button>
-                </div>
-              </div>
-
-              <!-- Toast notification -->
-              <div class="copy-toast" id="copyToast" style="display:none;">
-                <span class="toast-check">✓</span>
-                <span id="toastMsg">Snippet copied to clipboard!</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Media Filter & Search Toolbar -->
-          <div class="media-toolbar">
-            <div class="search-box-wrapper">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-              <input type="text" id="mediaSearchInput" class="glass-search-input" placeholder="Search 21 legal courtroom videos & seals by title, category, resolution...">
-            </div>
-
-            <div class="category-pills-row" id="categoryPillsRow">
-              <button class="filter-pill active" data-cat="all">All Assets (21)</button>
-              <button class="filter-pill" data-cat="Mastery">Courtroom Mastery (3)</button>
-              <button class="filter-pill" data-cat="Helix & DNA">Digital Justice Helix (1)</button>
-              <button class="filter-pill" data-cat="Drama">Courtroom Drama (5)</button>
-              <button class="filter-pill" data-cat="Resolution">Resolution & Settlement (4)</button>
-              <button class="filter-pill" data-cat="Confrontation">Confrontation & Cross-Exam (2)</button>
-              <button class="filter-pill" data-cat="Justice">Justice Unveiled (2)</button>
-              <button class="filter-pill" data-cat="Office & Strategy">Office & Strategy (1)</button>
-              <button class="filter-pill" data-cat="Elegance">Elegance (1)</button>
-              <button class="filter-pill" data-cat="Visual Badges & Seals">Visual Seals & Badges (2)</button>
-            </div>
-          </div>
-
-          <!-- Media Grid: 21 Items -->
-          <div class="legal-media-grid" id="legalMediaGrid">
-            <!-- Dynamically populated from legal_media_catalog.json -->
+            <a href="legal-x.html" class="secondary-btn" style="margin-top: 1.5rem; text-align: center; justify-content: center;">
+              Explore Legal-X Platform Architecture →
+            </a>
           </div>
 
         </div>
       </section>
 
-      <!-- TAB 7: ABOUT & PLATFORM GOVERNANCE -->
-      <section id="about-section" class="tab-pane">
-        <div class="glass-card-full">
-          <div class="panel-header">
-            <div>
-              <h2 class="panel-title">About Legal-X & Ethical Governance</h2>
-              <p class="panel-desc">Sovereign legal-record chain and deterministic verification infrastructure adhering to ABA Model Rules and FRE standards.</p>
-            </div>
-            <div class="engine-pills">
-              <span class="pill-gold">ABA Formal Op. 512</span>
-              <span class="pill-blue">FRCP Rule 11(b) Compliant</span>
-            </div>
-          </div>
-
-          <div class="about-grid">
-            <div class="about-card">
-              <div class="about-icon">⚖️</div>
-              <h3>Mission & Positioning</h3>
-              <p>Legal-X is an <strong>attorney-supervised legal intelligence and integrity platform</strong> that combines AI-assisted drafting with source-grounded verification, controlled document lineage, and accountable human approval.</p>
-              <div class="rule-highlight">
-                <code>AI-assisted draft ≠ verified proposition ≠ attorney-approved work product</code>
-              </div>
-            </div>
-
-            <div class="about-card">
-              <div class="about-icon">🛡️</div>
-              <h3>Ethical Mitigations</h3>
-              <ul class="ethics-list">
-                <li><strong>Rule 1.1 (Competence):</strong> Fail-closed citation routing against official slip opinions.</li>
-                <li><strong>Rule 1.6 (Confidentiality):</strong> Zero Data Retention (ZDR) and client-side PII scrubbing.</li>
-                <li><strong>Rule 3.3 (Candor):</strong> Exact character-offset quotation testing against GovInfo & CourtListener.</li>
-                <li><strong>Rules 5.1 & 5.3 (Supervision):</strong> Mandatory lead counsel electronic sign-off.</li>
-              </ul>
-            </div>
-
-            <div class="about-card">
-              <div class="about-icon">🧬</div>
-              <h3>The Matter Digital Twin</h3>
-              <p>A living operational model representing people, facts, statutory elements, discovery timelines, and task quorums. Changes automatically generate a new cryptographic fingerprint without exposing private client files to public ledgers.</p>
-            </div>
-
-            <div class="about-card">
-              <div class="about-icon">📜</div>
-              <h3>Evidentiary Standard</h3>
-              <p>Designed to support the preparation of self-authenticating digital records under <strong>Federal Rules of Evidence 902(13) and 902(14)</strong>, complete with 28 U.S.C. § 1746 custodian declarations.</p>
-            </div>
-          </div>
-
-          <div class="disclaimer-banner">
-            <strong>Legal Notice:</strong> Legal-X is a legal-technology platform providing technical infrastructure for evidence organization, reproducible research verification, and document custody management. Legal-X is not a law firm, does not provide legal representation, and does not guarantee legal outcomes or admissibility.
+      <!-- CALL TO ACTION BANNER -->
+      <section class="glass-card-full" style="text-align: center; padding: 3.5rem 2rem; background: linear-gradient(135deg, rgba(0, 210, 255, 0.08), rgba(168, 85, 247, 0.08));">
+        <div style="max-width: 750px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+          <h2 style="font-size: 2.2rem; font-weight: 900; color: var(--text-main);">
+            Protect What You Built. Preserve Who You Love.
+          </h2>
+          <p style="font-size: 1.05rem; color: #cbd5e1; line-height: 1.6;">
+            Get started in minutes. Client-side encryption ensures your private data stays private forever.
+          </p>
+          <div style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-top:0.5rem;">
+            <a href="https://app.legacychain.app" class="action-btn" style="padding: 0.85rem 2rem; font-size: 1rem;">
+              Enter Your Secure Vault Now →
+            </a>
+            <a href="cinema.html" class="secondary-btn" style="padding: 0.85rem 1.5rem;">
+              🎬 Watch Legacy Cinema
+            </a>
           </div>
         </div>
       </section>
 
     </main>
 
-    <!-- Liquid Glass Footer -->
-    <footer class="glass-footer">
-      <div class="footer-left">
-        <span>© 2026 <strong>Legal-X</strong> · Sovereign Legal-Record Chain & Matter Digital Twin Architecture.</span>
-      </div>
-      <div class="footer-right">
-        <a href="https://legacychain.app" target="_blank" class="footer-link">LegacyChain.app Apex</a>
-        <a href="https://app.legacychain.app" target="_blank" class="footer-link">Client Portal</a>
-        <a href="https://github.com/FTHTrading/Legal-X" target="_blank" class="footer-link">GitHub Repository</a>
+    <!-- Footer -->
+    <footer class="footer-glass">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-brand">LEGACY<span class="gold-gradient">VAULT</span></div>
+          <p class="footer-tagline">Your family's legacy, protected by Legal-X. Client-side encrypted estate preservation.</p>
+        </div>
+        <div class="footer-links-group">
+          <a href="legal-x.html" class="footer-link">Legal-X Platform</a>
+          <a href="cinema.html" class="footer-link">Cinema Vault</a>
+          <a href="https://app.legacychain.app" class="footer-link">Workspace Portal</a>
+          <a href="https://github.com/FTHTrading/Legal-X" target="_blank" class="footer-link">GitHub</a>
+        </div>
       </div>
     </footer>
 
   </div>
-
-  <script src="app.js"></script>
 </body>
 </html>
