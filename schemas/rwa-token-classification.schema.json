@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RWATokenClassificationSchema",
+  "description": "Securities, Howey, Reves, and Real-World Asset Token Regulatory Classification Data Contract",
+  "type": "object",
+  "required": [
+    "assetId",
+    "tokenSymbol",
+    "jurisdictionProfile",
+    "howeyAnalysis",
+    "revesAnalysis",
+    "exemptionStatus",
+    "underlyingCustodyProof"
+  ],
+  "properties": {
+    "assetId": { "type": "string" },
+    "tokenSymbol": { "type": "string" },
+    "jurisdictionProfile": { "type": "string" },
+    "howeyAnalysis": {
+      "type": "object",
+      "required": ["investmentOfMoney", "commonEnterprise", "expectationOfProfits", "effortsOfOthers", "conclusion"],
+      "properties": {
+        "investmentOfMoney": { "type": "boolean" },
+        "commonEnterprise": { "type": "boolean" },
+        "expectationOfProfits": { "type": "boolean" },
+        "effortsOfOthers": { "type": "boolean" },
+        "conclusion": { "type": "string" }
+      }
+    },
+    "revesAnalysis": {
+      "type": "object",
+      "properties": {
+        "motivations": { "type": "string" },
+        "planOfDistribution": { "type": "string" },
+        "reasonableExpectations": { "type": "string" },
+        "riskReducingFactors": { "type": "string" }
+      }
+    },
+    "exemptionStatus": {
+      "type": "string",
+      "enum": ["Section 4(a)(2)", "Regulation D 506(c)", "Regulation S", "Regulation A+", "Unregistered Utility"]
+    },
+    "underlyingCustodyProof": {
+      "type": "object",
+      "required": ["custodianName", "vaultAccountDigest", "spvRegistrationId"],
+      "properties": {
+        "custodianName": { "type": "string" },
+        "vaultAccountDigest": { "type": "string" },
+        "spvRegistrationId": { "type": "string" }
+      }
+    }
+  }
+}

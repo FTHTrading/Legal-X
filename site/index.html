@@ -42,6 +42,7 @@
         <button class="nav-link active" data-tab="twin-explorer">Matter Digital Twin</button>
         <button class="nav-link" data-tab="dna-visualizer">Case DNA Strand</button>
         <button class="nav-link" data-tab="citation-engine">Eyecite Matcher</button>
+        <button class="nav-link" data-tab="law-library">📚 Law Library & Precedents</button>
         <button class="nav-link" data-tab="x402-rail">x402 Settlement</button>
         <button class="nav-link" data-tab="contracts-view">Smart Contracts</button>
         <button class="nav-link" data-tab="cinema-studio">🎬 Legal Media & Cinema</button>
@@ -111,8 +112,13 @@
             </div>
             <div class="matter-switcher">
               <button class="matter-btn active" data-matter="mat_2026_corp">Corp. Motion to Dismiss</button>
-              <button class="matter-btn" data-matter="mat_2026_estate">5-Proof Estate Trust Safe</button>
-              <button class="matter-btn" data-matter="mat_2026_investigation">Forensic Defense Matter</button>
+              <button class="matter-btn" data-matter="mat_2026_estate">5-Proof Estate Safe</button>
+              <button class="matter-btn" data-matter="mat_2026_investigation">Forensic Defense</button>
+              <button class="matter-btn" data-matter="mat_2026_securities_rwa">RWA & Token Twin</button>
+              <button class="matter-btn" data-matter="mat_2026_patent">Patent & Algorithm Twin</button>
+              <button class="matter-btn" data-matter="mat_2026_commercial">Cross-Border Contract</button>
+              <button class="matter-btn" data-matter="mat_2026_whistleblower">SOX Whistleblower</button>
+              <button class="matter-btn" data-matter="mat_2026_arbitration_x402">x402 Base Dispute</button>
             </div>
           </div>
 
@@ -194,8 +200,51 @@
           </div>
         </div>
       </section>
+      
+      <!-- TAB 4: LAW LIBRARY & LANDMARK PRECEDENTS -->
+      <section id="law-library" class="tab-pane">
+        <div class="glass-card-full">
+          <div class="panel-header">
+            <div>
+              <div class="cinema-header-tag">
+                <span class="live-pulse-dot"></span>
+                <span>FAIL-CLOSED PRIMARY OPINION CORPUS · GOVINFO / COURTLISTENER SYNCED</span>
+              </div>
+              <h2 class="panel-title">Legal-X Sovereign Law Library & Precedents</h2>
+              <p class="panel-desc">Search, filter, and inspect verified landmark Supreme Court, Delaware Chancery, FRE, and Securities precedents with exact slip opinion character-offset hashes and pin-cites.</p>
+            </div>
+            <div class="engine-pills">
+              <span class="pill-blue">24 Indexed Precedents</span>
+              <span class="pill-gold">Exact Substring Offset Grounding</span>
+            </div>
+          </div>
 
-      <!-- TAB 4: x402 MACHINE SETTLEMENT SIMULATOR -->
+          <!-- Law Library Search & Filter Toolbar -->
+          <div class="media-toolbar">
+            <div class="search-box-wrapper">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+              <input type="text" id="lawSearchInput" class="glass-search-input" placeholder="Search official law library by case name, citation, topic (e.g. Iqbal, Howey, Caremark, Rule 902)...">
+            </div>
+
+            <div class="category-pills-row" id="lawCategoryPillsRow">
+              <button class="filter-pill active" data-law-cat="all">All Precedents (24)</button>
+              <button class="filter-pill" data-law-cat="Civil Procedure & Pleading Standards">Civil Procedure (5)</button>
+              <button class="filter-pill" data-law-cat="Evidence & FRE 902 Authentication">Evidence & FRE (6)</button>
+              <button class="filter-pill" data-law-cat="Securities, Digital Assets & RWA">Securities & RWA (5)</button>
+              <button class="filter-pill" data-law-cat="Corporate Governance & Delaware Chancery">Chancery & Governance (4)</button>
+              <button class="filter-pill" data-law-cat="AI Ethics, Candor & Sanctions Precedents">AI Ethics & Sanctions (3)</button>
+              <button class="filter-pill" data-law-cat="Intellectual Property & Algorithm Patentability">IP & Patents (1)</button>
+            </div>
+          </div>
+
+          <!-- Precedents Grid -->
+          <div class="law-precedents-grid" id="lawPrecedentsGrid">
+            <!-- Dynamically populated from legal_corpus.json / law_library.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 5: x402 MACHINE SETTLEMENT SIMULATOR -->
       <section id="x402-rail" class="tab-pane">
         <div class="glass-card-full">
           <div class="panel-header">
@@ -238,18 +287,19 @@
         </div>
       </section>
 
-      <!-- TAB 5: SMART CONTRACTS & REPOSITORY SCHEMAS -->
+      <!-- TAB 6: SMART CONTRACTS & REPOSITORY SCHEMAS -->
       <section id="contracts-view" class="tab-pane">
         <div class="glass-card-full">
           <div class="panel-header">
             <div>
-              <h2 class="panel-title">Verified Smart Contracts & JSON Schemas</h2>
-              <p class="panel-desc">Direct inspection of the deployed on-chain proof registry and formal data contracts.</p>
+              <h2 class="panel-title">Verified Smart Contracts & JSON Schemas (8 On-Chain Modules)</h2>
+              <p class="panel-desc">Production Solidity contracts for FRE 902 provenance, case DNA strands, x402 escrow, attorney quorum, and litigation finance.</p>
             </div>
             <a href="https://github.com/FTHTrading/Legal-X" target="_blank" class="action-btn">View on GitHub</a>
           </div>
 
           <div class="contracts-accordion">
+            <!-- 1. LegalProofRegistry -->
             <div class="accordion-item">
               <div class="accordion-header">
                 <span class="file-tag">SOL</span>
@@ -290,6 +340,165 @@ contract LegalProofRegistry {
               </div>
             </div>
 
+            <!-- 2. CaseDNARegistry -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <span class="file-tag">SOL</span>
+                <span class="file-name">contracts/CaseDNARegistry.sol</span>
+                <span class="chevron">▼</span>
+              </div>
+              <div class="accordion-body">
+                <pre><code>// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract CaseDNARegistry {
+    enum MatterStatus { Inception, Discovery, PleadingActive, InTrial, InSettlement, Adjudicated, Sealed }
+    struct MatterStrand {
+        string matterId;
+        bytes32 genesisStateDigest;
+        bytes32 latestStateDigest;
+        uint256 blockTimestamp;
+        uint256 amendmentCount;
+        MatterStatus status;
+        address leadCounsel;
+    }
+    mapping(string => MatterStrand) public matters;
+    event MatterIncepted(string indexed matterId, bytes32 indexed genesisHash, address leadCounsel);
+    event DNAElementAppended(string indexed matterId, bytes32 indexed elementType, bytes32 elementHash);
+}</code></pre>
+              </div>
+            </div>
+
+            <!-- 3. FRE902EvidenceVault -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <span class="file-tag">SOL</span>
+                <span class="file-name">contracts/FRE902EvidenceVault.sol</span>
+                <span class="chevron">▼</span>
+              </div>
+              <div class="accordion-body">
+                <pre><code>// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract FRE902EvidenceVault {
+    struct EvidencePackage {
+        bytes32 sha256Checksum;
+        bytes32 blake2bChecksum;
+        string matterId;
+        string exhibitLabel;
+        uint256 blockchainAnchorTimestamp;
+        address custodianAddress;
+        bool isCertifiedFRE902_13;
+        bool isCertifiedFRE902_14;
+    }
+    mapping(bytes32 => EvidencePackage) public evidenceRegistry;
+    event EvidenceIngestedAndCertified(bytes32 indexed sha256Checksum, string indexed matterId, address indexed custodian);
+}</code></pre>
+              </div>
+            </div>
+
+            <!-- 4. EyeciteVerificationEscrow -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <span class="file-tag">SOL</span>
+                <span class="file-name">contracts/EyeciteVerificationEscrow.sol</span>
+                <span class="chevron">▼</span>
+              </div>
+              <div class="accordion-body">
+                <pre><code>// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract EyeciteVerificationEscrow {
+    struct BriefEscrow {
+        bytes32 briefDraftHash;
+        string matterId;
+        address clientOrFunder;
+        address drafterOrVendor;
+        uint256 amountUSDC;
+        uint256 requiredVerifiedCitations;
+        uint256 verifiedCitationCount;
+    }
+    mapping(bytes32 => BriefEscrow) public escrows;
+    event EscrowSettledAndReleased(bytes32 indexed escrowId, address indexed recipient, uint256 amount);
+}</code></pre>
+              </div>
+            </div>
+
+            <!-- 5. AttorneySignOffQuorum -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <span class="file-tag">SOL</span>
+                <span class="file-name">contracts/AttorneySignOffQuorum.sol</span>
+                <span class="chevron">▼</span>
+              </div>
+              <div class="accordion-body">
+                <pre><code>// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract AttorneySignOffQuorum {
+    struct FilingPleadingApproval {
+        string matterId;
+        string documentUuid;
+        bytes32 finalBriefHash;
+        uint256 requiredQuorum;
+        uint256 currentApprovalCount;
+        bool isFilingApproved;
+    }
+    mapping(string => FilingPleadingApproval) public filingApprovals;
+    event PleadingFullyApproved(string indexed matterId, string indexed documentUuid, bytes32 indexed briefHash);
+}</code></pre>
+              </div>
+            </div>
+
+            <!-- 6. LitigationFinanceToken -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <span class="file-tag">SOL</span>
+                <span class="file-name">contracts/LitigationFinanceToken.sol</span>
+                <span class="chevron">▼</span>
+              </div>
+              <div class="accordion-body">
+                <pre><code>// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract LitigationFinanceToken {
+    string public name;
+    string public symbol;
+    string public matterId;
+    uint256 public totalRecoveryReceivedUSDC;
+    mapping(address => bool) public isKYCWhitelisted;
+    event RecoveryDeposited(uint256 amountUSDC, uint256 cumulativeTotal);
+    event PayoutClaimed(address indexed investor, uint256 amountUSDC);
+}</code></pre>
+              </div>
+            </div>
+
+            <!-- 7. ZkEvidenceProofRegistry -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <span class="file-tag">SOL</span>
+                <span class="file-name">contracts/ZkEvidenceProofRegistry.sol</span>
+                <span class="chevron">▼</span>
+              </div>
+              <div class="accordion-body">
+                <pre><code>// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract ZkEvidenceProofRegistry {
+    struct ZkProofRecord {
+        bytes32 commitmentRoot;
+        bytes32 nullifierHash;
+        bytes32 publicInputsHash;
+        string matterId;
+        bool isVerified;
+    }
+    mapping(bytes32 => ZkProofRecord) public zkProofs;
+    event ZkProofAnchored(bytes32 indexed commitmentRoot, bytes32 indexed nullifierHash, string indexed matterId);
+}</code></pre>
+              </div>
+            </div>
+
+            <!-- 8. JSON Schema -->
             <div class="accordion-item">
               <div class="accordion-header">
                 <span class="file-tag">JSON</span>
@@ -313,10 +522,11 @@ contract LegalProofRegistry {
 }</code></pre>
               </div>
             </div>
+          </div>
         </div>
       </section>
 
-      <!-- TAB 6: LEGAL CINEMA & MEDIA STUDIO -->
+      <!-- TAB 7: LEGAL CINEMA & MEDIA STUDIO -->
       <section id="cinema-studio" class="tab-pane">
         <div class="glass-card-full">
           <div class="panel-header">

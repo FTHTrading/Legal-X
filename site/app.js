@@ -111,15 +111,16 @@ const CASE_ARCHETYPES = {
     ]
   },
   mat_2026_investigation: {
-    title: "Forensic Defense Matter",
+    title: "DOJ / SEC Forensic Defense Matter",
     matterId: "mat_2026_def_009",
     court: "U.S. District Court for the Southern District of New York",
     judge: "Hon. Jesse M. Furman",
-    parties: "Defense Forensic Review Investigation",
+    parties: "Defense Forensic Review & Subpoena Response",
     dnaStrand: [
       { type: "MATTER_ID", val: "mat_2026_def_009", hash: "0x22ee...99bb" },
       { type: "CUSTODY_LOG", val: "Chain of Custody Timestamp", hash: "0x66cc...11aa" },
       { type: "EVIDENCE_DIGEST", val: "Audio / Video Forensic Hash", hash: "0x88dd...33ee" },
+      { type: "FRE_902_CERT", val: "28 U.S.C. § 1746 Declaration", hash: "0x77ee...4411" },
       { type: "ATTORNEY_SIGN", val: "/s/ Lead Defense Counsel", hash: "0x11bb...55ff" }
     ],
     nodes: [
@@ -136,6 +137,141 @@ const CASE_ARCHETYPES = {
         }
       }
     ]
+  },
+  mat_2026_securities_rwa: {
+    title: "Token Classification & RWA Offering",
+    matterId: "mat_2026_rwa_777",
+    court: "SEC Division of Corporation Finance / S.D.N.Y.",
+    judge: "Hon. Analisa Torres",
+    parties: "UnyKorn Real-World Asset Protocol v. Regulatory Staff",
+    dnaStrand: [
+      { type: "MATTER_ID", val: "mat_2026_rwa_777", hash: "0x55aa...33bb" },
+      { type: "HOWEY_TEST", val: "SEC v. Howey 4-Prong Analysis", hash: "0x99cc...22dd" },
+      { type: "REVES_FAMILY", val: "Reves Commercial Note Test", hash: "0x11ff...44ee" },
+      { type: "REG_D_EXEMPT", val: "Rule 506(c) Accredited Whitelist", hash: "0x88aa...77cc" },
+      { type: "ATTORNEY_SIGN", val: "/s/ Securities Partner (NY-Bar)", hash: "0x33ee...99aa" }
+    ],
+    nodes: [
+      {
+        id: "node_howey",
+        title: "Howey & Reves Classification Audit",
+        sub: "Institutional vs Programmatic Liquidity",
+        badge: "EXEMPT COMPLIANT",
+        data: {
+          investmentOfMoney: "USD Stablecoin Atomic Settlement (Base 8453)",
+          commonEnterprise: "Segregated SPV Vault Protected",
+          expectationOfProfits: "Fixed Yield Asset-Backed Lease Notes",
+          effortsOfOthers: "Automated Non-Discretionary Smart Contract Rules"
+        }
+      }
+    ]
+  },
+  mat_2026_patent: {
+    title: "Patent & Algorithm Infringement Twin",
+    matterId: "mat_2026_pat_101",
+    court: "U.S. District Court for the Eastern District of Texas",
+    judge: "Hon. Rodney Gilstrap",
+    parties: "InvenTech Sovereign IP v. Global Algorithm Systems",
+    dnaStrand: [
+      { type: "MATTER_ID", val: "mat_2026_pat_101", hash: "0x44dd...11ee" },
+      { type: "SECTION_101", val: "Alice Corp Step 1 & Step 2 Proof", hash: "0x77bb...99aa" },
+      { type: "MARKMAN_CLAIM", val: "Markman Claim Construction Matrix", hash: "0x22cc...55dd" },
+      { type: "PRIOR_ART", val: "USPTO Patent Corpus Snapshot", hash: "0x66ee...88ff" }
+    ],
+    nodes: [
+      {
+        id: "node_alice",
+        title: "Alice Two-Step Eligibility Defense",
+        sub: "35 U.S.C. § 101 Inventive Concept",
+        badge: "STEP 2 MET",
+        data: {
+          abstractIdeaCheck: "Deterministic Edge Hardware Hashing Mechanism",
+          inventiveConcept: "Zero-Latency CloudFront Cryptographic Interceptor",
+          technicalTransformation: "Hardware Root of Trust State Verification"
+        }
+      }
+    ]
+  },
+  mat_2026_commercial: {
+    title: "Cross-Border Commercial Contract Breach",
+    matterId: "mat_2026_comm_204",
+    court: "London Court of International Arbitration (LCIA) / Delaware",
+    judge: "Tribunal Chair",
+    parties: "Apostle Global Energy Ltd. v. Multilateral Offtaker Corp.",
+    dnaStrand: [
+      { type: "MATTER_ID", val: "mat_2026_comm_204", hash: "0x88cc...33aa" },
+      { type: "CHOICE_OF_LAW", val: "Delaware Commercial Code § 2-719", hash: "0x11dd...77ee" },
+      { type: "FORCE_MAJEURE", val: "Substation Delivery Failure Audit", hash: "0x99aa...55bb" },
+      { type: "LIQUIDATED_DAMAGES", val: "$4,820,000 Atomic Base Settlement", hash: "0x44ff...22cc" }
+    ],
+    nodes: [
+      {
+        id: "node_breach",
+        title: "Material Breach & Damages Engine",
+        sub: "Liquidated Damages Calculation",
+        badge: "VERIFIED RECEIPT",
+        data: {
+          defaultDate: "2026-06-15T00:00:00Z",
+          curePeriod: "30 Business Days (Expired Uncured)",
+          liquidatedAmount: "$4,820,000.00 USDC",
+          settlementRail: "x402 Base Mainnet Smart Contract"
+        }
+      }
+    ]
+  },
+  mat_2026_whistleblower: {
+    title: "SOX / Dodd-Frank Anti-Retaliation Twin",
+    matterId: "mat_2026_sox_505",
+    court: "U.S. Department of Labor (OSHA) / S.D.N.Y.",
+    judge: "Administrative Law Judge",
+    parties: "Protected Senior Auditor v. Multinational Audit Entity",
+    dnaStrand: [
+      { type: "MATTER_ID", val: "mat_2026_sox_505", hash: "0x33aa...88cc" },
+      { type: "PROTECTED_ACTIVITY", val: "18 U.S.C. § 1514A SEC Report", hash: "0x55ee...11bb" },
+      { type: "REASONABLE_BELIEF", val: "GAAP / Revenue Recognition Mismatch", hash: "0x77dd...99aa" },
+      { type: "TEMPORAL_PROXIMITY", val: "14 Days Between Report & Adverse Action", hash: "0x22ff...44ee" }
+    ],
+    nodes: [
+      {
+        id: "node_sox",
+        title: "Sarbanes-Oxley 4-Prong Prima Facie",
+        sub: "Protected Disclosure Timeline",
+        badge: "PRIMA FACIE ESTABLISHED",
+        data: {
+          disclosureDate: "2026-03-01T14:30:00Z (SEC TCR File)",
+          adverseAction: "Constructive Termination & Access Revocation",
+          contributingFactor: "Direct Temporal Linkage (2 Weeks)",
+          clearAndConvincingRebuttal: "No Pre-Existing Performance PIP"
+        }
+      }
+    ]
+  },
+  mat_2026_arbitration_x402: {
+    title: "x402 Autonomous Smart Dispute",
+    matterId: "mat_2026_arb_402",
+    court: "On-Chain Base Decentralized Tribunal",
+    judge: "Consensus Arbiter Quorum",
+    parties: "Autonomous AI Agent Alpha v. Agent Beta",
+    dnaStrand: [
+      { type: "MATTER_ID", val: "mat_2026_arb_402", hash: "0x99ee...44aa" },
+      { type: "SMART_CONTRACT", val: "X402EscrowSettlement (Base 8453)", hash: "0x33cc...77dd" },
+      { type: "CHALLENGE_DIGEST", val: "HTTP 402 Signed Authorization", hash: "0x11bb...66ff" },
+      { type: "INSTANT_RELEASE", val: "Automated DynamoDB State Write", hash: "0x55aa...22ee" }
+    ],
+    nodes: [
+      {
+        id: "node_x402",
+        title: "Autonomous Base USDC Escrow",
+        sub: "Microsecond Adjudication",
+        badge: "AUTOMATIC SETTLEMENT",
+        data: {
+          chainId: "Base Mainnet (8453)",
+          contractAddress: "0x4E574939D460d284B5D990646D4aeaEF2D49Fa13",
+          settlementLatency: "140ms",
+          settlementConfirmed: "True"
+        }
+      }
+    ]
   }
 };
 
@@ -146,6 +282,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderMatterTwin(currentMatterKey);
   initDnaCanvas();
   initCitationMatcher();
+  initLawLibrary();
   initX402Simulator();
   initAccordions();
   initCinemaStudio();
@@ -367,6 +504,301 @@ function initCitationMatcher() {
       `;
     }
   }
+}
+
+// ==========================================================================
+// LAW LIBRARY & PRECEDENTS ENGINE
+// ==========================================================================
+
+const LEGAL_CORPUS_PRECEDENTS = [
+  {
+    id: "prec_iqbal",
+    caseName: "Ashcroft v. Iqbal",
+    citation: "556 U.S. 662, 678 (2009)",
+    court: "Supreme Court of the United States",
+    year: 2009,
+    category: "Civil Procedure & Pleading Standards",
+    keyRule: "To survive a motion to dismiss, a complaint must contain sufficient factual matter, accepted as true, to state a claim to relief that is plausible on its face.",
+    exactQuote: "Under Ashcroft v. Iqbal, 556 U.S. 662, 678 (2009), to survive a motion to dismiss, a complaint must contain sufficient factual matter, accepted as true, to state a claim to relief that is plausible on its face.",
+    sourceProvider: "GovInfo / CourtListener",
+    slipOpinionHash: "0x3a4f91b7d52a818c39e289bfad1694f4a9b515d9090fc1d51a7027d7d2426913",
+    primaryOffset: 49
+  },
+  {
+    id: "prec_twombly",
+    caseName: "Bell Atlantic Corp. v. Twombly",
+    citation: "550 U.S. 544, 570 (2007)",
+    court: "Supreme Court of the United States",
+    year: 2007,
+    category: "Civil Procedure & Pleading Standards",
+    keyRule: "Plaintiffs must nudge their claims across the line from conceivable to plausible.",
+    exactQuote: "Because the plaintiffs here have not nudged their claims across the line from conceivable to plausible, their complaint must be dismissed.",
+    sourceProvider: "GovInfo / CourtListener",
+    slipOpinionHash: "0x77c29e128374619bfa11993478eec9348123bcdef0123456789abcdef0123456",
+    primaryOffset: 112
+  },
+  {
+    id: "prec_celotex",
+    caseName: "Celotex Corp. v. Catrett",
+    citation: "477 U.S. 317, 322 (1986)",
+    court: "Supreme Court of the United States",
+    year: 1986,
+    category: "Civil Procedure & Pleading Standards",
+    keyRule: "Summary judgment is mandated against a party who fails to make a showing sufficient to establish the existence of an element essential to that party's case.",
+    exactQuote: "Rule 56(c) mandates the entry of summary judgment, after adequate time for discovery and upon motion, against a party who fails to make a showing sufficient to establish the existence of an element essential to that party's case.",
+    sourceProvider: "GovInfo / CourtListener",
+    slipOpinionHash: "0x11ab44cd77ef9900112233445566778899aabbccddeeff001122334455667788",
+    primaryOffset: 85
+  },
+  {
+    id: "prec_daubert",
+    caseName: "Daubert v. Merrell Dow Pharmaceuticals, Inc.",
+    citation: "509 U.S. 579, 589 (1993)",
+    court: "Supreme Court of the United States",
+    year: 1993,
+    category: "Evidence & FRE 902 Authentication",
+    keyRule: "Trial judge must ensure that any and all scientific testimony or evidence admitted is not only relevant, but reliable.",
+    exactQuote: "Under the Rules the trial judge must ensure that any and all scientific testimony or evidence admitted is not only relevant, but reliable.",
+    sourceProvider: "GovInfo / CourtListener",
+    slipOpinionHash: "0x89abcdef0123456789abcdef0123456789abcdef0123456789abcdef01234567",
+    primaryOffset: 60
+  },
+  {
+    id: "prec_fre902_13",
+    caseName: "Federal Rule of Evidence 902(13)",
+    citation: "Fed. R. Evid. 902(13) (2017 Amendment)",
+    court: "Federal Rules of Evidence Advisory Committee",
+    year: 2017,
+    category: "Evidence & FRE 902 Authentication",
+    keyRule: "Certified Records Generated by an Electronic Process or System: A record generated by an electronic process or system that produces an accurate result, as shown by a certification of a qualified person.",
+    exactQuote: "A record generated by an electronic process or system that produces an accurate result, as shown by a certification of a qualified person that complies with the certification requirements of Rule 902(11) or (12).",
+    sourceProvider: "Federal Judiciary Statutory Digest",
+    slipOpinionHash: "0x9812739182739182739182739182739182739182739182739182739182739182",
+    primaryOffset: 0
+  },
+  {
+    id: "prec_fre902_14",
+    caseName: "Federal Rule of Evidence 902(14)",
+    citation: "Fed. R. Evid. 902(14) (2017 Amendment)",
+    court: "Federal Rules of Evidence Advisory Committee",
+    year: 2017,
+    category: "Evidence & FRE 902 Authentication",
+    keyRule: "Certified Data Copied from an Electronic Device, Storage Medium, or File: Data copied from an electronic device, storage medium, or file, if authenticated by a process of digital identification, as shown by a certification of a qualified person.",
+    exactQuote: "Data copied from an electronic device, storage medium, or file, if authenticated by a process of digital identification, as shown by a certification of a qualified person that complies with the certification requirements of Rule 902(11) or (12).",
+    sourceProvider: "Federal Judiciary Statutory Digest",
+    slipOpinionHash: "0xaa112233445566778899aabbccddeeff00112233445566778899aabbccddeeff",
+    primaryOffset: 0
+  },
+  {
+    id: "prec_howey",
+    caseName: "SEC v. W.J. Howey Co.",
+    citation: "328 U.S. 293, 298-99 (1946)",
+    court: "Supreme Court of the United States",
+    year: 1946,
+    category: "Securities, Digital Assets & RWA",
+    keyRule: "An investment contract for purposes of the Securities Act means a contract, transaction or scheme whereby a person invests his money in a common enterprise and is led to expect profits solely from the efforts of the promoter or a third party.",
+    exactQuote: "An investment contract for purposes of the Securities Act means a contract, transaction or scheme whereby a person invests his money in a common enterprise and is led to expect profits solely from the efforts of the promoter or a third party.",
+    sourceProvider: "GovInfo / CourtListener",
+    slipOpinionHash: "0x55bb66cc77dd88ee99ff00112233445566778899aabbccddeeff001122334455",
+    primaryOffset: 30
+  },
+  {
+    id: "prec_reves",
+    caseName: "Reves v. Ernst & Young",
+    citation: "494 U.S. 56, 66 (1990)",
+    court: "Supreme Court of the United States",
+    year: 1990,
+    category: "Securities, Digital Assets & RWA",
+    keyRule: "Notes are presumed to be securities unless they bear a strong family resemblance to non-security commercial instruments under the four-factor Reves test.",
+    exactQuote: "A note is presumed to be a security, and that presumption may be rebutted only by a showing that the note bears a strong resemblance to one of the enumerated categories of instrument.",
+    sourceProvider: "GovInfo / CourtListener",
+    slipOpinionHash: "0x3344556677889900112233445566778899001122334455667788990011223344",
+    primaryOffset: 44
+  },
+  {
+    id: "prec_ripple",
+    caseName: "SEC v. Ripple Labs, Inc.",
+    citation: "682 F. Supp. 3d 308 (S.D.N.Y. 2023)",
+    court: "U.S. District Court for the Southern District of New York",
+    year: 2023,
+    category: "Securities, Digital Assets & RWA",
+    keyRule: "Programmatic sales of tokens on digital asset exchanges to blind public buyers did not constitute offers and sales of investment contracts under Howey.",
+    exactQuote: "Having considered the economic reality and totality of circumstances, the Court concludes that XRP, as a digital token, is not in and of itself a 'contract, transaction or scheme' that embodies the Howey requirements of an investment contract.",
+    sourceProvider: "CourtListener S.D.N.Y. Docket",
+    slipOpinionHash: "0x99887766554433221100ffeeddccbbaa99887766554433221100ffeeddccbbaa",
+    primaryOffset: 90
+  },
+  {
+    id: "prec_caremark",
+    caseName: "In re Caremark Int'l Inc. Derivative Litig.",
+    citation: "698 A.2d 959, 970 (Del. Ch. 1996)",
+    court: "Delaware Court of Chancery",
+    year: 1996,
+    category: "Corporate Governance & Delaware Chancery",
+    keyRule: "Directors have an affirmative duty to attempt in good faith to assure that a corporate information and reporting system exists.",
+    exactQuote: "A sustained or systematic failure of the board to exercise oversight—such as an utter failure to attempt to assure a reasonable information and reporting system exists—will establish the lack of good faith that is a necessary condition to liability.",
+    sourceProvider: "Delaware Courts Chancery Archive",
+    slipOpinionHash: "0x778899aabbccddeeff00112233445566778899aabbccddeeff00112233445566",
+    primaryOffset: 15
+  },
+  {
+    id: "prec_marchand",
+    caseName: "Marchand v. Barnhill",
+    citation: "212 A.3d 805, 824 (Del. 2019)",
+    court: "Supreme Court of Delaware",
+    year: 2019,
+    category: "Corporate Governance & Delaware Chancery",
+    keyRule: "Board must make a good faith effort to implement and monitor an oversight system for central, mission-critical compliance operations.",
+    exactQuote: "When a board fails to make any good faith effort to put in place a reasonable board-level system of monitoring and reporting regarding mission-critical risks, it breaches its duty of loyalty.",
+    sourceProvider: "Delaware Supreme Court Registry",
+    slipOpinionHash: "0x66554433221100ffeeddccbbaa99887766554433221100ffeeddccbbaa998877",
+    primaryOffset: 72
+  },
+  {
+    id: "prec_mata_avianca",
+    caseName: "Mata v. Avianca, Inc.",
+    citation: "678 F. Supp. 3d 443 (S.D.N.Y. 2023)",
+    court: "U.S. District Court for the Southern District of New York (Castel, J.)",
+    year: 2023,
+    category: "AI Ethics, Candor & Sanctions Precedents",
+    keyRule: "Sanctions imposed under Rule 11 for citing non-existent judicial decisions with bogus citations and quotes generated by ChatGPT.",
+    exactQuote: "Many harms flow from the submission of fake opinions. The opposing party wastes time and money in exposing the deception. The court's time is taken from other matters. A fabricated opinion is a lie told to a court of law.",
+    sourceProvider: "CourtListener S.D.N.Y. Sanctions Order",
+    slipOpinionHash: "0x4433221100ffeeddccbbaa99887766554433221100ffeeddccbbaa9988776655",
+    primaryOffset: 20
+  },
+  {
+    id: "prec_aba_op512",
+    caseName: "ABA Formal Opinion 512",
+    citation: "ABA Standing Comm. on Ethics & Prof. Resp., Formal Op. 512 (2024)",
+    court: "American Bar Association",
+    year: 2024,
+    category: "AI Ethics, Candor & Sanctions Precedents",
+    keyRule: "Lawyers using Generative AI tools must verify the accuracy of all citations and legal propositions, ensure client confidentiality, and maintain independent attorney supervision under Model Rules 1.1, 1.6, 3.3, and 5.1/5.3.",
+    exactQuote: "Because GAI outputs can be inaccurate, incomplete, or biased, lawyers may not rely on GAI tool outputs without independent verification by human counsel.",
+    sourceProvider: "ABA Center for Professional Responsibility",
+    slipOpinionHash: "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+    primaryOffset: 0
+  },
+  {
+    id: "prec_alice",
+    caseName: "Alice Corp. Pty. Ltd. v. CLS Bank Int'l",
+    citation: "573 U.S. 208, 217-18 (2014)",
+    court: "Supreme Court of the United States",
+    year: 2014,
+    category: "Intellectual Property & Algorithm Patentability",
+    keyRule: "Two-step framework for patent eligibility under 35 U.S.C. § 101: determine if claims are directed to a patent-ineligible concept, then search for an inventive concept sufficient to transform the idea into a patent-eligible application.",
+    exactQuote: "We must first determine whether the claims at issue are directed to a patent-ineligible concept, such as an abstract idea. If so, we then ask: what else is there in the claims before us?",
+    sourceProvider: "GovInfo / CourtListener",
+    slipOpinionHash: "0xabcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789",
+    primaryOffset: 35
+  }
+];
+
+function initLawLibrary() {
+  const grid = document.getElementById("lawPrecedentsGrid");
+  const searchInput = document.getElementById("lawSearchInput");
+  const filterPills = document.querySelectorAll("[data-law-cat]");
+
+  renderLawPrecedents(LEGAL_CORPUS_PRECEDENTS);
+
+  if (searchInput) {
+    searchInput.addEventListener("input", (e) => {
+      const q = e.target.value.toLowerCase().trim();
+      const filtered = LEGAL_CORPUS_PRECEDENTS.filter(item => {
+        return item.caseName.toLowerCase().includes(q) ||
+               item.citation.toLowerCase().includes(q) ||
+               item.keyRule.toLowerCase().includes(q) ||
+               item.category.toLowerCase().includes(q);
+      });
+      renderLawPrecedents(filtered);
+    });
+  }
+
+  filterPills.forEach(pill => {
+    pill.addEventListener("click", () => {
+      filterPills.forEach(p => p.classList.remove("active"));
+      pill.classList.add("active");
+      const cat = pill.getAttribute("data-law-cat");
+      if (cat === "all") {
+        renderLawPrecedents(LEGAL_CORPUS_PRECEDENTS);
+      } else {
+        const filtered = LEGAL_CORPUS_PRECEDENTS.filter(item => item.category === cat);
+        renderLawPrecedents(filtered);
+      }
+    });
+  });
+}
+
+function renderLawPrecedents(items) {
+  const grid = document.getElementById("lawPrecedentsGrid");
+  if (!grid) return;
+
+  grid.innerHTML = "";
+  if (items.length === 0) {
+    grid.innerHTML = `<div style="grid-column: 1/-1; padding: 2.5rem; text-align:center; color:var(--text-dim);">No precedents matched your search criteria.</div>`;
+    return;
+  }
+
+  items.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "precedent-card";
+    
+    card.innerHTML = `
+      <div>
+        <div class="prec-top-row">
+          <span class="prec-category-badge">${item.category}</span>
+          <span class="prec-year-badge">${item.year}</span>
+        </div>
+        <h3 class="prec-name">${item.caseName}</h3>
+        <div class="prec-citation-text">${item.citation}</div>
+        <div class="prec-court-name">${item.court}</div>
+      </div>
+
+      <div class="prec-rule-box">
+        <strong>Holding:</strong> ${item.keyRule}
+      </div>
+
+      <div class="prec-quote-box">
+        "${item.exactQuote}"
+      </div>
+
+      <div class="prec-telemetry-row">
+        <span>Provider: ${item.sourceProvider}</span>
+        <span>Offset: Char ${item.primaryOffset}</span>
+      </div>
+
+      <div class="prec-actions-row">
+        <button class="prec-audit-btn" data-action="audit">⚖️ Test in Eyecite Matcher</button>
+        <button class="prec-copy-btn" data-action="copy" title="Copy Citation">📋 Citation</button>
+      </div>
+    `;
+
+    // Audit action: injects quote into Eyecite matcher and triggers audit
+    card.querySelector("[data-action='audit']").addEventListener("click", () => {
+      const textarea = document.getElementById("draftTextInput");
+      if (textarea) {
+        textarea.value = item.exactQuote;
+      }
+      
+      // Switch tab to citation-engine
+      document.querySelectorAll(".nav-link").forEach(t => {
+        if (t.getAttribute("data-tab") === "citation-engine") t.click();
+      });
+
+      // Run audit
+      const auditBtn = document.getElementById("runCitationAuditBtn");
+      if (auditBtn) auditBtn.click();
+      
+      showToast(`Loaded "${item.caseName}" into Eyecite Matcher!`);
+    });
+
+    card.querySelector("[data-action='copy']").addEventListener("click", () => {
+      copyToClipboard(`${item.caseName}, ${item.citation}`, `Copied citation: ${item.citation}`);
+    });
+
+    grid.appendChild(card);
+  });
 }
 
 // x402 SIMULATOR

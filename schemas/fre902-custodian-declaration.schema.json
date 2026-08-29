@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "FRE902CustodianDeclaration",
+  "description": "Federal Rules of Evidence 902(13)/(14) Electronic Custodian Certification under 28 U.S.C. § 1746",
+  "type": "object",
+  "required": [
+    "declarationId",
+    "matterId",
+    "exhibitIdentifier",
+    "custodianInfo",
+    "digitalIdentificationMethod",
+    "hardwareEnclaveProof",
+    "unswornDeclarationText",
+    "electronicSignature"
+  ],
+  "properties": {
+    "declarationId": { "type": "string", "pattern": "^decl_[a-z0-9_]+$" },
+    "matterId": { "type": "string" },
+    "exhibitIdentifier": { "type": "string" },
+    "custodianInfo": {
+      "type": "object",
+      "required": ["fullName", "title", "organization", "qualificationsStatement"],
+      "properties": {
+        "fullName": { "type": "string" },
+        "title": { "type": "string" },
+        "organization": { "type": "string" },
+        "qualificationsStatement": { "type": "string" }
+      }
+    },
+    "digitalIdentificationMethod": {
+      "type": "object",
+      "required": ["primaryAlgorithm", "sha256Digest", "blake2bDigest", "fileSizeBytes"],
+      "properties": {
+        "primaryAlgorithm": { "type": "string", "enum": ["SHA-256", "BLAKE2b-512", "Dual-Digest"] },
+        "sha256Digest": { "type": "string", "pattern": "^0x[0-9a-fA-F]{64}$" },
+        "blake2bDigest": { "type": "string", "pattern": "^0x[0-9a-fA-F]{64}$" },
+        "fileSizeBytes": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "hardwareEnclaveProof": {
+      "type": "object",
+      "properties": {
+        "deviceSerial": { "type": "string" },
+        "tpmAttestationDigest": { "type": "string" },
+        "captureUtcIso": { "type": "string", "format": "date-time" }
+      }
+    },
+    "unswornDeclarationText": {
+      "type": "string",
+      "description": "I declare under penalty of perjury under the laws of the United States of America that the foregoing is true and correct. Executed on (date)."
+    },
+    "electronicSignature": {
+      "type": "object",
+      "required": ["signatoryName", "signedTimestampIso", "walletDigestBinding"],
+      "properties": {
+        "signatoryName": { "type": "string" },
+        "signedTimestampIso": { "type": "string", "format": "date-time" },
+        "walletDigestBinding": { "type": "string" }
+      }
+    }
+  }
+}
