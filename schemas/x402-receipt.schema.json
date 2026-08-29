@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "X402SettlementReceipt",
+  "description": "Schema for machine-to-machine payment receipts on Base USDC settlement rails.",
+  "type": "object",
+  "required": [
+    "receiptId",
+    "nonceHash",
+    "resource",
+    "method",
+    "chainId",
+    "asset",
+    "recipient",
+    "amountAtomic",
+    "expiresAtEpoch",
+    "status"
+  ],
+  "properties": {
+    "receiptId": { "type": "string", "pattern": "^rcpt_[a-zA-Z0-9]+$" },
+    "nonceHash": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" },
+    "resource": { "type": "string" },
+    "method": { "type": "string", "enum": ["GET", "POST", "PUT", "DELETE"] },
+    "chainId": { "type": "integer", "enum": [8453] },
+    "asset": { "type": "string", "pattern": "^0x[a-fA-F0-9]{40}$" },
+    "recipient": { "type": "string", "pattern": "^0x[a-fA-F0-9]{40}$" },
+    "amountAtomic": { "type": "string" },
+    "expiresAtEpoch": { "type": "integer" },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "settled", "consumed", "expired"]
+    },
+    "consumedAt": { "type": ["string", "null"] },
+    "consumedRequestId": { "type": ["string", "null"] }
+  }
+}

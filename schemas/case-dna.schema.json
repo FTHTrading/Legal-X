@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CaseDigitalDNA",
+  "description": "Schema for the Structured Case DNA defining the Matter Digital Twin.",
+  "type": "object",
+  "required": [
+    "matterId",
+    "organizationId",
+    "jurisdictionProfile",
+    "caseCaption",
+    "factualTimeline",
+    "evidenceDigestTree",
+    "sourceAuthoritySnapshots",
+    "attorneyReviewLog"
+  ],
+  "properties": {
+    "matterId": { "type": "string" },
+    "organizationId": { "type": "string" },
+    "jurisdictionProfile": {
+      "type": "object",
+      "required": ["courtId", "courtName", "pleadingLinesPerPage"],
+      "properties": {
+        "courtId": { "type": "string" },
+        "courtName": { "type": "string" },
+        "pleadingLinesPerPage": { "type": "integer" }
+      }
+    },
+    "caseCaption": {
+      "type": "object",
+      "required": ["caseNumber", "assignedJudge", "plaintiffs", "defendants"],
+      "properties": {
+        "caseNumber": { "type": "string" },
+        "assignedJudge": { "type": "string" },
+        "plaintiffs": { "type": "array", "items": { "type": "string" } },
+        "defendants": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "factualTimeline": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["eventDate", "description", "sourceEvidenceId"],
+        "properties": {
+          "eventDate": { "type": "string" },
+          "description": { "type": "string" },
+          "sourceEvidenceId": { "type": "string" }
+        }
+      }
+    },
+    "evidenceDigestTree": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["evidenceId", "sha256Digest", "ingestionTimestamp"],
+        "properties": {
+          "evidenceId": { "type": "string" },
+          "sha256Digest": { "type": "string" },
+          "ingestionTimestamp": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "sourceAuthoritySnapshots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["citationKey", "provider", "contentHashSha256"],
+        "properties": {
+          "citationKey": { "type": "string" },
+          "provider": { "type": "string" },
+          "contentHashSha256": { "type": "string" }
+        }
+      }
+    },
+    "attorneyReviewLog": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["reviewTimestamp", "attorneyBarNumber", "action", "targetDocumentDigest"],
+        "properties": {
+          "reviewTimestamp": { "type": "string", "format": "date-time" },
+          "attorneyBarNumber": { "type": "string" },
+          "action": { "type": "string" },
+          "targetDocumentDigest": { "type": "string" }
+        }
+      }
+    }
+  }
+}

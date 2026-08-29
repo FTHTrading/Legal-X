@@ -1,0 +1,12 @@
+name = "legal-x-edge-router"
+main = "worker.js"
+compatibility_date = "2024-09-23"
+
+# Subdomain Route Bindings
+routes = [
+  { pattern = "legacychain.app/*", zone_name = "legacychain.app" },
+  { pattern = "www.legacychain.app/*", zone_name = "legacychain.app" },
+  { pattern = "app.legacychain.app/*", zone_name = "legacychain.app" },
+  { pattern = "vault.legacychain.app/*", zone_name = "legacychain.app" },
+  { pattern = "api.legacychain.app/*", zone_name = "legacychain.app" }
+]

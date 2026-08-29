@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LegalProofManifest",
+  "description": "Formal schema for FRE 902(13)/(14) self-authenticating electronic proof bundles.",
+  "type": "object",
+  "required": [
+    "packageVersion",
+    "documentUuid",
+    "matterId",
+    "generatedAtUtc",
+    "sha256Digest",
+    "blake2Digest",
+    "lifecycleStatus",
+    "attorneySigner"
+  ],
+  "properties": {
+    "packageVersion": {
+      "type": "string",
+      "enum": ["1.0.0-PROD"]
+    },
+    "documentUuid": {
+      "type": "string"
+    },
+    "matterId": {
+      "type": "string"
+    },
+    "generatedAtUtc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "sha256Digest": {
+      "type": "string",
+      "pattern": "^0x[a-fA-F0-9]{64}$"
+    },
+    "blake2Digest": {
+      "type": "string",
+      "pattern": "^0x[a-fA-F0-9]{64}$"
+    },
+    "lifecycleStatus": {
+      "type": "string",
+      "enum": [
+        "DRAFT",
+        "CITATION_VALIDATION_PENDING",
+        "SOURCE_UNAVAILABLE",
+        "QUOTE_DISCREPANCY",
+        "REVIEW_REQUIRED",
+        "ATTORNEY_APPROVED_FOR_CONTROLLED_EXPORT",
+        "ARCHIVED"
+      ]
+    },
+    "attorneySigner": {
+      "type": "object",
+      "required": ["name", "barNumber", "hasSignedApproval"],
+      "properties": {
+        "name": { "type": "string" },
+        "barNumber": { "type": "string" },
+        "firmName": { "type": "string" },
+        "hasSignedApproval": { "type": "boolean" }
+      }
+    },
+    "custodianCertification": {
+      "type": "object",
+      "required": ["certifierName", "certifierTitle", "basisOfKnowledge"],
+      "properties": {
+        "certifierName": { "type": "string" },
+        "certifierTitle": { "type": "string" },
+        "basisOfKnowledge": { "type": "string" }
+      }
+    }
+  }
+}

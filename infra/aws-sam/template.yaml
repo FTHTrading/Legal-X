@@ -1,0 +1,135 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Legal-X Production CloudFront, Lambda@Edge & Atomic Receipt Settlement Stack
+
+Parameters:
+  Environment:
+    Type: String
+    Default: production
+  OriginDomainName:
+    Type: String
+    Default: api.legacychain.app
+    Description: Protected Origin Server (Legal-X Origin / Verification Core)
+  OriginSecretHeaderValue:
+    Type: String
+    NoEcho: true
+    Default: "change-in-secrets-manager-before-deploy"
+    Description: Secret shared header injected by CloudFront to prevent origin bypass
+
+Resources:
+  # 1. Edge Execution Role (lambda.amazonaws.com + edgelambda.amazonaws.com)
+  EdgeLambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+                - edgelambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+
+  # 2. Viewer-Request Payment Interceptor Function (Node.js 22.x LTS)
+  EdgePaymentInterceptor:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/edge-interceptor/
+      Handler: index.handler
+      Runtime: nodejs22.x
+      Timeout: 5
+      MemorySize: 128
+      Role: !GetAtt EdgeLambdaExecutionRole.Arn
+      AutoPublishAlias: live
+
+  # 3. AWS WAF WebACL (Rate Limiting & Threat Protection)
+  X402WebACL:
+    Type: AWS::WAFv2::WebACL
+    Properties:
+      Name: !Sub legal-x-waf-${Environment}
+      Scope: CLOUDFRONT
+      DefaultAction:
+        Allow: {}
+      VisibilityConfig:
+        CloudWatchMetricsEnabled: true
+        MetricName: !Sub legal-x-waf-${Environment}
+        SampledRequestsEnabled: true
+      Rules:
+        - Name: RateLimitRule
+          Priority: 1
+          Action:
+            Block: {}
+          Statement:
+            RateBasedStatement:
+              Limit: 2000
+              AggregateKeyType: IP
+          VisibilityConfig:
+            CloudWatchMetricsEnabled: true
+            MetricName: RateLimitMetric
+            SampledRequestsEnabled: true
+
+  # 4. DynamoDB Durable Receipts Table for Atomic Single-Use Consumption
+  X402ReceiptsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub legal-x-receipts-${Environment}
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: receiptId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: receiptId
+          KeyType: HASH
+      TimeToLiveSpecification:
+        AttributeName: expiresAtEpoch
+        Enabled: true
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: true
+
+  # 5. CloudFront Distribution with Origin Protection & Payment Header Forwarding
+  X402CloudFrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Comment: !Sub "Legal-X x402 Machine Payment Edge - ${Environment}"
+        WebACLId: !GetAtt X402WebACL.Arn
+        Origins:
+          - Id: LegalXProtectedOrigin
+            DomainName: !Ref OriginDomainName
+            CustomOriginConfig:
+              HTTPPort: 80
+              HTTPSPort: 443
+              OriginProtocolPolicy: https-only
+            OriginCustomHeaders:
+              - HeaderName: X-Origin-Verify-Secret
+                HeaderValue: !Ref OriginSecretHeaderValue
+        DefaultCacheBehavior:
+          TargetOriginId: LegalXProtectedOrigin
+          ViewerProtocolPolicy: redirect-to-https
+          AllowedMethods: [GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE]
+          CachedMethods: [GET, HEAD, OPTIONS]
+          ForwardedValues:
+            QueryString: true
+            Headers:
+              - Authorization
+              - PAYMENT-SIGNATURE
+              - X-PAYMENT-PROOF
+              - X-PAYMENT-RECEIPT
+              - Host
+            Cookies:
+              Forward: none
+          LambdaFunctionAssociations:
+            - EventType: viewer-request
+              LambdaFunctionARN: !Ref EdgePaymentInterceptor.Version
+
+Outputs:
+  CloudFrontDistributionId:
+    Value: !Ref X402CloudFrontDistribution
+  CloudFrontDomainName:
+    Value: !GetAtt X402CloudFrontDistribution.DomainName
+  ReceiptsTableName:
+    Value: !Ref X402ReceiptsTable
