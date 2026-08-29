@@ -1904,20 +1904,20 @@ function initBitGoModal() {
       const list = document.getElementById("bitgoAssetsList");
       if (list) {
         const item = document.createElement("div");
-        item.style.cssText = "display:flex; justify-content:space-between; align-items:center; background:rgba(10,16,32,0.85); border:1px solid var(--gold); padding:0.75rem 1rem; border-radius:8px; font-size:0.82rem;";
+        item.style.cssText = "display:flex; justify-content:space-between; align-items:center; background:rgba(10,16,32,0.85); border:1px solid var(--border-glass); padding:0.75rem 1rem; border-radius:8px; font-size:0.82rem;";
         item.innerHTML = `
           <div>
             <strong style="color:#fff;">${name}</strong>
             <span style="color:var(--text-dim); margin-left:0.5rem;">(${cusip})</span>
           </div>
-          <span style="color:var(--gold-bright); font-weight:700;">${val} AUC</span>
-          <span style="color:var(--emerald); font-family:var(--font-mono); font-size:0.75rem;">BitGo: ${custodian.split(" ")[0]} (ACTIVE)</span>
+          <span style="color:var(--gold-bright); font-weight:700;">${val} Allocation</span>
+          <span style="color:var(--emerald); font-family:var(--font-mono); font-size:0.75rem;">Status: Attestation Anchored</span>
         `;
         list.prepend(item);
       }
 
       closeModal();
-      showToast(`✅ Asset "${name}" registered to BitGo Custodial Escrow!`);
+      showToast(`✅ Institutional asset mapped to BitGo Proxy & Audit Hash Anchored`);
     });
   }
 }

@@ -142,19 +142,19 @@
         </div>
       </section>
 
-      <!-- SECTION: BITGO TRUST & CUSTODIAL ASSET INGESTION -->
+      <!-- SECTION: INSTITUTIONAL CUSTODY CONNECTIVITY -->
       <section id="bitgo-custody" class="glass-card-full" style="border-left: 4px solid var(--gold);">
         <div class="panel-header">
           <div>
             <div class="cinema-header-tag">
               <span class="live-pulse-dot"></span>
-              <span>QUALIFIED CUSTODIAN INTEGRATION · SOUTH DAKOTA / NEW YORK TRUST</span>
+              <span>BitGo Enterprise connection: active · Authorized Read-Only Proxy</span>
             </div>
-            <h2 class="panel-title" style="margin-top:0.4rem;">BitGo Custodial & Institutional RWA Vault</h2>
-            <p class="panel-desc">Segregated custody, transfer agent synchronization, and SEC Reg D 506(c) escrow capital formation.</p>
+            <h2 class="panel-title" style="margin-top:0.4rem;">Institutional Custody Connectivity</h2>
+            <p class="panel-desc">Legal‑X supports authorized BitGo Enterprise connectivity for eligible digital-asset workflows. Authorized organizations can connect approved custody records, reconcile asset information, maintain policy-aware approvals, and generate cryptographic audit references.</p>
           </div>
           <button id="openAddAssetModalBtn" class="action-btn" style="padding:0.65rem 1.25rem;">
-            ➕ Add Asset to BitGo Vault
+            ➕ Map Institutional Asset
           </button>
         </div>
 
@@ -166,7 +166,7 @@
               <h3 style="font-size:1.15rem; font-weight:800; color:#fff;">Segregated Multi-Sig Vaults</h3>
             </div>
             <p style="font-size:0.85rem; color:#94a3b8; line-height:1.5;">
-              Each institutional estate or SPV holds an isolated multi-signature cold storage account with hardware enclave keys and bankruptcy-remote asset protection.
+              Supported organizations utilize isolated multi-signature cold storage accounts with hardware enclave security, policy controls, and bankruptcy-remote asset protection.
             </p>
             <div style="margin-top:1rem; font-family:var(--font-mono); font-size:0.75rem; color:var(--cyan); background:rgba(0,0,0,0.3); padding:0.6rem; border-radius:6px;">
               Smart Contract: BitGoCustodialEscrow.sol
@@ -176,13 +176,13 @@
           <div style="background: rgba(10,16,32,0.7); border: 1px solid var(--border-glass); border-radius: 14px; padding: 1.5rem;">
             <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.75rem;">
               <span style="font-size:1.5rem;">📊</span>
-              <h3 style="font-size:1.15rem; font-weight:800; color:#fff;">Transfer Agent Sync</h3>
+              <h3 style="font-size:1.15rem; font-weight:800; color:#fff;">Transfer Agent Synchronization</h3>
             </div>
             <p style="font-size:0.85rem; color:#94a3b8; line-height:1.5;">
-              Direct integration with SEC-registered transfer agents. Automated cap table updates, shareholder registries, and accredited investor KYC/AML verification.
+              Facilitates coordination with SEC-registered transfer agents. Enables cap table synchronization, shareholder ledger verification, and accredited investor status documentation.
             </p>
             <div style="margin-top:1rem; font-family:var(--font-mono); font-size:0.75rem; color:var(--gold-bright); background:rgba(0,0,0,0.3); padding:0.6rem; border-radius:6px;">
-              Compliance: FINRA Rule 15c3-3 / Reg D
+              Compliance: FINRA Rule 15c3-3 / Reg D 506(c)
             </div>
           </div>
 
@@ -192,37 +192,34 @@
               <h3 style="font-size:1.15rem; font-weight:800; color:#fff;">Proof-of-Reserve Attestations</h3>
             </div>
             <p style="font-size:0.85rem; color:#94a3b8; line-height:1.5;">
-              Daily cryptographic attestation digests anchored on-chain by BitGo Trust Company, verifying physical asset backing and liquid stablecoin reserves.
+              Periodic cryptographic attestation digests anchored on-chain, verifying physical asset reserve lineage without exposing raw account balances or PII.
             </p>
             <div style="margin-top:1rem; font-family:var(--font-mono); font-size:0.75rem; color:var(--emerald); background:rgba(0,0,0,0.3); padding:0.6rem; border-radius:6px;">
-              Attestation Root: 0x981273...2739 (VERIFIED)
+              Attestation Anchor: 0x981273...2739 (VERIFIED)
             </div>
           </div>
 
         </div>
 
-        <!-- Interactive Ingested Assets Display -->
-        <div style="margin-top: 1.5rem; background: rgba(0,0,0,0.4); border: 1px solid var(--border-glass); border-radius: 12px; padding: 1.25rem;">
+        <!-- Statutory Legal Disclaimer Box -->
+        <div style="margin-top: 1.25rem; background: rgba(0,210,255,0.04); border: 1px solid rgba(0,210,255,0.2); border-radius: 10px; padding: 1rem 1.25rem; font-size: 0.82rem; color: #94a3b8; line-height: 1.6;">
+          <strong style="color:#fff;">Legal Notice:</strong> Legal‑X is not a custodian. Digital-asset custody, transaction execution, and account controls remain subject to the applicable BitGo services, account configuration, jurisdiction, asset support, and governing agreements.
+        </div>
+
+        <!-- Mapped Custodial Inventory -->
+        <div style="margin-top: 1.25rem; background: rgba(0,0,0,0.4); border: 1px solid var(--border-glass); border-radius: 12px; padding: 1.25rem;">
           <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:0.6rem; margin-bottom:0.8rem;">
-            <span style="font-size:0.85rem; font-weight:700; color:var(--text-main);">Active BitGo Custodial Asset Inventory</span>
-            <span class="pill-gold">3 Registered Assets</span>
+            <span style="font-size:0.85rem; font-weight:700; color:var(--text-main);">Institutional Custody Mapping Summary</span>
+            <span class="pill-gold">Status: Reconciled</span>
           </div>
           <div id="bitgoAssetsList" style="display:flex; flex-direction:column; gap:0.6rem;">
             <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(10,16,32,0.6); padding:0.75rem 1rem; border-radius:8px; font-size:0.82rem;">
               <div>
-                <strong style="color:#fff;">UnyKorn Sovereign RWA SPV I</strong>
-                <span style="color:var(--text-dim); margin-left:0.5rem;">(CUSIP: 912828-XX-1)</span>
+                <strong style="color:#fff;">Sovereign Institutional Real-World Asset SPV</strong>
+                <span style="color:var(--text-dim); margin-left:0.5rem;">(SEC Reg D 506c Accredited)</span>
               </div>
-              <span style="color:var(--gold-bright); font-weight:700;">$4,820,000,000 AUC</span>
-              <span style="color:var(--emerald); font-family:var(--font-mono); font-size:0.75rem;">BitGo Vault: vlt_bitgo_uny01</span>
-            </div>
-            <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(10,16,32,0.6); padding:0.75rem 1rem; border-radius:8px; font-size:0.82rem;">
-              <div>
-                <strong style="color:#fff;">Generational Dynasty Trust Real Estate Portfolio</strong>
-                <span style="color:var(--text-dim); margin-left:0.5rem;">(PIN: APN-4892-001)</span>
-              </div>
-              <span style="color:var(--gold-bright); font-weight:700;">$125,000,000 AUC</span>
-              <span style="color:var(--emerald); font-family:var(--font-mono); font-size:0.75rem;">BitGo Vault: vlt_bitgo_est04</span>
+              <span style="color:var(--gold-bright); font-weight:700;">Active Allocation</span>
+              <span style="color:var(--emerald); font-family:var(--font-mono); font-size:0.75rem;">Status: Attestation Anchored</span>
             </div>
           </div>
         </div>
