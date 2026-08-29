@@ -5,7 +5,7 @@ export default {
     const path = url.pathname.toLowerCase();
 
     // Unified canonical release identifier
-    const currentReleaseId = "bf0c559";
+    const currentReleaseId = "a06fe67";
 
     // Privacy-Safe Diagnostic Telemetry Logging (Zero PII, Zero Secret Exposure)
     console.log(JSON.stringify({
@@ -16,14 +16,28 @@ export default {
       userAgent: request.headers.get("user-agent")?.slice(0, 120) ?? null
     }));
 
-    // 0. Minimal Public Diagnostic Release Verification Endpoint
+    // 0. Unique Public Plain-Text Proof Endpoint
+    if (path === "/__legalx-worker-proof-a06fe67") {
+      return new Response("legal-chain-portal|a06fe67|worker-first", {
+        status: 200,
+        headers: {
+          "Content-Type": "text/plain; charset=utf-8",
+          "Cache-Control": "no-store, no-cache, max-age=0, must-revalidate",
+          "Access-Control-Allow-Origin": "*",
+          "X-LegalX-Release": currentReleaseId,
+          "X-LegalX-Worker-Release": currentReleaseId
+        }
+      });
+    }
+
+    // Minimal Public Diagnostic Release Verification Endpoint
     if (path === "/__release" || path === "/api/release") {
       return Response.json(
         {
           status: "healthy",
           release: currentReleaseId,
           hostname: url.hostname,
-          timestamp: "2026-08-29T05:28:00-04:00",
+          timestamp: "2026-08-29T05:30:00-04:00",
           routeMode: "worker-first"
         },
         {
