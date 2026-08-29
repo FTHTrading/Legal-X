@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BitGoCustodialVaultSchema",
+  "description": "Institutional Qualified Custody, Transfer Agent & SPV Escrow Data Contract for BitGo Trust Integration",
+  "type": "object",
+  "required": [
+    "vaultId",
+    "spvEntityName",
+    "custodianType",
+    "jurisdictionProfile",
+    "targetCapitalizationUSDC",
+    "segregatedColdWalletAddress",
+    "proofOfReserveRoot",
+    "transferAgentRegistration",
+    "closingConditions"
+  ],
+  "properties": {
+    "vaultId": { "type": "string", "pattern": "^vlt_bitgo_[a-z0-9_]+$" },
+    "spvEntityName": { "type": "string" },
+    "custodianType": {
+      "type": "string",
+      "enum": ["BitGo Trust Company (South Dakota)", "BitGo New York Trust", "Institutional Multi-Sig Sub-Account"]
+    },
+    "jurisdictionProfile": { "type": "string" },
+    "targetCapitalizationUSDC": { "type": "number", "minimum": 1 },
+    "segregatedColdWalletAddress": { "type": "string", "pattern": "^0x[0-9a-fA-F]{40}$" },
+    "proofOfReserveRoot": { "type": "string", "pattern": "^0x[0-9a-fA-F]{64}$" },
+    "transferAgentRegistration": {
+      "type": "object",
+      "required": ["agentName", "secFileNumber", "apiEndpoint"],
+      "properties": {
+        "agentName": { "type": "string" },
+        "secFileNumber": { "type": "string" },
+        "apiEndpoint": { "type": "string" }
+      }
+    },
+    "closingConditions": {
+      "type": "object",
+      "required": ["minimumEscrowThreshold", "escrowDeadlineIso", "supervisingAttorneyAttestation"],
+      "properties": {
+        "minimumEscrowThreshold": { "type": "number" },
+        "escrowDeadlineIso": { "type": "string", "format": "date-time" },
+        "supervisingAttorneyAttestation": { "type": "string" }
+      }
+    }
+  }
+}

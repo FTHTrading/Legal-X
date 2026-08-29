@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Legacy Vault Protocol — Your Family's Legacy, Protected by Legal-X</title>
-  <meta name="description" content="Encrypt vital records, organize digital assets, designate trusted guardians, and establish verifiable release instructions—powered by Legal-X.">
+  <meta name="description" content="Encrypt vital records, organize digital assets, designate trusted guardians, and establish verifiable release instructions—powered by Legal-X & BitGo Custody.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Ambient Liquid Mesh Background -->
+  <!-- Ambient Liquid Mesh & Video Background -->
   <div class="liquid-mesh-container">
     <video id="liveAmbientVideo" class="live-bg-video" autoplay loop muted playsinline style="display:none;"></video>
     <div class="live-bg-overlay" id="liveBgOverlay" style="display:none;"></div>
@@ -41,11 +41,11 @@
       <nav class="nav-center">
         <a href="#how-it-works" class="nav-link">How It Works</a>
         <a href="#estate-vault" class="nav-link">Estate Vault</a>
-        <a href="#digital-assets" class="nav-link">Digital Assets</a>
+        <a href="#bitgo-custody" class="nav-link" style="color:var(--gold-bright); font-weight:700;">🛡️ BitGo Custody</a>
+        <a href="#media-gallery" class="nav-link">🎬 Sovereign Cinema</a>
         <a href="#for-families" class="nav-link">For Families</a>
         <a href="#for-professionals" class="nav-link">For Professionals</a>
         <a href="legal-x.html" class="nav-link" style="color:var(--cyan); font-weight:700;">Legal-X Platform</a>
-        <a href="cinema.html" class="nav-link">🎬 Cinema Vault</a>
       </nav>
 
       <div class="nav-right">
@@ -58,13 +58,13 @@
     <!-- Main Content Area -->
     <main class="main-content" style="display:flex; flex-direction:column; gap:3rem; padding-bottom:4rem;">
       
-      <!-- HERO SECTION -->
-      <section class="glass-card-full" style="padding: 4rem 2.5rem; text-align: center; position: relative; overflow: hidden;">
-        <div style="max-width: 920px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 1.5rem;">
+      <!-- HERO SECTION WITH AMBIENT VIDEO CONTROLS -->
+      <section class="glass-card-full" style="padding: 4rem 2.5rem 3rem 2.5rem; text-align: center; position: relative; overflow: hidden;">
+        <div style="max-width: 960px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 1.5rem;">
           
           <div class="cinema-header-tag">
             <span class="live-pulse-dot"></span>
-            <span>POWERED BY LEGAL-X · SOVEREIGN CLIENT-SIDE ENCRYPTION</span>
+            <span>POWERED BY LEGAL-X & BITGO TRUST · SOVEREIGN CLIENT-SIDE ENCRYPTION</span>
           </div>
 
           <h1 style="font-size: 3.4rem; font-weight: 900; line-height: 1.1; color: var(--text-main); letter-spacing: -0.02em;">
@@ -75,23 +75,35 @@
             Your family’s legacy, protected by Legal‑X.
           </p>
 
-          <p style="font-size: 1.1rem; color: #cbd5e1; line-height: 1.65; max-width: 800px;">
+          <p style="font-size: 1.1rem; color: #cbd5e1; line-height: 1.65; max-width: 820px;">
             Encrypt vital records, organize digital assets, designate trusted guardians, and establish verifiable release instructions—without surrendering control of your private information.
           </p>
 
-          <div style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; justify-content: center;">
+          <div style="display: flex; gap: 1rem; margin-top: 0.5rem; flex-wrap: wrap; justify-content: center;">
             <a href="https://app.legacychain.app" class="action-btn" style="padding: 0.95rem 2rem; font-size: 1rem; box-shadow: 0 8px 24px rgba(0, 210, 255, 0.35);">
               Enter Your Secure Vault →
             </a>
             <a href="legal-x.html" class="secondary-btn" style="padding: 0.95rem 1.75rem; font-size: 1rem;">
               Explore Legal‑X for Professionals
             </a>
+            <button id="toggleHeroAmbientVideoBtn" class="secondary-btn" style="padding: 0.95rem 1.5rem; font-size: 0.95rem; border-color:var(--gold);">
+              🎥 Ambient Cinema Mode
+            </button>
+          </div>
+
+          <!-- Ambient Live Video Theme Switcher -->
+          <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap; justify-content:center; margin-top:1rem; background:rgba(0,0,0,0.35); padding:0.6rem 1rem; border-radius:30px; border:1px solid rgba(255,255,255,0.08);">
+            <span style="font-size:0.75rem; font-weight:700; color:var(--text-dim); text-transform:uppercase;">Live Backdrops:</span>
+            <button class="filter-pill active" data-ambient-track="media/videos/courtroom_mastery_01.mp4">Courtroom Mastery</button>
+            <button class="filter-pill" data-ambient-track="media/videos/digital_justice_helix.mp4">Justice Helix</button>
+            <button class="filter-pill" data-ambient-track="media/videos/courtroom_elegance.mp4">Courtroom Elegance</button>
+            <button class="filter-pill" data-ambient-track="media/videos/office_mastery.mp4">Office Mastery</button>
           </div>
 
         </div>
       </section>
 
-      <!-- SHORT INSTITUTIONAL PROOF STRIP -->
+      <!-- INSTITUTIONAL PROOF STRIP -->
       <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem;">
         <div class="step-card" style="padding: 1.25rem;">
           <div style="display:flex; align-items:center; gap:0.5rem; font-weight:800; color:var(--cyan); font-size:0.95rem;">
@@ -122,11 +134,165 @@
 
         <div class="step-card" style="padding: 1.25rem;">
           <div style="display:flex; align-items:center; gap:0.5rem; font-weight:800; color:#c084fc; font-size:0.95rem;">
-            <span>🌐</span> Built for What's Next
+            <span>🏛️</span> BitGo Qualified Custody
           </div>
           <p style="font-size:0.82rem; color:#94a3b8; line-height:1.5; margin:0;">
-            Estate documents, digital assets, tokenized property, and institutional professional workflows.
+            Segregated multi-sig sub-accounts, institutional SPV asset ring-fencing, and daily proof-of-reserve roots.
           </p>
+        </div>
+      </section>
+
+      <!-- SECTION: BITGO TRUST & CUSTODIAL ASSET INGESTION -->
+      <section id="bitgo-custody" class="glass-card-full" style="border-left: 4px solid var(--gold);">
+        <div class="panel-header">
+          <div>
+            <div class="cinema-header-tag">
+              <span class="live-pulse-dot"></span>
+              <span>QUALIFIED CUSTODIAN INTEGRATION · SOUTH DAKOTA / NEW YORK TRUST</span>
+            </div>
+            <h2 class="panel-title" style="margin-top:0.4rem;">BitGo Custodial & Institutional RWA Vault</h2>
+            <p class="panel-desc">Segregated custody, transfer agent synchronization, and SEC Reg D 506(c) escrow capital formation.</p>
+          </div>
+          <button id="openAddAssetModalBtn" class="action-btn" style="padding:0.65rem 1.25rem;">
+            ➕ Add Asset to BitGo Vault
+          </button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.25rem;">
+          
+          <div style="background: rgba(10,16,32,0.7); border: 1px solid var(--border-glass); border-radius: 14px; padding: 1.5rem;">
+            <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.75rem;">
+              <span style="font-size:1.5rem;">🏦</span>
+              <h3 style="font-size:1.15rem; font-weight:800; color:#fff;">Segregated Multi-Sig Vaults</h3>
+            </div>
+            <p style="font-size:0.85rem; color:#94a3b8; line-height:1.5;">
+              Each institutional estate or SPV holds an isolated multi-signature cold storage account with hardware enclave keys and bankruptcy-remote asset protection.
+            </p>
+            <div style="margin-top:1rem; font-family:var(--font-mono); font-size:0.75rem; color:var(--cyan); background:rgba(0,0,0,0.3); padding:0.6rem; border-radius:6px;">
+              Smart Contract: BitGoCustodialEscrow.sol
+            </div>
+          </div>
+
+          <div style="background: rgba(10,16,32,0.7); border: 1px solid var(--border-glass); border-radius: 14px; padding: 1.5rem;">
+            <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.75rem;">
+              <span style="font-size:1.5rem;">📊</span>
+              <h3 style="font-size:1.15rem; font-weight:800; color:#fff;">Transfer Agent Sync</h3>
+            </div>
+            <p style="font-size:0.85rem; color:#94a3b8; line-height:1.5;">
+              Direct integration with SEC-registered transfer agents. Automated cap table updates, shareholder registries, and accredited investor KYC/AML verification.
+            </p>
+            <div style="margin-top:1rem; font-family:var(--font-mono); font-size:0.75rem; color:var(--gold-bright); background:rgba(0,0,0,0.3); padding:0.6rem; border-radius:6px;">
+              Compliance: FINRA Rule 15c3-3 / Reg D
+            </div>
+          </div>
+
+          <div style="background: rgba(10,16,32,0.7); border: 1px solid var(--border-glass); border-radius: 14px; padding: 1.5rem;">
+            <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.75rem;">
+              <span style="font-size:1.5rem;">🔍</span>
+              <h3 style="font-size:1.15rem; font-weight:800; color:#fff;">Proof-of-Reserve Attestations</h3>
+            </div>
+            <p style="font-size:0.85rem; color:#94a3b8; line-height:1.5;">
+              Daily cryptographic attestation digests anchored on-chain by BitGo Trust Company, verifying physical asset backing and liquid stablecoin reserves.
+            </p>
+            <div style="margin-top:1rem; font-family:var(--font-mono); font-size:0.75rem; color:var(--emerald); background:rgba(0,0,0,0.3); padding:0.6rem; border-radius:6px;">
+              Attestation Root: 0x981273...2739 (VERIFIED)
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Interactive Ingested Assets Display -->
+        <div style="margin-top: 1.5rem; background: rgba(0,0,0,0.4); border: 1px solid var(--border-glass); border-radius: 12px; padding: 1.25rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:0.6rem; margin-bottom:0.8rem;">
+            <span style="font-size:0.85rem; font-weight:700; color:var(--text-main);">Active BitGo Custodial Asset Inventory</span>
+            <span class="pill-gold">3 Registered Assets</span>
+          </div>
+          <div id="bitgoAssetsList" style="display:flex; flex-direction:column; gap:0.6rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(10,16,32,0.6); padding:0.75rem 1rem; border-radius:8px; font-size:0.82rem;">
+              <div>
+                <strong style="color:#fff;">UnyKorn Sovereign RWA SPV I</strong>
+                <span style="color:var(--text-dim); margin-left:0.5rem;">(CUSIP: 912828-XX-1)</span>
+              </div>
+              <span style="color:var(--gold-bright); font-weight:700;">$4,820,000,000 AUC</span>
+              <span style="color:var(--emerald); font-family:var(--font-mono); font-size:0.75rem;">BitGo Vault: vlt_bitgo_uny01</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(10,16,32,0.6); padding:0.75rem 1rem; border-radius:8px; font-size:0.82rem;">
+              <div>
+                <strong style="color:#fff;">Generational Dynasty Trust Real Estate Portfolio</strong>
+                <span style="color:var(--text-dim); margin-left:0.5rem;">(PIN: APN-4892-001)</span>
+              </div>
+              <span style="color:var(--gold-bright); font-weight:700;">$125,000,000 AUC</span>
+              <span style="color:var(--emerald); font-family:var(--font-mono); font-size:0.75rem;">BitGo Vault: vlt_bitgo_est04</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: SOVEREIGN CINEMA & MEDIA GALLERY -->
+      <section id="media-gallery" class="glass-card-full">
+        <div class="panel-header">
+          <div>
+            <span class="pill-purple">Cinematic Evidentiary Archive</span>
+            <h2 class="panel-title" style="margin-top:0.4rem;">Sovereign Media & Courtroom Cinema</h2>
+            <p class="panel-desc">Master archival recordings, holographic evidence renders, and digital justice storyboards.</p>
+          </div>
+          <a href="cinema.html" class="action-btn" style="padding:0.65rem 1.25rem;">🎬 Fullscreen Cinema Vault →</a>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 1.25rem;">
+          
+          <div class="media-card" style="cursor:pointer;" onclick="playMediaPreview('media/videos/courtroom_mastery_01.mp4', 'Futuristic Courtroom Mastery')">
+            <div style="position:relative; aspect-ratio:16/9; overflow:hidden; border-radius:10px;">
+              <img src="media/thumbnails/courtroom_mastery_01.jpg" alt="Courtroom Mastery" style="width:100%; height:100%; object-fit:cover;">
+              <div style="position:absolute; inset:0; background:rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center;">
+                <div style="width:40px; height:40px; border-radius:50%; background:rgba(0,210,255,0.8); display:flex; align-items:center; justify-content:center; color:#000; font-size:1.2rem;">▶</div>
+              </div>
+            </div>
+            <div style="padding:0.75rem 0.25rem;">
+              <strong style="color:#fff; font-size:0.9rem;">Futuristic Courtroom Mastery</strong>
+              <div style="font-size:0.75rem; color:var(--text-dim); margin-top:0.2rem;">Master 1080p · Evidence Streams</div>
+            </div>
+          </div>
+
+          <div class="media-card" style="cursor:pointer;" onclick="playMediaPreview('media/videos/digital_justice_helix.mp4', 'Digital Justice Helix')">
+            <div style="position:relative; aspect-ratio:16/9; overflow:hidden; border-radius:10px;">
+              <img src="media/thumbnails/digital_justice_helix.jpg" alt="Digital Justice Helix" style="width:100%; height:100%; object-fit:cover;">
+              <div style="position:absolute; inset:0; background:rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center;">
+                <div style="width:40px; height:40px; border-radius:50%; background:rgba(0,210,255,0.8); display:flex; align-items:center; justify-content:center; color:#000; font-size:1.2rem;">▶</div>
+              </div>
+            </div>
+            <div style="padding:0.75rem 0.25rem;">
+              <strong style="color:#fff; font-size:0.9rem;">Digital Justice Helix</strong>
+              <div style="font-size:0.75rem; color:var(--text-dim); margin-top:0.2rem;">Master 1080p · DAG Architecture</div>
+            </div>
+          </div>
+
+          <div class="media-card" style="cursor:pointer;" onclick="playMediaPreview('media/videos/courtroom_elegance.mp4', 'Courtroom Elegance')">
+            <div style="position:relative; aspect-ratio:16/9; overflow:hidden; border-radius:10px;">
+              <img src="media/thumbnails/courtroom_elegance.jpg" alt="Courtroom Elegance" style="width:100%; height:100%; object-fit:cover;">
+              <div style="position:absolute; inset:0; background:rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center;">
+                <div style="width:40px; height:40px; border-radius:50%; background:rgba(0,210,255,0.8); display:flex; align-items:center; justify-content:center; color:#000; font-size:1.2rem;">▶</div>
+              </div>
+            </div>
+            <div style="padding:0.75rem 0.25rem;">
+              <strong style="color:#fff; font-size:0.9rem;">Courtroom Elegance</strong>
+              <div style="font-size:0.75rem; color:var(--text-dim); margin-top:0.2rem;">Master 1080p · Formal Proceedings</div>
+            </div>
+          </div>
+
+          <div class="media-card" style="cursor:pointer;" onclick="playMediaPreview('media/videos/courtroom_drama_01.mp4', 'Courtroom Drama & Resolution')">
+            <div style="position:relative; aspect-ratio:16/9; overflow:hidden; border-radius:10px;">
+              <img src="media/thumbnails/courtroom_drama_01.jpg" alt="Courtroom Drama" style="width:100%; height:100%; object-fit:cover;">
+              <div style="position:absolute; inset:0; background:rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center;">
+                <div style="width:40px; height:40px; border-radius:50%; background:rgba(0,210,255,0.8); display:flex; align-items:center; justify-content:center; color:#000; font-size:1.2rem;">▶</div>
+              </div>
+            </div>
+            <div style="padding:0.75rem 0.25rem;">
+              <strong style="color:#fff; font-size:0.9rem;">Courtroom Resolution</strong>
+              <div style="font-size:0.75rem; color:var(--text-dim); margin-top:0.2rem;">Master 1080p · Adjudication</div>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -164,52 +330,10 @@
         </div>
       </section>
 
-      <!-- SECTION: ESTATE VAULT & DIGITAL ASSETS -->
-      <section id="estate-vault" class="glass-card-full">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; align-items: center;">
-          <div>
-            <span class="pill-gold">Comprehensive Preservation</span>
-            <h2 style="font-size: 2rem; font-weight: 800; color: var(--text-main); margin-top: 0.5rem;">
-              Estate Documents & Vital Records
-            </h2>
-            <p style="font-size: 0.95rem; color: #94a3b8; line-height: 1.6; margin-top: 0.75rem;">
-              Preserve wills, revocable living trusts, advance healthcare directives, powers of attorney, real estate title deeds, and corporate ownership certificates. 
-            </p>
-            <ul style="list-style: none; padding: 0; margin-top: 1rem; display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.9rem; color: #e2e8f0;">
-              <li style="display:flex; align-items:center; gap:0.5rem;">✅ Client-side zero-knowledge document vaulting</li>
-              <li style="display:flex; align-items:center; gap:0.5rem;">✅ Dynasty Trust & asset protection rule alignment</li>
-              <li style="display:flex; align-items:center; gap:0.5rem;">✅ Immutable timestamping & unbroken chain of custody</li>
-            </ul>
-            <a href="https://app.legacychain.app" class="action-btn" style="margin-top: 1.5rem; display: inline-flex;">
-              Open Family Estate Vault →
-            </a>
-          </div>
-
-          <div id="digital-assets" style="background: rgba(0,0,0,0.4); border: 1px solid var(--border-glass); border-radius: 16px; padding: 1.75rem;">
-            <span class="pill-purple">Digital Era Inheritance</span>
-            <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--text-main); margin-top: 0.5rem;">
-              Digital Assets & Sovereign Keys
-            </h3>
-            <p style="font-size: 0.88rem; color: #94a3b8; line-height: 1.5; margin-top: 0.5rem;">
-              Billions in digital wealth are lost annually due to inaccessible seed phrases, exchange 2FA credentials, and unrecorded digital assets.
-            </p>
-            <div style="display:flex; flex-direction:column; gap:0.75rem; margin-top:1rem;">
-              <div style="background:rgba(0,210,255,0.06); border:1px solid rgba(0,210,255,0.2); padding:0.75rem; border-radius:8px; font-size:0.82rem;">
-                <strong>Crypto & Hardware Keys:</strong> Shamir secret sharing splits across trusted guardians.
-              </div>
-              <div style="background:rgba(212,175,55,0.06); border:1px solid rgba(212,175,55,0.2); padding:0.75rem; border-radius:8px; font-size:0.82rem;">
-                <strong>Tokenized RWAs & Deeds:</strong> UCC Article 12 CER control records and county parcel deeds.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <!-- SECTION: FOR FAMILIES & PROFESSIONALS -->
       <section id="for-professionals" class="glass-card-full">
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
           
-          <!-- For Families -->
           <div id="for-families" style="background: rgba(10,16,32,0.7); border: 1px solid var(--border-glass); border-radius: 16px; padding: 2rem; display: flex; flex-direction: column; justify-content: space-between;">
             <div>
               <span class="pill-blue">For Families & Individuals</span>
@@ -225,7 +349,6 @@
             </a>
           </div>
 
-          <!-- For Professionals -->
           <div style="background: rgba(10,16,32,0.7); border: 1px solid var(--border-glass); border-radius: 16px; padding: 2rem; display: flex; flex-direction: column; justify-content: space-between;">
             <div>
               <span class="pill-gold">For Attorneys & Wealth Advisors</span>
@@ -283,5 +406,49 @@
     </footer>
 
   </div>
+
+  <!-- ADD ASSET TO BITGO MODAL -->
+  <div id="addAssetModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); backdrop-filter:blur(10px); z-index:100; align-items:center; justify-content:center; padding:1.5rem;">
+    <div style="background:rgba(10,16,32,0.95); border:1px solid var(--border-glass); border-radius:16px; padding:2rem; max-width:550px; width:100%; display:flex; flex-direction:column; gap:1.25rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-glass); padding-bottom:0.75rem;">
+        <h3 style="font-size:1.25rem; font-weight:800; color:var(--text-main);">➕ Register Asset to BitGo Custodial Vault</h3>
+        <button id="closeModalBtn" style="background:none; border:none; color:var(--text-dim); font-size:1.25rem; cursor:pointer;">✕</button>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:0.75rem;">
+        <div>
+          <label style="font-size:0.75rem; font-weight:700; color:var(--cyan); text-transform:uppercase;">Asset / SPV Legal Name</label>
+          <input type="text" id="modalAssetName" class="glass-search-input" style="width:100%; margin-top:0.3rem;" placeholder="e.g. UnyKorn Generational Asset SPV II LLC">
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;">
+          <div>
+            <label style="font-size:0.75rem; font-weight:700; color:var(--cyan); text-transform:uppercase;">CUSIP / ISIN / PIN</label>
+            <input type="text" id="modalAssetCusip" class="glass-search-input" style="width:100%; margin-top:0.3rem;" placeholder="e.g. 912828-UNY-2">
+          </div>
+          <div>
+            <label style="font-size:0.75rem; font-weight:700; color:var(--cyan); text-transform:uppercase;">Appraisal Valuation (USD)</label>
+            <input type="text" id="modalAssetVal" class="glass-search-input" style="width:100%; margin-top:0.3rem;" placeholder="e.g. $50,000,000">
+          </div>
+        </div>
+        <div>
+          <label style="font-size:0.75rem; font-weight:700; color:var(--cyan); text-transform:uppercase;">Qualified Custodian</label>
+          <select id="modalCustodianSelect" class="glass-search-input" style="width:100%; margin-top:0.3rem;">
+            <option value="BitGo Trust Company (South Dakota)">BitGo Trust Company (South Dakota)</option>
+            <option value="BitGo New York Trust">BitGo New York Trust</option>
+            <option value="South Dakota Trust Company">South Dakota Trust Company</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:0.75rem; margin-top:0.5rem;">
+        <button id="submitAddAssetBtn" class="action-btn" style="flex:1; justify-content:center;">Anchor to BitGo Vault</button>
+        <button id="cancelModalBtn" class="secondary-btn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastNotification" class="toast-popup"></div>
+
+  <script src="app.js"></script>
 </body>
 </html>

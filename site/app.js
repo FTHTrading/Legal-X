@@ -287,6 +287,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initX402Simulator();
   initAccordions();
   initCinemaStudio();
+  initBitGoModal();
+  initAmbientBackdropSelector();
 });
 
 // TAB SWITCHER
@@ -1848,14 +1850,132 @@ function copyToClipboard(text, msg) {
 }
 
 function showToast(msg) {
-  const toast = document.getElementById("copyToast");
-  const toastMsg = document.getElementById("toastMsg");
-  if (toast && toastMsg) {
-    toastMsg.textContent = msg;
+  let toast = document.getElementById("toastNotification");
+  if (!toast) {
+    toast = document.getElementById("copyToast");
+  }
+  if (toast) {
+    const toastMsg = document.getElementById("toastMsg");
+    if (toastMsg) {
+      toastMsg.textContent = msg;
+    } else {
+      toast.textContent = msg;
+    }
     toast.style.display = "flex";
     setTimeout(() => {
       toast.style.display = "none";
     }, 3200);
   }
 }
+
+// ==========================================================================
+// BITGO CUSTODIAL VAULT & AMBIENT CONTROLS
+// ==========================================================================
+
+function initBitGoModal() {
+  const modal = document.getElementById("addAssetModal");
+  const openBtn = document.getElementById("openAddAssetModalBtn");
+  const closeBtn = document.getElementById("closeModalBtn");
+  const cancelBtn = document.getElementById("cancelModalBtn");
+  const submitBtn = document.getElementById("submitAddAssetBtn");
+
+  if (!modal) return;
+
+  if (openBtn) {
+    openBtn.addEventListener("click", () => {
+      modal.style.display = "flex";
+    });
+  }
+
+  const closeModal = () => {
+    modal.style.display = "none";
+  };
+
+  if (closeBtn) closeBtn.addEventListener("click", closeModal);
+  if (cancelBtn) cancelBtn.addEventListener("click", closeModal);
+
+  if (submitBtn) {
+    submitBtn.addEventListener("click", () => {
+      const name = document.getElementById("modalAssetName").value.trim() || "Sovereign Asset Vault SPV III";
+      const cusip = document.getElementById("modalAssetCusip").value.trim() || "CUSIP-912828-NEW";
+      const val = document.getElementById("modalAssetVal").value.trim() || "$25,000,000";
+      const custodian = document.getElementById("modalCustodianSelect").value;
+
+      const list = document.getElementById("bitgoAssetsList");
+      if (list) {
+        const item = document.createElement("div");
+        item.style.cssText = "display:flex; justify-content:space-between; align-items:center; background:rgba(10,16,32,0.85); border:1px solid var(--gold); padding:0.75rem 1rem; border-radius:8px; font-size:0.82rem;";
+        item.innerHTML = `
+          <div>
+            <strong style="color:#fff;">${name}</strong>
+            <span style="color:var(--text-dim); margin-left:0.5rem;">(${cusip})</span>
+          </div>
+          <span style="color:var(--gold-bright); font-weight:700;">${val} AUC</span>
+          <span style="color:var(--emerald); font-family:var(--font-mono); font-size:0.75rem;">BitGo: ${custodian.split(" ")[0]} (ACTIVE)</span>
+        `;
+        list.prepend(item);
+      }
+
+      closeModal();
+      showToast(`✅ Asset "${name}" registered to BitGo Custodial Escrow!`);
+    });
+  }
+}
+
+function initAmbientBackdropSelector() {
+  const toggleBtn = document.getElementById("toggleHeroAmbientVideoBtn");
+  const liveVideo = document.getElementById("liveAmbientVideo");
+  const overlay = document.getElementById("liveBgOverlay");
+  const trackBtns = document.querySelectorAll("[data-ambient-track]");
+
+  if (toggleBtn && liveVideo) {
+    toggleBtn.addEventListener("click", () => {
+      if (liveVideo.style.display === "none" || !liveVideo.style.display) {
+        liveVideo.style.display = "block";
+        if (overlay) overlay.style.display = "block";
+        if (!liveVideo.src) {
+          liveVideo.src = "media/videos/courtroom_mastery_01.mp4";
+        }
+        liveVideo.play().catch(() => {});
+        toggleBtn.textContent = "⏹️ Stop Ambient Cinema";
+        showToast("🎬 Live Ambient Cinema Background Enabled");
+      } else {
+        liveVideo.pause();
+        liveVideo.style.display = "none";
+        if (overlay) overlay.style.display = "none";
+        toggleBtn.textContent = "🎥 Ambient Cinema Mode";
+        showToast("Ambient Cinema Disabled");
+      }
+    });
+  }
+
+  trackBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      trackBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const track = btn.getAttribute("data-ambient-track");
+      if (liveVideo) {
+        liveVideo.src = track;
+        liveVideo.style.display = "block";
+        if (overlay) overlay.style.display = "block";
+        liveVideo.play().catch(() => {});
+        if (toggleBtn) toggleBtn.textContent = "⏹️ Stop Ambient Cinema";
+        showToast(`Playing ambient backdrop: ${track.split("/").pop()}`);
+      }
+    });
+  });
+}
+
+function playMediaPreview(videoSrc, title) {
+  const liveVideo = document.getElementById("liveAmbientVideo");
+  const overlay = document.getElementById("liveBgOverlay");
+  if (liveVideo) {
+    liveVideo.src = videoSrc;
+    liveVideo.style.display = "block";
+    if (overlay) overlay.style.display = "block";
+    liveVideo.play().catch(() => {});
+    showToast(`Streaming "${title}" in ambient backdrop`);
+  }
+}
+
 
