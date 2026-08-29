@@ -38,11 +38,12 @@ Digital asset custody, transaction execution, signing authority, and key storage
 
 ---
 
-## 3. On-Chain Hash Normalization Policy (Zero Data Leakage)
+$$\text{AnchoredAuditDigest} = \operatorname{SHA-256}(\text{schemaVersion} \parallel \text{tenantScopedAssetRef} \parallel \text{eventType} \parallel \text{canonicalPayloadDigest} \parallel \text{randomNonce})$$
 
-To guarantee compliance with GDPR Art. 17 and prevent institutional data leakage, on-chain evidence anchors must follow this strict transformation rule:
-
-$$\text{AnchoredDigest} = \text{SHA-256}(\text{LegalXAssetID} \parallel \text{AuthorizedDataSource} \parallel \text{Timestamp} \parallel \text{Salt})$$
+**Cryptographic Privacy Rules:**
+- Keep the internal tenant mapping, raw metadata, random nonce, and canonical payload private within the server-side enclave.
+- Anchor only the final high-entropy digest plus an opaque schema version identifier on-chain.
+- Protects against dictionary/enumeration correlation attacks while remaining deterministically verifiable by authorized audit parties.
 
 **Strict Prohibition:**
 - ❌ NEVER anchor client legal names, physical addresses, or tax IDs on-chain.
