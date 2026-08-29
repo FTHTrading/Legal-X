@@ -60,32 +60,58 @@ The Worker logs structured JSON events containing only operational metadata:
 | :--- | :--- | :--- | :--- |
 | **Dynamic HTML Pages** | `/`, `/legal-x.html`, `/app_portal.html`, `/cinema.html` | `Cache-Control: no-cache, max-age=0, must-revalidate` · `Vary: Host` | Always revalidated at the edge; instant propagation of new deploys. |
 | **Diagnostic Health Endpoints** | `/__release`, `/api/release` | `Cache-Control: no-store, no-cache, max-age=0, must-revalidate` | Completely un-cached dynamic edge telemetry. |
-| **Fingerprinted Static Assets** | `/style.css`, `/app.js`, `/media/*` | `Cache-Control: public, max-age=31536000, immutable` | Long-term edge and browser caching with versioned assets. |
+| **Non-Fingerprinted Static Assets** | `/style.css`, `/app.js`, un-versioned media | `Cache-Control: no-cache, max-age=0, must-revalidate` | Revalidated to ensure client scripts and styles stay strictly in sync with HTML releases. |
+| **Fingerprinted Static Assets** | `/*.bf0c559.js`, `/*.bf0c559.css`, versioned media | `Cache-Control: public, max-age=31536000, immutable` | Long-term CDN performance with zero stale cache risk. |
 | **Sensitive APIs & Enclaves** | `/api/vault/*`, `/api/custody/*` | `Cache-Control: no-store, no-cache, must-revalidate` · `Private` | Zero intermediate caching of state or credentials. |
 
 ---
 
-## 5. Synthetic Regional Monitoring Plan
+## 5. Synthetic Regional Monitoring Plan (Every 5 Minutes)
 
-To guarantee universal global availability across all geographic regions, configure multi-region synthetic uptime monitors (e.g., Datadog, Better Uptime, Checkly, or AWS Synthetics):
+To guarantee universal global availability across all geographic regions, configure multi-region synthetic uptime monitors (e.g., Datadog, Better Uptime, Checkly, or AWS Synthetics) executing every 5 minutes from at least 3 distinct regions:
 
-1. **Test 1 — Apex Legacy Vault:**
-   - URL: `https://legacychain.app/`
-   - Expected Status: `200 OK`
-   - Required Body Marker: `data-release="legacy-vault"`
-   - Required Header: `X-LegalX-Worker-Release` present.
-
-2. **Test 2 — Legal-X Institutional Platform:**
-   - URL: `https://legacychain.app/legal-x.html`
-   - Expected Status: `200 OK`
-   - Required Body Marker: `Institutional Shared Responsibility Matrix`
-
-3. **Test 3 — Legal-X Operational Workspace:**
-   - URL: `https://app.legacychain.app/`
-   - Expected Status: `200 OK`
-   - Required Body Marker: `Legal-X Operational Workspace`
-
-4. **Test 4 — Diagnostic Edge Telemetry:**
+1. **Test 1 — Minimal Diagnostic Release Endpoint:**
    - URL: `https://legacychain.app/__release`
    - Expected Status: `200 OK`
-   - Required JSON Field: `"status": "healthy"`, `"routeMode": "worker-first"`
+   - Header Validation: `X-LegalX-Worker-Release: bf0c559`
+   - JSON Body Validation: `"status": "healthy"`, `"release": "bf0c559"`, `"routeMode": "worker-first"`
+
+2. **Test 2 — Apex Legacy Vault Protocol:**
+   - URL: `https://legacychain.app/`
+   - Expected Status: `200 OK`
+   - Header Validation: `X-LegalX-Worker-Release: bf0c559`
+   - Body Marker: `data-release="legacy-vault"`, `Institutional Custody Connectivity`
+
+3. **Test 3 — Legal-X Institutional Platform:**
+   - URL: `https://legacychain.app/legal-x.html` & `https://legacychain.app/legal-x`
+   - Expected Status: `200 OK` (No 307 redirect chains)
+   - Header Validation: `X-LegalX-Worker-Release: bf0c559`
+   - Body Marker: `Institutional Shared Responsibility Matrix`, `What Legal-X Is NOT`
+
+4. **Test 4 — Legal-X Operational Workspace:**
+   - URL: `https://app.legacychain.app/`
+   - Expected Status: `200 OK`
+   - Header Validation: `X-LegalX-Worker-Release: bf0c559`
+   - Body Marker: `<title>Legal-X Operational Workspace`, `LEGAL-X OPERATIONAL WORKSPACE`
+
+5. **Test 5 — Sovereign Cinema Vault:**
+   - URL: `https://legacychain.app/cinema.html`
+   - Expected Status: `200 OK`
+   - Body Marker: `data-release="sovereign-cinema"`
+
+---
+
+## 6. Automated Alert Conditions & PagerDuty/Slack Escalation
+
+Automated alerts must trigger immediately upon any of the following conditions:
+
+1. **HTTP Error Status:** Any `4xx` or `5xx` response on monitored endpoints.
+2. **Missing Diagnostic Header:** Any response that omits `X-LegalX-Worker-Release`.
+3. **Release Mismatch:** Response returning an unexpected or stale release ID (e.g. not matching current Git `bf0c559`).
+4. **Incorrect Asset Resolution:** `app.legacychain.app` serving `/index.html` instead of `/app_portal.html`.
+5. **Redirect Degradation:** Any redirect chain longer than 1 hop or unexpected 307 loop.
+6. **Body Fingerprint Drift:** Page body HTML checksum changing without a recorded deployment.
+7. **Regional Outage:** Consistent failures or timeouts from a single geographic PoP or region.
+8. **WAF False-Positive:** Cloudflare Managed Challenge or JS Challenge triggered against approved monitor User-Agents.
+9. **Latency Spike:** Response time exceeding defined SLO (> 800ms TTFB).
+

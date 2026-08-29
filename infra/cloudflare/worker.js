@@ -4,7 +4,8 @@ export default {
     const host = url.hostname.toLowerCase();
     const path = url.pathname.toLowerCase();
 
-    const currentReleaseId = "3cd40f7";
+    // Unified canonical release identifier
+    const currentReleaseId = "bf0c559";
 
     // Privacy-Safe Diagnostic Telemetry Logging (Zero PII, Zero Secret Exposure)
     console.log(JSON.stringify({
@@ -20,9 +21,9 @@ export default {
       return Response.json(
         {
           status: "healthy",
+          release: currentReleaseId,
           hostname: url.hostname,
-          workerRelease: currentReleaseId,
-          contentRelease: currentReleaseId,
+          timestamp: "2026-08-29T05:28:00-04:00",
           routeMode: "worker-first"
         },
         {
