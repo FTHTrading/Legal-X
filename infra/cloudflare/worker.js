@@ -11,52 +11,55 @@ export default {
       "Expires": "0"
     };
 
+    // Helper to fetch asset and transparently resolve any Cloudflare redirect without returning 307 to client
+    async function serveAsset(assetPath) {
+      let targetUrl = new URL(assetPath, request.url);
+      let res = await env.ASSETS.fetch(new Request(targetUrl.toString(), request));
+      
+      // If Cloudflare ASSETS returned a redirect (e.g. .html -> clean URL), resolve target body directly
+      if (res.status >= 300 && res.status < 400) {
+        const location = res.headers.get("Location");
+        if (location) {
+          const redirectUrl = new URL(location, request.url);
+          const resolvedRes = await env.ASSETS.fetch(new Request(redirectUrl.toString(), request));
+          if (resolvedRes.status === 200) {
+            res = resolvedRes;
+          }
+        }
+      }
+
+      const newHeaders = new Headers(res.headers);
+      Object.entries(noCacheHeaders).forEach(([k, v]) => newHeaders.set(k, v));
+      return new Response(res.body, { status: res.status, headers: newHeaders });
+    }
+
     // 1. App Subdomain (app.legacychain.app / vault.legacychain.app)
     if (host === "app.legacychain.app" || host === "vault.legacychain.app") {
       if (path === "/" || path === "/index.html" || path === "/workspace" || path === "/app" || path === "/app/") {
-        const res = await env.ASSETS.fetch(new Request(new URL("/app_portal.html", request.url).toString(), request));
-        const newHeaders = new Headers(res.headers);
-        Object.entries(noCacheHeaders).forEach(([k, v]) => newHeaders.set(k, v));
-        return new Response(res.body, { status: res.status, headers: newHeaders });
+        return serveAsset("/app_portal.html");
       }
     }
 
-    // 2. Apex Brand & Specific Public Routes (legacychain.app / www.legacychain.app)
+    // 2. Specific Named Routes
     if (path === "/legal-x" || path === "/legal-x/" || path === "/legal-x.html") {
-      const res = await env.ASSETS.fetch(new Request(new URL("/legal-x.html", request.url).toString(), request));
-      const newHeaders = new Headers(res.headers);
-      Object.entries(noCacheHeaders).forEach(([k, v]) => newHeaders.set(k, v));
-      return new Response(res.body, { status: res.status, headers: newHeaders });
+      return serveAsset("/legal-x.html");
     }
 
     if (path === "/cinema" || path === "/cinema/" || path === "/cinema.html") {
-      const res = await env.ASSETS.fetch(new Request(new URL("/cinema.html", request.url).toString(), request));
-      const newHeaders = new Headers(res.headers);
-      Object.entries(noCacheHeaders).forEach(([k, v]) => newHeaders.set(k, v));
-      return new Response(res.body, { status: res.status, headers: newHeaders });
+      return serveAsset("/cinema.html");
     }
 
     if (path === "/" || path === "/index.html") {
-      const res = await env.ASSETS.fetch(new Request(new URL("/index.html", request.url).toString(), request));
-      const newHeaders = new Headers(res.headers);
-      Object.entries(noCacheHeaders).forEach(([k, v]) => newHeaders.set(k, v));
-      return new Response(res.body, { status: res.status, headers: newHeaders });
+      return serveAsset("/index.html");
     }
 
     // 3. Fallback to standard asset resolution (CSS, JS, Media)
     let response = await env.ASSETS.fetch(request);
-    
     if (response.status === 404) {
       if (host === "app.legacychain.app" || host === "vault.legacychain.app") {
-        const res = await env.ASSETS.fetch(new Request(new URL("/app_portal.html", request.url).toString(), request));
-        const newHeaders = new Headers(res.headers);
-        Object.entries(noCacheHeaders).forEach(([k, v]) => newHeaders.set(k, v));
-        return new Response(res.body, { status: res.status, headers: newHeaders });
+        return serveAsset("/app_portal.html");
       }
-      const res = await env.ASSETS.fetch(new Request(new URL("/index.html", request.url).toString(), request));
-      const newHeaders = new Headers(res.headers);
-      Object.entries(noCacheHeaders).forEach(([k, v]) => newHeaders.set(k, v));
-      return new Response(res.body, { status: res.status, headers: newHeaders });
+      return serveAsset("/index.html");
     }
 
     return response;
