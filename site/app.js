@@ -283,6 +283,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initDnaCanvas();
   initCitationMatcher();
   initLawLibrary();
+  initGeniusGlobalDeck();
   initX402Simulator();
   initAccordions();
   initCinemaStudio();
@@ -795,6 +796,321 @@ function renderLawPrecedents(items) {
 
     card.querySelector("[data-action='copy']").addEventListener("click", () => {
       copyToClipboard(`${item.caseName}, ${item.citation}`, `Copied citation: ${item.citation}`);
+    });
+
+    grid.appendChild(card);
+  });
+}
+
+// ==========================================================================
+// GENIUS ACT & GLOBAL JURISDICTIONS ENGINE
+// ==========================================================================
+
+const JURISDICTIONS_DATA = {
+  us_delaware: {
+    name: "United States (Delaware & Federal)",
+    statute: "Delaware General Corporation Law (DGCL § 224) & Federal GENIUS Act",
+    rwaStatus: "STATUTORY SAFE HARBOR (CER Enforceable)",
+    perfectionMechanism: "UCC Article 12 'Control' over Controllable Electronic Records (CERs)",
+    chanceryForum: "Delaware Court of Chancery & U.S. District Court for the District of Delaware",
+    smartContractCompliance: "LegalProofRegistry.sol, CorporateMergersEscrow.sol, FRE902EvidenceVault.sol",
+    highlights: "DGCL § 224 formally authorizes the maintenance of corporate share ledgers on distributed electronic networks. Paired with Federal Rule of Evidence 902(13)/(14), on-chain cryptographic digests are self-authenticating."
+  },
+  us_wyoming: {
+    name: "United States (Wyoming DAO & Statutory Trust)",
+    statute: "Wyoming Decentralized Autonomous Organization Supplement (W.S. 17-31) & Digital Asset Act (W.S. 34-29)",
+    rwaStatus: "SOVEREIGN DLT RECOGNITION (Direct Legal Personality)",
+    perfectionMechanism: "Super-Priority Security Interests under W.S. 34-29-103 via Private Key Control",
+    chanceryForum: "Wyoming Chancery Court (Dedicated Commercial Docket)",
+    smartContractCompliance: "RWAGeniusActAssetVault.sol, DynastyTrustEstateVault.sol",
+    highlights: "Wyoming was the first sovereign jurisdiction to grant legal personality to algorithmic DAOs and codify digital assets into three clear categories: digital consumer assets, digital securities, and virtual currencies."
+  },
+  us_newyork: {
+    name: "United States (New York UCC Art. 12 & S.D.N.Y.)",
+    statute: "New York Uniform Commercial Code Article 12 & DFS Part 200 (BitLicense)",
+    rwaStatus: "COMMERCIAL CODE PERFECTED",
+    perfectionMechanism: "UCC § 12-105 Electronic Record Control & Article 9 Priority",
+    chanceryForum: "U.S. District Court for the Southern District of New York (S.D.N.Y.) & Commercial Division",
+    smartContractCompliance: "RWAGeniusActAssetVault.sol, X402EscrowSettlement.sol, LitigationFinanceToken.sol",
+    highlights: "New York UCC Article 12 provides that a purchaser of a Controllable Electronic Record (CER) acquires control free of conflicting property claims, creating global institutional settlement finality."
+  },
+  eu_mica: {
+    name: "European Union (MiCA Regulation & Luxembourg)",
+    statute: "EU Regulation 2023/1114 (Markets in Crypto-Assets) & Luxembourg Blockchain Law III",
+    rwaStatus: "PAN-EUROPEAN PASSPORTED REGIME",
+    perfectionMechanism: "Dematerialized Financial Instruments Held on Distributed Ledgers",
+    chanceryForum: "Court of Justice of the European Union (CJEU) & Luxembourg Commercial Court",
+    smartContractCompliance: "RWAGeniusActAssetVault.sol, GDPRZeroKnowledgeDataRoom.sol",
+    highlights: "MiCA establishes a unified EU regulatory framework for asset-referenced tokens (ARTs) and e-money tokens (EMTs). Luxembourg Blockchain Law III enables full dematerialized debt and equity issuance on-chain."
+  },
+  uk_law: {
+    name: "United Kingdom (Common Law & Property Bill)",
+    statute: "UK Law Commission Digital Assets Act & UK Jurisdiction Taskforce Legal Statements",
+    rwaStatus: "THIRD CATEGORY OF PROPERTY",
+    perfectionMechanism: "English Common Law Recognition of 'Things in Possession / Action'",
+    chanceryForum: "High Court of Justice (Chancery & Commercial Courts, London)",
+    smartContractCompliance: "ArbitrationAwardSettlement.sol, IntellectualPropertyRoyaltySplitter.sol",
+    highlights: "The UK recognized digital assets as property under English private law, making smart contracts legally binding instruments enforceable through the Business and Property Courts of England and Wales."
+  },
+  uae_difc: {
+    name: "United Arab Emirates (Dubai DIFC / ADGM / VARA)",
+    statute: "DIFC Law No. 2 of 2024 (Digital Assets Law) & ADGM DLT Foundations Regulations 2023",
+    rwaStatus: "DEDICATED DIGITAL ASSETS STATUTE",
+    perfectionMechanism: "Statutory Title under DIFC Digital Assets Law Part 3",
+    chanceryForum: "DIFC Courts (English Common Law System) & ADGM Courts",
+    smartContractCompliance: "RWAGeniusActAssetVault.sol, LetterOfCreditSBLCRouter.sol",
+    highlights: "The DIFC enacted a comprehensive standalone Digital Assets Law recognizing digital assets as property and establishing clear rules for control, security interests, and insolvency rights."
+  },
+  ch_dlt: {
+    name: "Switzerland (Swiss DLT Act & FINMA)",
+    statute: "Federal Act on the Adaptation of Federal Law to DLT Developments (Swiss DLT Act 2021)",
+    rwaStatus: "UNCERTIFICATED LEDGER-BASED SECURITIES (Bucheffekten)",
+    perfectionMechanism: "Swiss Code of Obligations (CO Art. 973d) Registration Agreement",
+    chanceryForum: "Swiss Federal Supreme Court & Commercial Courts (Zurich/Zug)",
+    smartContractCompliance: "RWAGeniusActAssetVault.sol, LitigationFinanceToken.sol",
+    highlights: "Switzerland allows securities to be issued directly on a blockchain without certificates or central depositories under Art. 973d CO, with automatic legal ownership transfers upon token movement."
+  },
+  sg_mas: {
+    name: "Singapore (MAS Project Guardian & Payment Services Act)",
+    statute: "Payment Services Act 2019 (PSA) & MAS Guidelines on Digital Token Offerings",
+    rwaStatus: "INSTITUTIONAL ASSET TOKENIZATION LEADER",
+    perfectionMechanism: "Securities and Futures Act (SFA Cap. 289) Digital Security Framework",
+    chanceryForum: "Singapore International Commercial Court (SICC)",
+    smartContractCompliance: "RWAGeniusActAssetVault.sol, LetterOfCreditSBLCRouter.sol",
+    highlights: "MAS Project Guardian sets global standards for institutional liquidity pools, asset-backed tokenization, and cross-border trade settlements in sovereign digital debt and foreign exchange."
+  },
+  hk_sfc: {
+    name: "Hong Kong (SFC Tokenized Securities Regime)",
+    statute: "Securities and Futures Ordinance (SFO) & SFC Circular on Tokenised Securities-Related Activities",
+    rwaStatus: "FINANCIAL HUB TOKENIZED SECURITIES",
+    perfectionMechanism: "Traditional Securities Law applied through Tech-Neutral 'Same Business, Same Risks, Same Rules'",
+    chanceryForum: "High Court of the Hong Kong Special Administrative Region",
+    smartContractCompliance: "RWAGeniusActAssetVault.sol, CorporateMergersEscrow.sol",
+    highlights: "Hong Kong enables licensed intermediaries to issue and distribute tokenized investment funds, bonds, and structured products with smart contract execution guarantees."
+  },
+  ky_spv: {
+    name: "Cayman Islands & British Virgin Islands (Offshore Trust & VASP)",
+    statute: "Cayman Virtual Asset (Service Providers) Act & Special Economic Zone Law",
+    rwaStatus: "GLOBAL SPV & OFFSHORE CAPITAL LEADER",
+    perfectionMechanism: "Segregated Portfolio Companies (SPC) & Foundation Company DLT Wrappers",
+    chanceryForum: "Grand Court of the Cayman Islands (Financial Services Division) & Privy Council (UK)",
+    smartContractCompliance: "DynastyTrustEstateVault.sol, RWAGeniusActAssetVault.sol, BankruptcyCreditorWaterfall.sol",
+    highlights: "Cayman Foundation Companies and Segregated Portfolio Companies provide international tax neutrality, asset ring-fencing, and bankruptcy remoteness for multi-billion dollar RWA pools."
+  }
+};
+
+const GLOBAL_DISCIPLINES_CATALOG = [
+  {
+    discipline: "Corporate & M&A",
+    icon: "🏢",
+    title: "M&A Share Purchase & Indemnity Escrow",
+    contractName: "CorporateMergersEscrow.sol",
+    statutoryBasis: "DGCL § 224, § 251 & Model Stock Purchase Agreement",
+    description: "Automates closing considerations, earn-out milestone distributions, and multi-year indemnification holdback escrows with dual seller/buyer representative releases.",
+    soliditySnippet: "contract CorporateMergersEscrow { function releaseIndemnityHoldback(string calldata _dealId) external; }"
+  },
+  {
+    discipline: "Real Estate & Title",
+    icon: "🏠",
+    title: "Sovereign Title Deed & Encumbrance Registry",
+    contractName: "SovereignTitleDeedRegistry.sol",
+    statutoryBasis: "Uniform Real Property Transfer on Death Act & County Recording Acts",
+    description: "Anchors county recorder book/page hashes, GIS micro-degree polygon coordinates, title insurance policy roots, and atomic lien perfection/release workflows.",
+    soliditySnippet: "contract SovereignTitleDeedRegistry { function transferTitleWithWarranty(string calldata _pin, address _newOwner) external; }"
+  },
+  {
+    discipline: "RWA & Securities",
+    icon: "💎",
+    title: "GENIUS Act & UCC Article 12 CER Vault",
+    contractName: "RWAGeniusActAssetVault.sol",
+    statutoryBasis: "Federal GENIUS Act & Uniform Commercial Code Article 12",
+    description: "Institutional Real-World Asset tokenization engine providing electronic control perfection, fractional issuance, appraisal tracking, and cross-border regulatory compliance.",
+    soliditySnippet: "contract RWAGeniusActAssetVault { function registerGENIUSAsset(...) external; function verifyGlobalPerfection(...) view; }"
+  },
+  {
+    discipline: "Intellectual Property",
+    icon: "💡",
+    title: "Patent, Trademark & Royalty Splitter",
+    contractName: "IntellectualPropertyRoyaltySplitter.sol",
+    statutoryBasis: "35 U.S.C. § 261 (Assignment of Patents) & WIPO Standards",
+    description: "Patent claim hash anchoring and automated multi-party licensing royalty distribution with atomic basis-point splits (up to 10,000 bps) and zero-leakage licensing receipts.",
+    soliditySnippet: "contract IntellectualPropertyRoyaltySplitter { function depositAndDistributeRoyalty(string calldata _ipAssetId) external payable; }"
+  },
+  {
+    discipline: "Trade Finance",
+    icon: "🚢",
+    title: "Cross-Border Standby Letter of Credit (SBLC)",
+    contractName: "LetterOfCreditSBLCRouter.sol",
+    statutoryBasis: "Uniform Customs and Practice for Documentary Credits (UCP 600) & ISP98",
+    description: "Cross-border trade finance router executing SWIFT BIC binding, bill of lading hash verification, inspection certificates, and instantaneous draw settlement.",
+    soliditySnippet: "contract LetterOfCreditSBLCRouter { function presentConformingDocumentsAndDraw(...) external; }"
+  },
+  {
+    discipline: "Trust & Estates",
+    icon: "🏛️",
+    title: "Dynasty Trust & Generational Asset Protection",
+    contractName: "DynastyTrustEstateVault.sol",
+    statutoryBasis: "Uniform Trust Code (UTC) & Wyoming / Delaware Dynasty Trust Acts",
+    description: "Eliminates Rule Against Perpetuities, enables spendthrift protections, multi-fiduciary appointment (Trustee, Trust Protector), and discretionary distributions.",
+    soliditySnippet: "contract DynastyTrustEstateVault { function executeBeneficiaryDistribution(address _beneficiary, uint256 _amount) external; }"
+  },
+  {
+    discipline: "Arbitration",
+    icon: "⚖️",
+    title: "Autonomous International Arbitration Award",
+    contractName: "ArbitrationAwardSettlement.sol",
+    statutoryBasis: "1958 New York Convention (172 Contracting States) & UNCITRAL Rules",
+    description: "Enforces foreign arbitral awards globally with security-for-costs escrows, presiding arbitrator digital sign-off, and instantaneous escrow execution.",
+    soliditySnippet: "contract ArbitrationAwardSettlement { function renderFinalAward(string calldata _matterId, bytes32 _awardDigest, ...) external; }"
+  },
+  {
+    discipline: "Insolvency",
+    icon: "📉",
+    title: "Chapter 11 Absolute Priority Creditor Waterfall",
+    contractName: "BankruptcyCreditorWaterfall.sol",
+    statutoryBasis: "11 U.S.C. § 1129(b)(2) (Absolute Priority Rule) & UCC Article 9",
+    description: "Enforces strict priority hierarchy: Senior Secured > Administrative Expense > General Unsecured > Subordinated Debt > Equity with automated multi-tier pool distribution.",
+    soliditySnippet: "contract BankruptcyCreditorWaterfall { function executeAbsolutePriorityWaterfall() external; }"
+  },
+  {
+    discipline: "Privacy & Data",
+    icon: "🔒",
+    title: "GDPR Zero-Knowledge Data Room",
+    contractName: "GDPRZeroKnowledgeDataRoom.sol",
+    statutoryBasis: "EU GDPR Art. 17 (Right to Erasure) & California Consumer Privacy Act (CCPA)",
+    description: "Zero-Knowledge evidentiary access control with time-bounded auditor access and irreversible 'Right to be Forgotten' cryptographic consent revocation.",
+    soliditySnippet: "contract GDPRZeroKnowledgeDataRoom { function revokeConsentRightToBeForgotten(...) external; }"
+  },
+  {
+    discipline: "Evidence & Forensic",
+    icon: "📑",
+    title: "FRE 902(13)/(14) Self-Authenticating Evidence",
+    contractName: "FRE902EvidenceVault.sol",
+    statutoryBasis: "Fed. R. Evid. 902(13)/(14) & 28 U.S.C. § 1746 (Unsworn Declarations)",
+    description: "Cryptographic digital evidence custodian vault with dual SHA-256 and BLAKE2b digests, device capture timestamps, and electronic custodian declarations.",
+    soliditySnippet: "contract FRE902EvidenceVault { function depositAndCertifyEvidence(...) external; }"
+  }
+];
+
+function initGeniusGlobalDeck() {
+  const jurPills = document.querySelectorAll("[data-jur]");
+  const discPills = document.querySelectorAll("[data-disc-cat]");
+
+  // Default render Delaware
+  renderJurisdictionTelemetry("us_delaware");
+  renderDisciplinesCards(GLOBAL_DISCIPLINES_CATALOG);
+
+  jurPills.forEach(pill => {
+    pill.addEventListener("click", () => {
+      jurPills.forEach(p => p.classList.remove("active"));
+      pill.classList.add("active");
+      const jurKey = pill.getAttribute("data-jur");
+      renderJurisdictionTelemetry(jurKey);
+    });
+  });
+
+  discPills.forEach(pill => {
+    pill.addEventListener("click", () => {
+      discPills.forEach(p => p.classList.remove("active"));
+      pill.classList.add("active");
+      const cat = pill.getAttribute("data-disc-cat");
+      if (cat === "all") {
+        renderDisciplinesCards(GLOBAL_DISCIPLINES_CATALOG);
+      } else {
+        const filtered = GLOBAL_DISCIPLINES_CATALOG.filter(d => d.discipline.includes(cat) || cat.includes(d.discipline));
+        renderDisciplinesCards(filtered);
+      }
+    });
+  });
+}
+
+function renderJurisdictionTelemetry(jurKey) {
+  const box = document.getElementById("jurTelemetryBox");
+  if (!box) return;
+
+  const data = JURISDICTIONS_DATA[jurKey];
+  if (!data) return;
+
+  box.innerHTML = `
+    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-glass); padding-bottom:0.75rem; margin-bottom:1rem;">
+      <div>
+        <h4 style="font-size:1.15rem; font-weight:800; color:var(--text-main);">${data.name}</h4>
+        <div style="font-size:0.8rem; color:var(--cyan); font-weight:700; margin-top:0.2rem;">${data.statute}</div>
+      </div>
+      <span class="pill-gold">${data.rwaStatus}</span>
+    </div>
+
+    <div class="jur-telemetry-grid">
+      <div class="jur-telemetry-item">
+        <span class="jur-telemetry-lbl">Perfection Standard</span>
+        <span class="jur-telemetry-val">${data.perfectionMechanism}</span>
+      </div>
+      <div class="jur-telemetry-item">
+        <span class="jur-telemetry-lbl">Primary Judicial Forum</span>
+        <span class="jur-telemetry-val">${data.chanceryForum}</span>
+      </div>
+      <div class="jur-telemetry-item">
+        <span class="jur-telemetry-lbl">Smart Contract Bindings</span>
+        <span class="jur-telemetry-val" style="font-family:var(--font-mono); font-size:0.78rem; color:var(--cyan);">${data.smartContractCompliance}</span>
+      </div>
+    </div>
+
+    <div style="margin-top:1rem; background:rgba(0,210,255,0.05); border:1px solid rgba(0,210,255,0.2); padding:0.85rem; border-radius:10px; font-size:0.82rem; color:#cbd5e1; line-height:1.5;">
+      <strong>Statutory Guidance:</strong> ${data.highlights}
+    </div>
+  `;
+}
+
+function renderDisciplinesCards(items) {
+  const grid = document.getElementById("disciplinesCardsGrid");
+  if (!grid) return;
+
+  grid.innerHTML = "";
+  if (items.length === 0) {
+    grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:2rem; color:var(--text-dim);">No discipline smart contracts found.</div>`;
+    return;
+  }
+
+  items.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "discipline-card";
+
+    card.innerHTML = `
+      <div>
+        <div class="discipline-top">
+          <div class="discipline-icon-title">
+            <span class="discipline-icon">${item.icon}</span>
+            <div>
+              <div class="discipline-title">${item.title}</div>
+              <div class="discipline-statute">${item.statutoryBasis}</div>
+            </div>
+          </div>
+          <span class="discipline-contract-tag">${item.contractName}</span>
+        </div>
+
+        <p class="discipline-desc" style="margin-top:0.75rem;">${item.description}</p>
+      </div>
+
+      <div class="discipline-solidity-box">
+        <code>${item.soliditySnippet}</code>
+      </div>
+
+      <div class="discipline-actions">
+        <button class="disc-deploy-btn" data-action="inspect" style="flex:1;">📜 View Contract Code</button>
+        <button class="prec-copy-btn" data-action="copy" title="Copy Contract Path">📋 Path</button>
+      </div>
+    `;
+
+    card.querySelector("[data-action='inspect']").addEventListener("click", () => {
+      // Switch to contracts tab and scroll to contracts
+      document.querySelectorAll(".nav-link").forEach(t => {
+        if (t.getAttribute("data-tab") === "contracts-view") t.click();
+      });
+      showToast(`Inspecting smart contract: ${item.contractName}`);
+    });
+
+    card.querySelector("[data-action='copy']").addEventListener("click", () => {
+      copyToClipboard(`contracts/${item.contractName}`, `Copied contract path: contracts/${item.contractName}`);
     });
 
     grid.appendChild(card);

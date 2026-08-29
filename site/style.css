@@ -880,6 +880,198 @@ body {
   color: var(--gold-bright);
 }
 
+/* ==========================================================================
+   GENIUS ACT & GLOBAL LEGAL DISCIPLINES STYLING
+   ========================================================================== */
+.jurisdiction-deck-container {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+
+.jurisdiction-pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.jur-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-sub);
+  padding: 0.5rem 0.95rem;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.jur-btn:hover {
+  background: rgba(0, 210, 255, 0.12);
+  border-color: rgba(0, 210, 255, 0.35);
+  color: var(--cyan);
+}
+
+.jur-btn.active {
+  background: linear-gradient(135deg, rgba(0, 210, 255, 0.25), rgba(168, 85, 247, 0.25));
+  border-color: var(--cyan);
+  color: #fff;
+  box-shadow: 0 0 16px rgba(0, 210, 255, 0.25);
+}
+
+.jur-telemetry-box {
+  background: rgba(10, 16, 32, 0.85);
+  border: 1px solid var(--border-glass);
+  border-radius: 14px;
+  padding: 1.25rem;
+}
+
+.jur-telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.jur-telemetry-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.85rem;
+  border-radius: 10px;
+  border-left: 3px solid var(--cyan);
+}
+
+.jur-telemetry-lbl {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  letter-spacing: 0.05em;
+}
+
+.jur-telemetry-val {
+  font-size: 0.86rem;
+  color: #f1f5f9;
+  line-height: 1.4;
+}
+
+.disciplines-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.discipline-card {
+  background: rgba(10, 16, 32, 0.75);
+  border: 1px solid var(--border-glass);
+  border-radius: 14px;
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.discipline-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--cyan);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 210, 255, 0.18);
+}
+
+.discipline-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.discipline-icon-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.discipline-icon {
+  font-size: 1.4rem;
+}
+
+.discipline-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.discipline-contract-tag {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  color: var(--gold-bright);
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+}
+
+.discipline-statute {
+  font-size: 0.78rem;
+  color: var(--cyan);
+  font-weight: 600;
+  margin-top: -0.4rem;
+}
+
+.discipline-desc {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+.discipline-solidity-box {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 0.65rem 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #38bdf8;
+  max-height: 90px;
+  overflow-y: auto;
+}
+
+.discipline-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.disc-deploy-btn {
+  flex: 1;
+  background: linear-gradient(135deg, rgba(0, 210, 255, 0.2), rgba(168, 85, 247, 0.2));
+  border: 1px solid var(--cyan);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.disc-deploy-btn:hover {
+  background: var(--cyan);
+  color: #000;
+  box-shadow: 0 0 14px rgba(0, 210, 255, 0.35);
+}
+
 .step-card {
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid var(--border-glass);
