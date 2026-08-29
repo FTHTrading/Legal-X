@@ -1,40 +1,35 @@
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
-    const hostname = url.hostname.toLowerCase();
+    const host = url.hostname.toLowerCase();
     const pathname = url.pathname.toLowerCase();
 
-    // 1. Apex Marketing Site: legacychain.app
-    if (hostname === "legacychain.app" || hostname === "www.legacychain.app") {
-      // Sensitive path protection: redirect internal dashboard routes to app login
-      const sensitivePrefixes = [
-        "/evidence",
-        "/matters",
-        "/documents",
-        "/proofs",
-        "/pleadings",
-        "/approvals",
-        "/agents",
-        "/vault"
-      ];
+    // Sensitive internal API endpoints redirection if unauthenticated (future-proof)
+    const sensitivePrefixes = [
+      "/evidence/internal",
+      "/vault/secret"
+    ];
 
-      if (sensitivePrefixes.some(p => pathname.startsWith(p))) {
-        return Response.redirect(`https://app.legacychain.app/login?next=${encodeURIComponent(url.pathname)}`, 302);
-      }
+    if (sensitivePrefixes.some(p => pathname.startsWith(p))) {
+      return Response.redirect(`https://legacychain.app/?auth=required`, 302);
     }
 
-    // 2. Private Subdomain Authentication Gates
-    if (hostname === "app.legacychain.app" || hostname === "vault.legacychain.app") {
-      // Unauthenticated requests default to /login
-      if (pathname === "/" || (!pathname.startsWith("/login") && !pathname.startsWith("/_next") && !pathname.startsWith("/static"))) {
-        const authCookie = request.headers.get("Cookie") || "";
-        if (!authCookie.includes("legal_x_session=")) {
-          return Response.redirect(`https://${hostname}/login?next=${encodeURIComponent(url.pathname)}`, 302);
-        }
+    // Default asset resolution from static site directory
+    let response = await env.ASSETS.fetch(request);
+    
+    // Fallback to index.html for root / routing
+    if (response.status === 404) {
+      if (pathname === "/cinema" || pathname === "/cinema/") {
+        return env.ASSETS.fetch(new Request(new URL("/cinema.html", request.url).toString(), request));
       }
+      const cleanPath = url.pathname.endsWith('/') ? url.pathname + 'index.html' : url.pathname + '/index.html';
+      const tryIndex = await env.ASSETS.fetch(new Request(new URL(cleanPath, request.url).toString(), request));
+      if (tryIndex.status !== 404) {
+        return tryIndex;
+      }
+      return env.ASSETS.fetch(new Request(new URL("/index.html", request.url).toString(), request));
     }
-
-    // 3. Forward to Origin Assets
-    return fetch(request);
+    
+    return response;
   }
 };
