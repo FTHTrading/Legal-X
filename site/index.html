@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legal-X — Case DNA & Matter Digital Twins</title>
+  <meta name="description" content="Next-Generation Sovereign Legal-Record Chain and Matter Digital Twin Architecture. Liquid Glass Interface with Deterministic Verification.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient Liquid Mesh Background -->
+  <div class="liquid-mesh-container">
+    <div class="liquid-blob blob-1"></div>
+    <div class="liquid-blob blob-2"></div>
+    <div class="liquid-blob blob-3"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <!-- Main App Shell -->
+  <div class="app-container">
+    
+    <!-- Liquid Glass Navigation Bar -->
+    <header class="glass-nav">
+      <div class="nav-left">
+        <div class="brand-badge">
+          <div class="brand-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div class="brand-title">
+            LEGAL<span class="gold-gradient">X</span>
+            <span class="version-tag">DNA·FRAME</span>
+          </div>
+        </div>
+      </div>
+
+      <nav class="nav-center">
+        <button class="nav-link active" data-tab="twin-explorer">Matter Digital Twin</button>
+        <button class="nav-link" data-tab="dna-visualizer">Case DNA Strand</button>
+        <button class="nav-link" data-tab="citation-engine">Eyecite Matcher</button>
+        <button class="nav-link" data-tab="x402-rail">x402 Settlement</button>
+        <button class="nav-link" data-tab="contracts-view">Smart Contracts</button>
+      </nav>
+
+      <div class="nav-right">
+        <div class="status-pill">
+          <span class="pulse-dot"></span>
+          <span class="status-text">RUST CORE LIVE</span>
+        </div>
+        <a href="https://github.com/FTHTrading/Legal-X" target="_blank" class="github-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span>FTHTrading/Legal-X</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="main-content">
+      
+      <!-- HERO HEADER -->
+      <section class="hero-section">
+        <div class="hero-badge">
+          <span class="sparkle">✨</span>
+          <span>ATTORNEY-SUPERVISED CASE TWINS & EVIDENTIARY PROVENANCE</span>
+        </div>
+        <h1 class="hero-title">
+          The <span class="neon-cyan">Digital Twin</span> of Every Legal Matter,<br>
+          Anchored by <span class="neon-gold">Deterministic Rust Proofs</span>.
+        </h1>
+        <p class="hero-subtitle">
+          Legal-X gives authorized teams a living operational model of facts, parties, and procedural rules, paired with an immutable chain of custody, exact character-offset quote verification, and FRE 902 self-authenticating manifests.
+        </p>
+
+        <!-- Metrics Ticker -->
+        <div class="liquid-ticker">
+          <div class="ticker-item">
+            <span class="ticker-val">100%</span>
+            <span class="ticker-lbl">Deterministic Citation Match</span>
+          </div>
+          <div class="ticker-sep"></div>
+          <div class="ticker-item">
+            <span class="ticker-val">0ms</span>
+            <span class="ticker-lbl">Unpaid Edge Origin Load</span>
+          </div>
+          <div class="ticker-sep"></div>
+          <div class="ticker-item">
+            <span class="ticker-val">FRE 902(13)/(14)</span>
+            <span class="ticker-lbl">Self-Authenticating Record</span>
+          </div>
+          <div class="ticker-sep"></div>
+          <div class="ticker-item">
+            <span class="ticker-val">Base (8453)</span>
+            <span class="ticker-lbl">Atomic USDC Settlement</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 1: MATTER DIGITAL TWIN EXPLORER -->
+      <section id="twin-explorer" class="tab-pane active">
+        <div class="glass-card-full">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">Matter Digital Twin Live Sandbox</h2>
+              <p class="panel-desc">Select an active case archetype to inspect its live relational graph, timeline, and cryptographic evidence tree.</p>
+            </div>
+            <div class="matter-switcher">
+              <button class="matter-btn active" data-matter="mat_2026_corp">Corp. Motion to Dismiss</button>
+              <button class="matter-btn" data-matter="mat_2026_estate">5-Proof Estate Trust Safe</button>
+              <button class="matter-btn" data-matter="mat_2026_investigation">Forensic Defense Matter</button>
+            </div>
+          </div>
+
+          <div class="twin-workspace-grid">
+            <!-- Left: Node Hierarchy Graph -->
+            <div class="twin-left-panel">
+              <h3 class="subpanel-title">Case Node Graph</h3>
+              <div class="node-tree" id="nodeTree">
+                <!-- Dynamically populated via app.js -->
+              </div>
+            </div>
+
+            <!-- Right: Interactive Node Inspector -->
+            <div class="twin-right-panel">
+              <h3 class="subpanel-title">Cryptographic Node Telemetry</h3>
+              <div class="inspector-card" id="nodeInspector">
+                <div class="empty-inspector">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                  <p>Click any case element on the left to inspect its raw SHA-256 hash, primary source links, and attorney review log.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: CASE DNA STRAND VISUALIZER -->
+      <section id="dna-visualizer" class="tab-pane">
+        <div class="glass-card-full">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">Structured Case DNA Strand</h2>
+              <p class="panel-desc">Interactive sequence visualization of the immutable matter identity.</p>
+            </div>
+            <button class="action-btn" id="rehashDnaBtn">Regenerate Genesis Hash</button>
+          </div>
+
+          <div class="canvas-wrapper">
+            <canvas id="dnaCanvas" width="1100" height="260"></canvas>
+          </div>
+
+          <div class="dna-blocks-row" id="dnaBlocksRow">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: DETERMINISTIC EYECITE MATCHER -->
+      <section id="citation-engine" class="tab-pane">
+        <div class="glass-card-full">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">Fail-Closed Citation & Exact-Quote Engine</h2>
+              <p class="panel-desc">Test legal drafting against the official slip opinion corpus. If a quote or citation is unverified, export is blocked immediately.</p>
+            </div>
+            <div class="engine-pills">
+              <span class="pill-blue">Eyecite v0.4.2</span>
+              <span class="pill-gold">GovInfo / CourtListener Synced</span>
+            </div>
+          </div>
+
+          <div class="citation-demo-grid">
+            <div class="citation-input-col">
+              <label class="input-lbl">Legal Argument Draft Input</label>
+              <textarea id="draftTextInput" class="glass-textarea" rows="6">Under Ashcroft v. Iqbal, 556 U.S. 662, 678 (2009), to survive a motion to dismiss, a complaint must contain sufficient factual matter, accepted as true, to state a claim to relief that is plausible on its face.</textarea>
+
+              <div class="button-row">
+                <button class="action-btn" id="runCitationAuditBtn">Run Deterministic Audit</button>
+                <button class="secondary-btn" id="insertFakeCitationBtn">Insert Fabricated Citation (Mata v. Avianca Test)</button>
+              </div>
+            </div>
+
+            <div class="citation-output-col">
+              <label class="input-lbl">Verification Result & Offset Inspector</label>
+              <div id="citationAuditResult" class="audit-result-box">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4: x402 MACHINE SETTLEMENT SIMULATOR -->
+      <section id="x402-rail" class="tab-pane">
+        <div class="glass-card-full">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">x402 CloudFront Edge & Base USDC Settlement Rail</h2>
+              <p class="panel-desc">Experience the zero-origin-load HTTP 402 challenge gate, wallet signing, and atomic DynamoDB conditional settlement.</p>
+            </div>
+            <span class="pill-purple">Base Chain ID: 8453</span>
+          </div>
+
+          <div class="x402-grid">
+            <div class="step-card" id="step1Card">
+              <div class="step-num">01</div>
+              <h4>Bare Inbound Call</h4>
+              <p>Autonomous AI agent calls <code>/v1/proof/evidence/...</code> without payment headers.</p>
+              <button class="mini-btn" id="sendUnpaidBtn">Send Unpaid GET</button>
+            </div>
+
+            <div class="step-card" id="step2Card">
+              <div class="step-num">02</div>
+              <h4>CloudFront 402 Challenge</h4>
+              <p>Edge Lambda interceptor returns <code>HTTP 402</code> with Base64 USDC challenge and 300s TTL.</p>
+              <div class="code-preview" id="challengePreview">Awaiting Request...</div>
+            </div>
+
+            <div class="step-card" id="step3Card">
+              <div class="step-num">03</div>
+              <h4>Agent Wallet Sign & Resubmit</h4>
+              <p>Sign the challenge with private key and attach to <code>PAYMENT-SIGNATURE</code> header.</p>
+              <button class="mini-btn disabled" id="signChallengeBtn" disabled>Sign & Settle on Base</button>
+            </div>
+
+            <div class="step-card" id="step4Card">
+              <div class="step-num">04</div>
+              <h4>Origin Execution & 200 OK</h4>
+              <p>Origin executes atomic DynamoDB conditional write and returns the verified ProofBundle.</p>
+              <div class="code-preview" id="originPreview">Awaiting Settlement...</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 5: SMART CONTRACTS & REPOSITORY SCHEMAS -->
+      <section id="contracts-view" class="tab-pane">
+        <div class="glass-card-full">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">Verified Smart Contracts & JSON Schemas</h2>
+              <p class="panel-desc">Direct inspection of the deployed on-chain proof registry and formal data contracts.</p>
+            </div>
+            <a href="https://github.com/FTHTrading/Legal-X" target="_blank" class="action-btn">View on GitHub</a>
+          </div>
+
+          <div class="contracts-accordion">
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <span class="file-tag">SOL</span>
+                <span class="file-name">contracts/LegalProofRegistry.sol</span>
+                <span class="chevron">▼</span>
+              </div>
+              <div class="accordion-body">
+                <pre><code>// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract LegalProofRegistry {
+    struct ProofRecord {
+        bytes32 sha256Digest;
+        bytes32 blake2Digest;
+        string matterId;
+        string documentUuid;
+        address signer;
+        uint256 timestamp;
+        bool isRevoked;
+    }
+    mapping(bytes32 => ProofRecord) public proofs;
+    event ProofAnchored(bytes32 indexed documentHash, string indexed matterId, address indexed signer);
+
+    function anchorProof(bytes32 _sha256Digest, bytes32 _blake2Digest, string calldata _matterId, string calldata _documentUuid) external {
+        require(proofs[_sha256Digest].timestamp == 0, "Proof already anchored");
+        proofs[_sha256Digest] = ProofRecord({
+            sha256Digest: _sha256Digest,
+            blake2Digest: _blake2Digest,
+            matterId: _matterId,
+            documentUuid: _documentUuid,
+            signer: msg.sender,
+            timestamp: block.timestamp,
+            isRevoked: false
+        });
+        emit ProofAnchored(_sha256Digest, _matterId, msg.sender);
+    }
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <span class="file-tag">JSON</span>
+                <span class="file-name">schemas/case-dna.schema.json</span>
+                <span class="chevron">▼</span>
+              </div>
+              <div class="accordion-body">
+                <pre><code>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CaseDigitalDNA",
+  "required": [
+    "matterId",
+    "organizationId",
+    "jurisdictionProfile",
+    "caseCaption",
+    "factualTimeline",
+    "evidenceDigestTree",
+    "sourceAuthoritySnapshots",
+    "attorneyReviewLog"
+  ]
+}</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Liquid Glass Footer -->
+    <footer class="glass-footer">
+      <div class="footer-left">
+        <span>© 2026 <strong>Legal-X</strong> · Sovereign Legal-Record Chain & Matter Digital Twin Architecture.</span>
+      </div>
+      <div class="footer-right">
+        <a href="https://legacychain.app" target="_blank" class="footer-link">LegacyChain.app Apex</a>
+        <a href="https://app.legacychain.app" target="_blank" class="footer-link">Client Portal</a>
+        <a href="https://github.com/FTHTrading/Legal-X" target="_blank" class="footer-link">GitHub Repository</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
